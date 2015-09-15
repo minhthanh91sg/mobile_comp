@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8081B3FB45066A5A4113CF9F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FF8C839040DB989553B0D /* libPods.a */; };
+		D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62010731BA7911500C14936 /* FeedTableViewController.swift */; };
+		D67BF7F91B9AFB3C003E344A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67BF7F81B9AFB3C003E344A /* User.swift */; };
+		D68F1B2B1B9AF16E004D1C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F1B2A1B9AF16E004D1C53 /* AppDelegate.swift */; };
+		D68F1B2D1B9AF16E004D1C53 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F1B2C1B9AF16E004D1C53 /* LogInViewController.swift */; };
+		D68F1B301B9AF16E004D1C53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */; };
+		D68F1B321B9AF16E004D1C53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B311B9AF16E004D1C53 /* Images.xcassets */; };
+		D68F1B351B9AF16E004D1C53 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B331B9AF16E004D1C53 /* LaunchScreen.xib */; };
+		D68F1B411B9AF16E004D1C53 /* TinstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F1B401B9AF16E004D1C53 /* TinstagramTests.swift */; };
+		D68F3CE21BA0408700B5FBEE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */; };
+		D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */; };
+		D6ADC0BF1B9FB0D900832853 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D68F1B3B1B9AF16E004D1C53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D68F1B1D1B9AF16E004D1C53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D68F1B241B9AF16E004D1C53;
+			remoteInfo = Tinstagram;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1DBCDF4762F61BBCF94A6708 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BC0FF8C839040DB989553B0D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62010731BA7911500C14936 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		D67BF7F51B9AF45F003E344A /* Tinstagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinstagram-Bridging-Header.h"; sourceTree = "<group>"; };
+		D67BF7F81B9AFB3C003E344A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D68F1B251B9AF16E004D1C53 /* Tinstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68F1B291B9AF16E004D1C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D68F1B2A1B9AF16E004D1C53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D68F1B2C1B9AF16E004D1C53 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		D68F1B2F1B9AF16E004D1C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D68F1B311B9AF16E004D1C53 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D68F1B341B9AF16E004D1C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D68F1B3A1B9AF16E004D1C53 /* TinstagramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinstagramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68F1B3F1B9AF16E004D1C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D68F1B401B9AF16E004D1C53 /* TinstagramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinstagramTests.swift; sourceTree = "<group>"; };
+		D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
+		D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F8FA7461A870B843364ED766 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D68F1B221B9AF16E004D1C53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8081B3FB45066A5A4113CF9F /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D68F1B371B9AF16E004D1C53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B999168B7FC815CC7134B1C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC0FF8C839040DB989553B0D /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C25E093BB2237CA5EAEC2FCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1DBCDF4762F61BBCF94A6708 /* Pods.debug.xcconfig */,
+				F8FA7461A870B843364ED766 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D68F1B1C1B9AF16E004D1C53 = {
+			isa = PBXGroup;
+			children = (
+				D68F1B271B9AF16E004D1C53 /* Tinstagram */,
+				D68F1B3D1B9AF16E004D1C53 /* TinstagramTests */,
+				D68F1B261B9AF16E004D1C53 /* Products */,
+				C25E093BB2237CA5EAEC2FCB /* Pods */,
+				B999168B7FC815CC7134B1C8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D68F1B261B9AF16E004D1C53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D68F1B251B9AF16E004D1C53 /* Tinstagram.app */,
+				D68F1B3A1B9AF16E004D1C53 /* TinstagramTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D68F1B271B9AF16E004D1C53 /* Tinstagram */ = {
+			isa = PBXGroup;
+			children = (
+				D68F1B2A1B9AF16E004D1C53 /* AppDelegate.swift */,
+				D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */,
+				D62010731BA7911500C14936 /* FeedTableViewController.swift */,
+				D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */,
+				D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */,
+				D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */,
+				D68F1B2C1B9AF16E004D1C53 /* LogInViewController.swift */,
+				D67BF7F81B9AFB3C003E344A /* User.swift */,
+				D68F1B311B9AF16E004D1C53 /* Images.xcassets */,
+				D68F1B331B9AF16E004D1C53 /* LaunchScreen.xib */,
+				D68F1B281B9AF16E004D1C53 /* Supporting Files */,
+				D67BF7F51B9AF45F003E344A /* Tinstagram-Bridging-Header.h */,
+			);
+			path = Tinstagram;
+			sourceTree = "<group>";
+		};
+		D68F1B281B9AF16E004D1C53 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D68F1B291B9AF16E004D1C53 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D68F1B3D1B9AF16E004D1C53 /* TinstagramTests */ = {
+			isa = PBXGroup;
+			children = (
+				D68F1B401B9AF16E004D1C53 /* TinstagramTests.swift */,
+				D68F1B3E1B9AF16E004D1C53 /* Supporting Files */,
+			);
+			path = TinstagramTests;
+			sourceTree = "<group>";
+		};
+		D68F1B3E1B9AF16E004D1C53 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D68F1B3F1B9AF16E004D1C53 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D68F1B241B9AF16E004D1C53 /* Tinstagram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D68F1B441B9AF16E004D1C53 /* Build configuration list for PBXNativeTarget "Tinstagram" */;
+			buildPhases = (
+				DD4FD51C8D9EE99C8A30F897 /* Check Pods Manifest.lock */,
+				D68F1B211B9AF16E004D1C53 /* Sources */,
+				D68F1B221B9AF16E004D1C53 /* Frameworks */,
+				D68F1B231B9AF16E004D1C53 /* Resources */,
+				4910B179602F6EBAA387E76E /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tinstagram;
+			productName = Tinstagram;
+			productReference = D68F1B251B9AF16E004D1C53 /* Tinstagram.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D68F1B391B9AF16E004D1C53 /* TinstagramTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D68F1B471B9AF16E004D1C53 /* Build configuration list for PBXNativeTarget "TinstagramTests" */;
+			buildPhases = (
+				D68F1B361B9AF16E004D1C53 /* Sources */,
+				D68F1B371B9AF16E004D1C53 /* Frameworks */,
+				D68F1B381B9AF16E004D1C53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D68F1B3C1B9AF16E004D1C53 /* PBXTargetDependency */,
+			);
+			name = TinstagramTests;
+			productName = TinstagramTests;
+			productReference = D68F1B3A1B9AF16E004D1C53 /* TinstagramTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D68F1B1D1B9AF16E004D1C53 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Thanh Pham";
+				TargetAttributes = {
+					D68F1B241B9AF16E004D1C53 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					D68F1B391B9AF16E004D1C53 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = D68F1B241B9AF16E004D1C53;
+					};
+				};
+			};
+			buildConfigurationList = D68F1B201B9AF16E004D1C53 /* Build configuration list for PBXProject "Tinstagram" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D68F1B1C1B9AF16E004D1C53;
+			productRefGroup = D68F1B261B9AF16E004D1C53 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D68F1B241B9AF16E004D1C53 /* Tinstagram */,
+				D68F1B391B9AF16E004D1C53 /* TinstagramTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D68F1B231B9AF16E004D1C53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68F1B301B9AF16E004D1C53 /* Main.storyboard in Resources */,
+				D68F1B351B9AF16E004D1C53 /* LaunchScreen.xib in Resources */,
+				D68F1B321B9AF16E004D1C53 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D68F1B381B9AF16E004D1C53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4910B179602F6EBAA387E76E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD4FD51C8D9EE99C8A30F897 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D68F1B211B9AF16E004D1C53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68F1B2D1B9AF16E004D1C53 /* LogInViewController.swift in Sources */,
+				D67BF7F91B9AFB3C003E344A /* User.swift in Sources */,
+				D68F3CE21BA0408700B5FBEE /* ProfileViewController.swift in Sources */,
+				D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */,
+				D6ADC0BF1B9FB0D900832853 /* MainTabBarController.swift in Sources */,
+				D68F1B2B1B9AF16E004D1C53 /* AppDelegate.swift in Sources */,
+				D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D68F1B361B9AF16E004D1C53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68F1B411B9AF16E004D1C53 /* TinstagramTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D68F1B3C1B9AF16E004D1C53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D68F1B241B9AF16E004D1C53 /* Tinstagram */;
+			targetProxy = D68F1B3B1B9AF16E004D1C53 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D68F1B2F1B9AF16E004D1C53 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D68F1B331B9AF16E004D1C53 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D68F1B341B9AF16E004D1C53 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D68F1B421B9AF16E004D1C53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D68F1B431B9AF16E004D1C53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D68F1B451B9AF16E004D1C53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DBCDF4762F61BBCF94A6708 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = Tinstagram/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tinstagram/Tinstagram-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D68F1B461B9AF16E004D1C53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8FA7461A870B843364ED766 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = Tinstagram/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tinstagram/Tinstagram-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		D68F1B481B9AF16E004D1C53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TinstagramTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tinstagram.app/Tinstagram";
+			};
+			name = Debug;
+		};
+		D68F1B491B9AF16E004D1C53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TinstagramTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tinstagram.app/Tinstagram";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D68F1B201B9AF16E004D1C53 /* Build configuration list for PBXProject "Tinstagram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68F1B421B9AF16E004D1C53 /* Debug */,
+				D68F1B431B9AF16E004D1C53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D68F1B441B9AF16E004D1C53 /* Build configuration list for PBXNativeTarget "Tinstagram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68F1B451B9AF16E004D1C53 /* Debug */,
+				D68F1B461B9AF16E004D1C53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D68F1B471B9AF16E004D1C53 /* Build configuration list for PBXNativeTarget "TinstagramTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68F1B481B9AF16E004D1C53 /* Debug */,
+				D68F1B491B9AF16E004D1C53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D68F1B1D1B9AF16E004D1C53 /* Project object */;
+}
