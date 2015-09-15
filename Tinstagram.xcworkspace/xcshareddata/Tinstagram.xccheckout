@@ -10,14 +10,14 @@
 	<string>Tinstagram</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>393106390AA673E6A683B6E4CF0212AECC27D83C</key>
+		<key>6B8EA7237937C6959B7DA49C70824BDBBE78D780</key>
 		<string>https://bitbucket.org/heathyspine/com90018_instagram_project.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Tinstagram.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>393106390AA673E6A683B6E4CF0212AECC27D83C</key>
+		<key>6B8EA7237937C6959B7DA49C70824BDBBE78D780</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>393106390AA673E6A683B6E4CF0212AECC27D83C</string>
+	<string>6B8EA7237937C6959B7DA49C70824BDBBE78D780</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>393106390AA673E6A683B6E4CF0212AECC27D83C</string>
+			<string>6B8EA7237937C6959B7DA49C70824BDBBE78D780</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Tinstagram</string>
 		</dict>
