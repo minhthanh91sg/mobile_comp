@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ons-Cp-wmg">
-                                <rect key="frame" x="16" y="20" width="79" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fab-Kl-60A">
                                 <rect key="frame" x="16" y="52" width="79" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -76,6 +70,12 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VOB-PK-EwU">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ons-Cp-wmg">
+                                <rect key="frame" x="16" y="20" width="79" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -129,6 +129,7 @@
         <scene sceneID="11l-fz-P3P">
             <objects>
                 <tabBarController id="e0K-NR-uRN" customClass="MainTabBarController" customModule="Tinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dMg-D3-QCs"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5FE-NU-r4s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -138,6 +139,7 @@
                     <connections>
                         <segue destination="EZp-iE-PJ5" kind="relationship" relationship="viewControllers" id="kTE-Eu-rCe"/>
                         <segue destination="FN9-1e-nxl" kind="relationship" relationship="viewControllers" id="g1z-aG-75w"/>
+                        <segue destination="kib-DG-FYr" kind="relationship" relationship="viewControllers" id="LQd-Cb-qen"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7T-jg-uOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,7 +205,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pPO-GG-Pji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3334.5" y="659.25"/>
+            <point key="canvasLocation" x="5170.5" y="659.25"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Dfk-qQ-TOu">
@@ -699,6 +701,24 @@
             </objects>
             <point key="canvasLocation" x="2521.5" y="-67.5"/>
         </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="skw-tu-LEr">
+            <objects>
+                <viewController id="T9Q-5c-drj" customClass="CameraViewController" customModule="Tinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jhQ-mM-rWW"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lia-Ft-pNa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yeN-FV-qVj">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Bjp-4F-gqH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbG-L5-bH4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3271.5" y="954"/>
+        </scene>
         <!--Home-->
         <scene sceneID="UOC-7R-dO6">
             <objects>
@@ -716,10 +736,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nIS-bx-XZ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2521.5" y="659.25"/>
+            <point key="canvasLocation" x="4357.5" y="659.25"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="yWM-0S-Snu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kib-DG-FYr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Camera" image="camera" id="fxv-ML-6ee"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0b5-ur-cce">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="T9Q-5c-drj" kind="relationship" relationship="rootViewController" id="zfd-oU-nuB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4x-Dl-lJF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2353.5" y="954"/>
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="26" height="26"/>
         <image name="house" width="26" height="26"/>
         <image name="people" width="26" height="26"/>
     </resources>

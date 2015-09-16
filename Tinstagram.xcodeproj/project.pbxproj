@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62CD5D461BA9377000EF0C56 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CD5D451BA9377000EF0C56 /* CameraViewController.swift */; };
 		8081B3FB45066A5A4113CF9F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FF8C839040DB989553B0D /* libPods.a */; };
 		D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62010731BA7911500C14936 /* FeedTableViewController.swift */; };
 		D67BF7F91B9AFB3C003E344A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67BF7F81B9AFB3C003E344A /* User.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		1DBCDF4762F61BBCF94A6708 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		62CD5D451BA9377000EF0C56 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BC0FF8C839040DB989553B0D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62010731BA7911500C14936 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		D67BF7F51B9AF45F003E344A /* Tinstagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinstagram-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				D68F1B2A1B9AF16E004D1C53 /* AppDelegate.swift */,
 				D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */,
+				62CD5D451BA9377000EF0C56 /* CameraViewController.swift */,
 				D62010731BA7911500C14936 /* FeedTableViewController.swift */,
 				D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */,
 				D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */,
@@ -294,6 +297,7 @@
 				D68F3CE21BA0408700B5FBEE /* ProfileViewController.swift in Sources */,
 				D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */,
 				D6ADC0BF1B9FB0D900832853 /* MainTabBarController.swift in Sources */,
+				62CD5D461BA9377000EF0C56 /* CameraViewController.swift in Sources */,
 				D68F1B2B1B9AF16E004D1C53 /* AppDelegate.swift in Sources */,
 				D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */,
 			);
