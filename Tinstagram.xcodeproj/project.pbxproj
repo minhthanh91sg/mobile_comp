@@ -123,8 +123,6 @@
 				D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */,
 				D68F1B2C1B9AF16E004D1C53 /* LogInViewController.swift */,
 				D67BF7F81B9AFB3C003E344A /* User.swift */,
-				D68F1B311B9AF16E004D1C53 /* Images.xcassets */,
-				D68F1B331B9AF16E004D1C53 /* LaunchScreen.xib */,
 				D68F1B281B9AF16E004D1C53 /* Supporting Files */,
 				D67BF7F51B9AF45F003E344A /* Tinstagram-Bridging-Header.h */,
 			);
@@ -134,6 +132,8 @@
 		D68F1B281B9AF16E004D1C53 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D68F1B331B9AF16E004D1C53 /* LaunchScreen.xib */,
+				D68F1B311B9AF16E004D1C53 /* Images.xcassets */,
 				D68F1B291B9AF16E004D1C53 /* Info.plist */,
 			);
 			name = "Supporting Files";
