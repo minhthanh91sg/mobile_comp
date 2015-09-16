@@ -710,6 +710,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CAK-dJ-SVo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Mz9-gI-D78">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpS-V0-GIy">
@@ -796,13 +797,8 @@
                                 <exclude reference="gnl-c1-jiv"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="3Wj-BU-xOV"/>
-                                <exclude reference="FEN-RZ-bzx"/>
-                                <exclude reference="FOU-9v-jSA"/>
-                                <exclude reference="Lhl-bg-bhk"/>
-                                <exclude reference="MCJ-4n-8tl"/>
-                                <exclude reference="Unk-VQ-eTD"/>
-                                <exclude reference="iXf-ww-77p"/>
+                                <exclude reference="8cY-hP-qfE"/>
+                                <exclude reference="O5R-zh-jAI"/>
                                 <exclude reference="E1E-di-QeS"/>
                                 <exclude reference="H7H-tx-Us0"/>
                                 <exclude reference="PKm-LW-UNs"/>
@@ -815,8 +811,13 @@
                                 <exclude reference="bUg-Tz-GdD"/>
                                 <exclude reference="sAm-vj-ki0"/>
                                 <exclude reference="yDM-4p-6rF"/>
-                                <exclude reference="8cY-hP-qfE"/>
-                                <exclude reference="O5R-zh-jAI"/>
+                                <exclude reference="3Wj-BU-xOV"/>
+                                <exclude reference="FEN-RZ-bzx"/>
+                                <exclude reference="FOU-9v-jSA"/>
+                                <exclude reference="Lhl-bg-bhk"/>
+                                <exclude reference="MCJ-4n-8tl"/>
+                                <exclude reference="Unk-VQ-eTD"/>
+                                <exclude reference="iXf-ww-77p"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -826,13 +827,8 @@
                                 <include reference="gnl-c1-jiv"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="3Wj-BU-xOV"/>
-                                <include reference="FEN-RZ-bzx"/>
-                                <include reference="FOU-9v-jSA"/>
-                                <exclude reference="Lhl-bg-bhk"/>
-                                <exclude reference="MCJ-4n-8tl"/>
-                                <include reference="Unk-VQ-eTD"/>
-                                <exclude reference="iXf-ww-77p"/>
+                                <include reference="8cY-hP-qfE"/>
+                                <exclude reference="O5R-zh-jAI"/>
                                 <exclude reference="E1E-di-QeS"/>
                                 <include reference="H7H-tx-Us0"/>
                                 <exclude reference="PKm-LW-UNs"/>
@@ -845,8 +841,13 @@
                                 <exclude reference="bUg-Tz-GdD"/>
                                 <include reference="sAm-vj-ki0"/>
                                 <exclude reference="yDM-4p-6rF"/>
-                                <include reference="8cY-hP-qfE"/>
-                                <exclude reference="O5R-zh-jAI"/>
+                                <include reference="3Wj-BU-xOV"/>
+                                <include reference="FEN-RZ-bzx"/>
+                                <include reference="FOU-9v-jSA"/>
+                                <exclude reference="Lhl-bg-bhk"/>
+                                <exclude reference="MCJ-4n-8tl"/>
+                                <include reference="Unk-VQ-eTD"/>
+                                <exclude reference="iXf-ww-77p"/>
                             </mask>
                         </variation>
                     </view>
