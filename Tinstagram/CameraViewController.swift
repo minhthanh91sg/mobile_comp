@@ -12,7 +12,8 @@ import UIKit
 
 class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate {
     
-    var currentUser: PFUser!
+    
+    
     
     @IBInspectable var shutterButtonColor: UIColor = UIColor.blueColor()
     @IBInspectable var cancelButtonColor: UIColor = UIColor.grayColor()
@@ -127,12 +128,27 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         
     }
     
+    func bringSubviewToCameraOverlayView (overlayView: UIView, customView: UIView) {
+        overlayView.addSubview(customView)
+        overlayView.bringSubviewToFront(customView)
+    }
     
     // Puts the taken photo in the image view
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             pickedImageView.contentMode = .ScaleAspectFit
             pickedImageView.image = pickedImage
+            
+            let imageData = UIImageJPEGRepresentation(pickedImage, 0.5)
+            let imageFile = PFFile(name: "image.jpg", data: imageData)
+            
+            var userImage = PFObject(className: "Image")
+            var userId = PFUser.currentUser()?.objectId
+            println(userId)
+            userImage["userId"] = userId
+            userImage["image"] = imageFile
+            
+            userImage.saveInBackground()
             
             UIImageWriteToSavedPhotosAlbum(pickedImage, self, "image:didFinishSavingWithError:contextInfo:", nil)
         }
@@ -159,10 +175,8 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func bringSubviewToCameraOverlayView (overlayView: UIView, customView: UIView) {
-        overlayView.addSubview(customView)
-        overlayView.bringSubviewToFront(customView)
-    }
+    
+    
     
 
 }
