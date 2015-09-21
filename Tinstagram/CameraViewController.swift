@@ -12,8 +12,11 @@ import UIKit
 
 class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate {
     
+    var currentUser: PFUser!
+    
     @IBInspectable var shutterButtonColor: UIColor = UIColor.blueColor()
     @IBInspectable var cancelButtonColor: UIColor = UIColor.grayColor()
+    @IBInspectable var flashButtonColor: UIColor = UIColor.grayColor()
 
     
     let imagePicker = UIImagePickerController()
@@ -42,15 +45,21 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UIN
             let overlayView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
             overlayView.backgroundColor = UIColor.clearColor()
             
+            let cameraControlBar = UIView(frame: CGRectMake(0, self.view.frame.width,self.view.frame.width , self.view.frame.height - self.view.frame.width))
+            cameraControlBar.backgroundColor = UIColor.blackColor()
+            cameraControlBar.alpha = 0
+            bringSubviewToCameraOverlayView(overlayView, customView: cameraControlBar)
+            
+           
+            
+            
             /* Custom Camera Shutter button */
             let shutterButton = UIView(frame: CGRectMake(self.view.frame.width/2 - 40, self.view.frame.height - 80, 80, 80))
             shutterButton.layer.cornerRadius = 40
             shutterButton.userInteractionEnabled = true
             shutterButton.backgroundColor = shutterButtonColor
-            println(shutterButton)
-            overlayView.addSubview(shutterButton)
-            overlayView.bringSubviewToFront(shutterButton)
-            
+            bringSubviewToCameraOverlayView(overlayView, customView: shutterButton)
+
             
             let recognizer = UITapGestureRecognizer(target: self, action:Selector("handleSnapTap:"))
             recognizer.delegate = self
@@ -61,13 +70,21 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UIN
             let cancelButton = UIView(frame: CGRectMake(10, 10, 44, 44))
             cancelButton.userInteractionEnabled = true
             cancelButton.backgroundColor = cancelButtonColor
-            println(cancelButton)
-            overlayView.addSubview(cancelButton)
-            overlayView.bringSubviewToFront(cancelButton)
+            bringSubviewToCameraOverlayView(overlayView, customView: cancelButton)
             
             let cancelRecognizer = UITapGestureRecognizer(target: self, action: "handleCancelTap:")
             cancelRecognizer.delegate = self
             cancelButton.addGestureRecognizer(cancelRecognizer)
+            
+            /* Custom Flash button */
+            let flashButton = UIView(frame: CGRectMake(10, self.view.frame.height - 46, 44, 44))
+            flashButton.userInteractionEnabled = true
+            flashButton.backgroundColor = flashButtonColor
+            bringSubviewToCameraOverlayView(overlayView, customView: flashButton)
+            
+            let flashRecognizer = UITapGestureRecognizer(target: self, action: "handleFlashTap:")
+            flashRecognizer.delegate = self
+            flashButton.addGestureRecognizer(flashRecognizer)
             
             imagePicker.cameraOverlayView = overlayView
             
@@ -83,6 +100,7 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         println("Take picture")
         imagePicker.takePicture()
         
+        
     }
     
     func handleCancelTap(recognizer: UITapGestureRecognizer){
@@ -91,6 +109,23 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         
     }
     
+    func handleFlashTap(recognizer: UITapGestureRecognizer){
+        println("Flash")
+        
+        if (imagePicker.cameraFlashMode == .Off){
+            imagePicker.cameraFlashMode = .On
+            cancelButtonColor = UIColor.yellowColor()
+            println("Flash On")
+            
+        }
+        else {
+            imagePicker.cameraFlashMode = .Off
+            cancelButtonColor = UIColor.grayColor()
+            println("Flash Off")
+        }
+        
+        
+    }
     
     
     // Puts the taken photo in the image view
@@ -98,13 +133,35 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             pickedImageView.contentMode = .ScaleAspectFit
             pickedImageView.image = pickedImage
+            
+            UIImageWriteToSavedPhotosAlbum(pickedImage, self, "image:didFinishSavingWithError:contextInfo:", nil)
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
         
-
+    func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+        
+        if error != nil {
+            let alert = UIAlertController(title: "Save Failed",
+                message: "Failed to save image",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let cancelAction = UIAlertAction(title: "OK",
+                style: .Cancel, handler: nil)
+            
+            alert.addAction(cancelAction)
+            self.presentViewController(alert, animated: true,
+                completion: nil)
+        }
+    }
+    
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func bringSubviewToCameraOverlayView (overlayView: UIView, customView: UIView) {
+        overlayView.addSubview(customView)
+        overlayView.bringSubviewToFront(customView)
     }
     
 
