@@ -10,12 +10,12 @@
 		62CD5D461BA9377000EF0C56 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CD5D451BA9377000EF0C56 /* CameraViewController.swift */; };
 		8081B3FB45066A5A4113CF9F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FF8C839040DB989553B0D /* libPods.a */; };
 		D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62010731BA7911500C14936 /* FeedTableViewController.swift */; };
+		D677A6BF1BB6A10200DFE3B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */; };
+		D677A6C01BB6A10700DFE3B1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B331B9AF16E004D1C53 /* LaunchScreen.xib */; };
 		D67BF7F91B9AFB3C003E344A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67BF7F81B9AFB3C003E344A /* User.swift */; };
 		D68F1B2B1B9AF16E004D1C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F1B2A1B9AF16E004D1C53 /* AppDelegate.swift */; };
 		D68F1B2D1B9AF16E004D1C53 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F1B2C1B9AF16E004D1C53 /* LogInViewController.swift */; };
-		D68F1B301B9AF16E004D1C53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */; };
 		D68F1B321B9AF16E004D1C53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B311B9AF16E004D1C53 /* Images.xcassets */; };
-		D68F1B351B9AF16E004D1C53 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B331B9AF16E004D1C53 /* LaunchScreen.xib */; };
 		D68F1B411B9AF16E004D1C53 /* TinstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F1B401B9AF16E004D1C53 /* TinstagramTests.swift */; };
 		D68F3CE21BA0408700B5FBEE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */; };
 		D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */; };
@@ -239,8 +239,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D68F1B301B9AF16E004D1C53 /* Main.storyboard in Resources */,
-				D68F1B351B9AF16E004D1C53 /* LaunchScreen.xib in Resources */,
+				D677A6C01BB6A10700DFE3B1 /* LaunchScreen.xib in Resources */,
+				D677A6BF1BB6A10200DFE3B1 /* Main.storyboard in Resources */,
 				D68F1B321B9AF16E004D1C53 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +450,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tinstagram/Tinstagram-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
 		};
