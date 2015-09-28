@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     var currentUser: PFUser!
     
+    var viewUser: PFUser?
     @IBOutlet weak var editProfile: UIButton!
 
     @IBOutlet weak var fullName: UILabel!
@@ -27,60 +28,73 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     var userImageFiles = [PFFile]()
     
-    @IBAction func editProfile(sender: AnyObject) {
-        self.performSegueWithIdentifier("editprofile", sender: self)
-        
-        
-    }
+
     override func viewDidLoad(){
-        
+        println(viewUser)
         photoCollection.delegate = self;
         photoCollection.dataSource = self;
         
         let tabController = self.tabBarController as! MainTabBarController
         currentUser = tabController.currentUser
+        if viewUser == nil{
+            self.showUserInfo(currentUser)
+        }else{
+            self.showUserInfo(viewUser!)
+        }
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        if viewUser == nil{
+            self.showCollection(currentUser)
+        }else{
+            self.showCollection(viewUser!)
+        }
+    }
+    
+    //show user info
+    func showUserInfo(user: PFUser){
         
-        if let file: PFFile = currentUser.objectForKey("profilePicture") as? PFFile{
+        if let file: PFFile = user.objectForKey("profilePicture") as? PFFile{
             profilePic.file = file
             profilePic.loadInBackground()
             profilePic.contentMode = UIViewContentMode.ScaleAspectFit
             
         }
         
-        self.navigationItem.title = currentUser.username
+        self.navigationItem.title = user.username
         editProfile.backgroundColor = UIColor.grayColor()
-        if let firstName: String = currentUser.objectForKey("firstName") as? String{
-            if let lastName: String = currentUser.objectForKey("lastName") as? String{
+        if let firstName: String = user.objectForKey("firstName") as? String{
+            if let lastName: String = user.objectForKey("lastName") as? String{
                 fullName.text = firstName + " " + lastName
             }
             
         }
         
-        if let followersArray: [String] = currentUser.objectForKey("follower") as? [String]{
+        if let followersArray: [String] = user.objectForKey("follower") as? [String]{
             var count = followersArray.count
             followers.text = "\(count)"
         }
         
-        if let followingArray: [String] = currentUser.objectForKey("following") as? [String]{
+        if let followingArray: [String] = user.objectForKey("following") as? [String]{
             var count = followingArray.count
             following.text = "\(count)"
         }
         
-        if let postArray: [String] = currentUser.objectForKey("post") as? [String]{
+        if let postArray: [String] = user.objectForKey("post") as? [String]{
             var count = postArray.count
             posts.text = "\(count)"
         }
-        
-        
-        
-        
     }
     
-    override func viewDidAppear(animated: Bool) {
+    
+    
+    //get data for collection view
+    func showCollection(user: PFUser){
         userImageFiles.removeAll(keepCapacity: false)
         
         var query: PFQuery = PFQuery(className: "Image")
-        query.whereKey("userId", equalTo: currentUser.objectId!)
+        query.whereKey("userId", equalTo: user.objectId!)
         var length = query.countObjects()
         println("THISSSSSS is THE Length" + "\(length)")
         if length > 0{
@@ -97,6 +111,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             })
         }
     }
+    
     
     func getUserImagesIds(user: PFUser) -> [String]?{
         return user.objectForKey("imageId") as! [String]?
@@ -128,6 +143,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 case "editprofile":
                     if let theSender = sender as? ProfileViewController{
                         editProfileController.currentUser = sender?.currentUser
+                        break
                     }
                 default: break
                 }

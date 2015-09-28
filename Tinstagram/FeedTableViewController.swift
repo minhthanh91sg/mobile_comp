@@ -8,9 +8,15 @@
 
 import UIKit
 
-class FeedTableViewController: UITableViewController {
+//protocol MyCustomCellDelegator {
+//    func callSegueFromCell(myData dataobject: AnyObject)
+//}
+
+class FeedTableViewController: UITableViewController{
 
     var currentUser: PFUser!
+    
+    var viewUser: PFUser?
     
     var feedFiles = [PFFile]()
     
@@ -25,18 +31,24 @@ class FeedTableViewController: UITableViewController {
 
     }
     
-    
     override func viewDidAppear(animated: Bool) {
         feedFiles.removeAll(keepCapacity: false)
         feedUser.removeAll(keepCapacity: false)
         if let followingArray: [String] = currentUser.objectForKey("following") as? [String]{
             var imageQuery = PFQuery(className: "Image")
             imageQuery.whereKey("userId", containedIn: followingArray)
+            imageQuery.orderByAscending("createdAt")
             imageQuery.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil{
                     if let objects = objects{
                         for object in objects{
-                            self.feedUser.append(object.objectForKey("userId") as! String)
+                            var userQuery = PFQuery(className: "_User")
+                            userQuery.whereKey("objectId", equalTo: object.objectForKey("userId") as! String)
+                            var results = userQuery.findObjects()!
+                            println("heyyyy" + "\(results.count)")
+                            for result in results{
+                                self.feedUser.append(result.objectForKey("username") as! String)
+                            }
                             self.feedFiles.append(object.objectForKey("image") as! PFFile)
                             self.tableView.reloadData()
                         }
@@ -71,7 +83,9 @@ class FeedTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! feedCell
-        cell.username.text = self.feedUser[indexPath.row]
+        cell.username.setTitle("\(self.feedUser[indexPath.row])",forState: .Normal)
+        cell.username.tag = indexPath.row
+
         println("test:\(self.feedUser[indexPath.row])")
         self.feedFiles[indexPath.row].getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
@@ -79,18 +93,80 @@ class FeedTableViewController: UITableViewController {
                 cell.imageFeed.image = image
             }
         })
+//        cell.delegate = self
 
         return cell
     }
-
-
+    
+    @IBAction func viewUserDetail(sender: UIButton){
+        let username = self.feedUser[sender.tag] as String
+        var userQuery = PFQuery(className: "_User")
+        userQuery.whereKey("username", equalTo: username)
+        var userObject = userQuery.getFirstObject()
+        if let userObject = userObject as? PFUser{
+            viewUser = userObject
+        }
+        self.performSegueWithIdentifier("viewuser", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let userProfileController = segue.destinationViewController as? ProfileViewController{
+            if let identifier = segue.identifier {
+                switch identifier {
+                case "viewuser":
+                    if let theSender = sender as? FeedTableViewController{
+                        println("aksdjflasjdf")
+                        userProfileController.currentUser = self.currentUser
+                        userProfileController.viewUser  = self.viewUser
+                        
+                    }
+                default: break
+                }
+            }
+            
+        }
+        
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "viewuser"{
+            if viewUser == nil{
+                return false
+            }else{
+                return true
+            }
+        }
+        return true
+    }
+//    
+//    func callSegueFromCell(myData dataobject: AnyObject) {
+//        viewUser = dataobject as? PFUser
+//    }
 
 }
+
 class feedCell: UITableViewCell{
     
-    @IBOutlet weak var username: UILabel!
+//    var delegate:MyCustomCellDelegator!
+//    
+//    @IBAction func usernamePressed(sender: AnyObject) {
+//        var user: String = username.titleLabel!.text!
+//        var userQuery = PFQuery(className: "_User")
+//        userQuery.whereKey("username", equalTo: user)
+//        var userObject = userQuery.getFirstObject()
+//        
+//        if let userObject = userObject as? PFUser{
+//            if(self.delegate != nil){
+//                self.delegate.callSegueFromCell(myData: userObject)
+//            }
+//        }
+//    }
+    
+    @IBOutlet weak var username: UIButton!
+    
     
     @IBOutlet weak var imageFeed: UIImageView!
 }
+
 
 
