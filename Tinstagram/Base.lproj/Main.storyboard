@@ -176,8 +176,7 @@
                                                 <rect key="frame" x="8" y="-5" width="46" height="30"/>
                                             </variation>
                                             <connections>
-                                                <action selector="viewUserDetail:" destination="dP7-re-mLA" eventType="touchUpInside" id="Mfo-U0-rFb"/>
-                                                <segue destination="tUN-FG-ZV0" kind="show" identifier="viewuser" id="T6b-9g-9jH"/>
+                                                <action selector="viewUserDetail:" destination="dP7-re-mLA" eventType="touchUpInside" id="bOL-vs-sqR"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -206,6 +205,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="NBa-ie-BJq"/>
+                    <connections>
+                        <segue destination="tUN-FG-ZV0" kind="show" identifier="viewuser" id="IbN-jB-fxM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pPO-GG-Pji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

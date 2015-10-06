@@ -34,12 +34,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         photoCollection.delegate = self;
         photoCollection.dataSource = self;
         
-        let tabController = self.tabBarController as! MainTabBarController
-        currentUser = tabController.currentUser
-        if viewUser == nil{
-            self.showUserInfo(currentUser)
-        }else{
-            self.showUserInfo(viewUser!)
+        println("ProfileViewController::viewDidLoad::\(currentUser)")
+        
+        if let tabController = self.tabBarController as? MainTabBarController {
+            currentUser = tabController.currentUser
+            if viewUser == nil{
+                self.showUserInfo(currentUser)
+            }else{
+                self.showUserInfo(viewUser!)
+            }
         }
     }
     

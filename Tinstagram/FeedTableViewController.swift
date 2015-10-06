@@ -99,6 +99,7 @@ class FeedTableViewController: UITableViewController{
     }
     
     @IBAction func viewUserDetail(sender: UIButton){
+        println("Click::Event")
         let username = self.feedUser[sender.tag] as String
         var userQuery = PFQuery(className: "_User")
         userQuery.whereKey("username", equalTo: username)
@@ -106,18 +107,22 @@ class FeedTableViewController: UITableViewController{
         if let userObject = userObject as? PFUser{
             viewUser = userObject
         }
-        self.performSegueWithIdentifier("viewuser", sender: self)
+        
+        
+        performSegueWithIdentifier("viewuser", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println("prepareForSegue")
         if let userProfileController = segue.destinationViewController as? ProfileViewController{
             if let identifier = segue.identifier {
                 switch identifier {
                 case "viewuser":
                     if let theSender = sender as? FeedTableViewController{
                         println("aksdjflasjdf")
-                        userProfileController.currentUser = self.currentUser
                         userProfileController.viewUser  = self.viewUser
+                        userProfileController.currentUser = self.currentUser
+                        
                         
                     }
                 default: break
@@ -129,6 +134,9 @@ class FeedTableViewController: UITableViewController{
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        
+        
+        
         if identifier == "viewuser"{
             if viewUser == nil{
                 return false
@@ -138,34 +146,22 @@ class FeedTableViewController: UITableViewController{
         }
         return true
     }
-//    
-//    func callSegueFromCell(myData dataobject: AnyObject) {
-//        viewUser = dataobject as? PFUser
-//    }
+
+    func callSegueFromCell(myData dataobject: AnyObject) {
+        viewUser = dataobject as? PFUser
+    }
 
 }
 
 class feedCell: UITableViewCell{
     
-//    var delegate:MyCustomCellDelegator!
-//    
-//    @IBAction func usernamePressed(sender: AnyObject) {
-//        var user: String = username.titleLabel!.text!
-//        var userQuery = PFQuery(className: "_User")
-//        userQuery.whereKey("username", equalTo: user)
-//        var userObject = userQuery.getFirstObject()
-//        
-//        if let userObject = userObject as? PFUser{
-//            if(self.delegate != nil){
-//                self.delegate.callSegueFromCell(myData: userObject)
-//            }
-//        }
-//    }
     
     @IBOutlet weak var username: UIButton!
     
     
     @IBOutlet weak var imageFeed: UIImageView!
+    
+
 }
 
 
