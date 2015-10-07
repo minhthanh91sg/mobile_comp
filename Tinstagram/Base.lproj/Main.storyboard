@@ -211,7 +211,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pPO-GG-Pji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5146.5" y="770.25"/>
+            <point key="canvasLocation" x="5296.5" y="578.25"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5oY-3e-9Yb">
@@ -878,7 +878,7 @@
         <!--Effects-->
         <scene sceneID="168-R9-xms">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="kie-3r-Zv3" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="kie-3r-Zv3" customClass="ImageEffectViewController" customModule="Tinstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gtr-2V-tue"/>
                         <viewControllerLayoutGuide type="bottom" id="bid-68-3Cq"/>
@@ -886,36 +886,48 @@
                     <view key="view" contentMode="scaleToFill" id="qfX-q4-v7g">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="st2-os-s4G">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="st2-os-s4G">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7H-99-E1c">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="F3">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="filterThreeButton:" destination="kie-3r-Zv3" eventType="touchUpInside" id="IxE-rg-VJq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YG-Jq-y7v">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="F2">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="filterTwoButton:" destination="kie-3r-Zv3" eventType="touchUpInside" id="8jq-SR-A3f"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvj-XP-zcZ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="F1">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="filterOneButton:" destination="kie-3r-Zv3" eventType="touchUpInside" id="WyK-r6-ciE"/>
+                                </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="JHV-NT-L9S">
                                 <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTo-T5-DiX">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="normalFilterButton:" destination="kie-3r-Zv3" eventType="touchUpInside" id="W8b-X0-Meb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -999,12 +1011,15 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Effects" id="tQy-v9-GVi">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="9jQ-OT-k2R">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="9jQ-OT-k2R">
                             <connections>
                                 <segue destination="CQV-fI-YQd" kind="show" id="7dq-ci-Nmy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="effectImageDisplay" destination="st2-os-s4G" id="IVB-GZ-2Lf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmD-ta-o0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

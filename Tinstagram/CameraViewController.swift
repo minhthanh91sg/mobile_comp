@@ -135,14 +135,25 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
     /* effects Navigation Button is enabled only when the user picks an new image. Segue with EffectsViewController*/
     @IBOutlet weak var effectsNavButton: UIBarButtonItem!
     
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        var imageEffectVC: ImageEffectViewController = segue.destinationViewController as! ImageEffectViewController
+        imageEffectVC.imageReceived = pickedImageDisplay.image!
+        
     }
-    */
+    
+    
+    
+    /*** Unwind segue ***
+    @IBAction func unwindToHomeVC(segue: UIStoryboardSegue){
+        if (segue.sourceViewController .isKindOfClass(EditImageViewController)){
+            editImageButton.enabled = false
+            println("I came from Edit Image")
+        }
+    }*/
+
+    
 
 }
