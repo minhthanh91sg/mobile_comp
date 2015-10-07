@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController" customModule="Tinstagram">
+            <connections>
+                <outlet property="cameraControlView" destination="iN0-l3-epB" id="c3r-PB-SSf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" alpha="0.64999999999999969" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLU-NQ-i1N">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Clo-da-JR6"/>
+                        <constraint firstAttribute="width" constant="62" id="kLL-TS-iRU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="X">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Clo-da-JR6"/>
+                            <exclude reference="kLL-TS-iRU"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="Clo-da-JR6"/>
+                            <include reference="kLL-TS-iRU"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="cancelButton:" destination="-1" eventType="touchUpInside" id="Mma-iP-zhE"/>
+                    </connections>
+                </button>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-1P-mry">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <items>
+                        <barButtonItem title="flash" id="oPW-Rt-NLA">
+                            <connections>
+                                <action selector="flashButton:" destination="-1" id="5I4-zJ-F3n"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="XNC-g6-UID"/>
+                        <barButtonItem title="take photo" id="af2-0P-kNc">
+                            <connections>
+                                <action selector="takePhotoButton:" destination="-1" id="9kQ-u7-bpS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ABC-ge-XHr"/>
+                        <barButtonItem title="camera" id="KNI-Mf-Vyh">
+                            <connections>
+                                <action selector="cameraDeviceButton:" destination="-1" id="phb-Vd-8PW"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="zJ5-1P-mry" secondAttribute="bottom" id="Rlb-b8-Tj4"/>
+                <constraint firstItem="FLU-NQ-i1N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="ZrF-hl-DtX"/>
+                <constraint firstItem="FLU-NQ-i1N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="aB3-lc-TFu"/>
+                <constraint firstItem="zJ5-1P-mry" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dax-1z-uuL"/>
+                <constraint firstAttribute="trailing" secondItem="zJ5-1P-mry" secondAttribute="trailing" id="ewQ-hn-WTa"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="FLU-NQ-i1N"/>
+                    <exclude reference="zJ5-1P-mry"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="ZrF-hl-DtX"/>
+                    <exclude reference="aB3-lc-TFu"/>
+                    <exclude reference="Rlb-b8-Tj4"/>
+                    <exclude reference="dax-1z-uuL"/>
+                    <exclude reference="ewQ-hn-WTa"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="FLU-NQ-i1N"/>
+                    <include reference="zJ5-1P-mry"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="ZrF-hl-DtX"/>
+                    <include reference="aB3-lc-TFu"/>
+                    <include reference="Rlb-b8-Tj4"/>
+                    <include reference="dax-1z-uuL"/>
+                    <include reference="ewQ-hn-WTa"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

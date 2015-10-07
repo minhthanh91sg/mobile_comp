@@ -2,181 +2,147 @@
 //  CameraViewController.swift
 //  Tinstagram
 //
-//  Created by Matheu Malo on 16/09/2015.
+//  Created by Matheu Malo on 7/10/2015.
 //  Copyright (c) 2015 Thanh Pham. All rights reserved.
 //
 
 import UIKit
-@IBDesignable
 
+class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate {
+    // MARK: - Properties
     
+    /* Displays custom Camera control */
+    @IBOutlet var cameraControlView: UIView! = nil
     
+    /* Displays picked image */
+    @IBOutlet weak var pickedImageDisplay: UIImageView!
     
+    var imagePicker: UIImagePickerController? = UIImagePickerController()
     
-    @IBInspectable var shutterButtonColor: UIColor = UIColor.blueColor()
-    @IBInspectable var cancelButtonColor: UIColor = UIColor.grayColor()
-    @IBInspectable var flashButtonColor: UIColor = UIColor.grayColor()
+    // MARK: - Actions
+    
+    /* Shows an Alert option to pick the image from Gallery or Camera */
+    @IBAction func chooseImageButton(sender: AnyObject) {
+        var alert: UIAlertController = UIAlertController(title: "Choose Image From:", message: nil, preferredStyle: .ActionSheet)
+        
+        var cameraAction = UIAlertAction(title: "Camera", style:UIAlertActionStyle.Default, handler: {action in self.selectCamera()} )
+        
+        var galleryAction = UIAlertAction(title: "Gallery", style:UIAlertActionStyle.Default, handler: {action in self.selectGallery()} )
+        
+        var cancelAction = UIAlertAction(title: "Cancel", style:UIAlertActionStyle.Cancel, handler: nil)
+        
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
 
-    
-    let imagePicker = UIImagePickerController()
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        imagePicker.delegate = self
-        
-    }
-
-    @IBOutlet weak var pickedImageView: UIImageView!
-    
-    @IBAction func OpenCamera(sender: UIButton) {
-        
-        if UIImagePickerController.isSourceTypeAvailable(.Camera){
-            
-            
-            
-            imagePicker.sourceType = .Camera
-            imagePicker.allowsEditing = true
-            imagePicker.showsCameraControls = false
-            
-            
-            let overlayView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-            overlayView.backgroundColor = UIColor.clearColor()
-            
-            let cameraControlBar = UIView(frame: CGRectMake(0, self.view.frame.width,self.view.frame.width , self.view.frame.height - self.view.frame.width))
-            cameraControlBar.backgroundColor = UIColor.blackColor()
-            cameraControlBar.alpha = 0
-            bringSubviewToCameraOverlayView(overlayView, customView: cameraControlBar)
-            
-           
-            
-            
-            /* Custom Camera Shutter button */
-            let shutterButton = UIView(frame: CGRectMake(self.view.frame.width/2 - 40, self.view.frame.height - 80, 80, 80))
-            shutterButton.layer.cornerRadius = 40
-            shutterButton.userInteractionEnabled = true
-            shutterButton.backgroundColor = shutterButtonColor
-            bringSubviewToCameraOverlayView(overlayView, customView: shutterButton)
-
-            
-            let recognizer = UITapGestureRecognizer(target: self, action:Selector("handleSnapTap:"))
-            recognizer.delegate = self
-            shutterButton.addGestureRecognizer(recognizer)
-            
-            /* Custom Camera Cancel button */
-            
-            let cancelButton = UIView(frame: CGRectMake(10, 10, 44, 44))
-            cancelButton.userInteractionEnabled = true
-            cancelButton.backgroundColor = cancelButtonColor
-            bringSubviewToCameraOverlayView(overlayView, customView: cancelButton)
-            
-            let cancelRecognizer = UITapGestureRecognizer(target: self, action: "handleCancelTap:")
-            cancelRecognizer.delegate = self
-            cancelButton.addGestureRecognizer(cancelRecognizer)
-            
-            /* Custom Flash button */
-            let flashButton = UIView(frame: CGRectMake(10, self.view.frame.height - 46, 44, 44))
-            flashButton.userInteractionEnabled = true
-            flashButton.backgroundColor = flashButtonColor
-            bringSubviewToCameraOverlayView(overlayView, customView: flashButton)
-            
-            let flashRecognizer = UITapGestureRecognizer(target: self, action: "handleFlashTap:")
-            flashRecognizer.delegate = self
-            flashButton.addGestureRecognizer(flashRecognizer)
-            
-            imagePicker.cameraOverlayView = overlayView
-            
-            self.presentViewController(imagePicker, animated: true, completion: nil)
-        }
-        else {
-            println("camera not available")
-            //put an alert alert message here ?
-        }
     }
     
-    func handleSnapTap(recognizer: UITapGestureRecognizer) {
-        println("Take picture")
-        imagePicker.takePicture()
-        
-        
-    }
     
-    func handleCancelTap(recognizer: UITapGestureRecognizer){
-        println("Cancel")
-        dismissViewControllerAnimated(true, completion: nil)
-        
-    }
+    // MARK: - Delegates
     
-    func handleFlashTap(recognizer: UITapGestureRecognizer){
-        println("Flash")
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
         
-        if (imagePicker.cameraFlashMode == .Off){
-            imagePicker.cameraFlashMode = .On
-            cancelButtonColor = UIColor.yellowColor()
-            println("Flash On")
-            
-        }
-        else {
-            imagePicker.cameraFlashMode = .Off
-            cancelButtonColor = UIColor.grayColor()
-            println("Flash Off")
-        }
-        
-        
-    }
-    
-    func bringSubviewToCameraOverlayView (overlayView: UIView, customView: UIView) {
-        overlayView.addSubview(customView)
-        overlayView.bringSubviewToFront(customView)
-    }
-    
-    // Puts the taken photo in the image view
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            pickedImageView.contentMode = .ScaleAspectFit
-            pickedImageView.image = pickedImage
-            
-            let imageData = UIImageJPEGRepresentation(pickedImage, 0.5)
-            let imageFile = PFFile(name: "image.jpg", data: imageData)
-            
-            var userImage = PFObject(className: "Image")
-            var userId = PFUser.currentUser()?.objectId
-            println(userId)
-            userImage["userId"] = userId
-            userImage["image"] = imageFile
-            
-            userImage.saveInBackground()
-            
-            UIImageWriteToSavedPhotosAlbum(pickedImage, self, "image:didFinishSavingWithError:contextInfo:", nil)
+            pickedImageDisplay.contentMode = .ScaleAspectFit
+            pickedImageDisplay.image = pickedImage
+            dismissViewControllerAnimated(true, completion: nil)
+            effectsNavButton.enabled = true
         }
-        dismissViewControllerAnimated(true, completion: nil)
-    }
         
-    func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
-        
-        if error != nil {
-            let alert = UIAlertController(title: "Save Failed",
-                message: "Failed to save image",
-                preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let cancelAction = UIAlertAction(title: "OK",
-                style: .Cancel, handler: nil)
-            
-            alert.addAction(cancelAction)
-            self.presentViewController(alert, animated: true,
-                completion: nil)
-        }
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+
+    
+    // MARK: - Voids
+    
+    /* Picks an Image from Camera*/
+    func selectCamera(){
+        println("Camera Selected")
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            imagePicker!.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePicker!.cameraCaptureMode = .Photo
+            imagePicker!.showsCameraControls = false
+            
+            NSBundle.mainBundle().loadNibNamed("CameraControlView", owner: self, options: nil)
+            cameraControlView.frame = imagePicker!.cameraOverlayView!.frame
+            imagePicker?.cameraOverlayView = cameraControlView
+            cameraControlView = nil
+            self.presentViewController(imagePicker!, animated: true, completion: nil)
+        }
+        
+        else {
+            noCameraAlarm()
+        }
+
+        
+        
+    }
+    
+    /* Picks an Image from Gallery */
+    func selectGallery(){
+        println("Gallery Selected")
+        self.imagePicker!.allowsEditing = false
+        self.imagePicker!.sourceType = .SavedPhotosAlbum
+        self.presentViewController(imagePicker!, animated: true, completion: nil)
+        
+    }
+    
+    /* Shows an alert message when Camera is not detected */
+    func noCameraAlarm(){
+        let alertVC = UIAlertController(title: "No Camera Detected", message: "This device has no camera", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
+        alertVC.addAction(okAction)
+        presentViewController(alertVC, animated: true, completion: nil)
+    }
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        imagePicker!.delegate = self
+        effectsNavButton.enabled = false
+
+    }
     
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
+    // MARK: - Camera Control Actions
     
+    @IBAction func takePhotoButton(sender: AnyObject) {
+        imagePicker!.takePicture()
+    }
+    
+    @IBAction func cancelButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func flashButton(sender: AnyObject) {
+    }
+    
+    /* Select Camera Device .Front or .Rear */
+    @IBAction func cameraDeviceButton(sender: AnyObject) {
+    }
+
+    /* effects Navigation Button is enabled only when the user picks an new image. Segue with EffectsViewController*/
+    @IBOutlet weak var effectsNavButton: UIBarButtonItem!
+    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
