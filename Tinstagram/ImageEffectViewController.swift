@@ -71,14 +71,12 @@ class ImageEffectViewController: UIViewController {
     @IBAction func filterThreeButton(sender: AnyObject) {
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        var shareImageVC: ShareImageViewController = segue.destinationViewController as! ShareImageViewController
+        shareImageVC.imageReceived = effectImageDisplay.image!
+        
     }
-    */
-
+    
 }
