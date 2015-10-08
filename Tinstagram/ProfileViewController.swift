@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     var userImageFiles = [PFFile]()
+    var selectedPhoto: PFFile?
     
 
     override func viewDidLoad(){
@@ -40,18 +41,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             currentUser = tabController.currentUser
             if viewUser == nil{
                 self.showUserInfo(currentUser)
+                self.showCollection(currentUser)
             }else{
                 self.showUserInfo(viewUser!)
+                self.showCollection(viewUser!)
             }
-        }
-    }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        if viewUser == nil{
-            self.showCollection(currentUser)
-        }else{
-            self.showCollection(viewUser!)
         }
     }
     
@@ -94,7 +88,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     //get data for collection view
     func showCollection(user: PFUser){
-        userImageFiles.removeAll(keepCapacity: false)
+        //userImageFiles.removeAll(keepCapacity: false)
         
         var query: PFQuery = PFQuery(className: "Image")
         query.whereKey("userId", equalTo: user.objectId!)
@@ -134,25 +128,42 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         return cell
     }
     
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        selectedPhoto = userImageFiles[indexPath.row]
+        println("collectionView::didDeselectItemAtIndexPath")
+        performSegueWithIdentifier("photoinfo", sender: self)
+    }
+    
     func numberOfSectionsInCollectionView(collectionView:
         UICollectionView) -> Int {
             return 1
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let editProfileController = segue.destinationViewController as? EditProfileTableViewController{
-            if let identifier = segue.identifier {
-                switch identifier {
-                case "editprofile":
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "editprofile":
+                if let editProfileController = segue.destinationViewController as? EditProfileTableViewController{
                     if let theSender = sender as? ProfileViewController{
                         editProfileController.currentUser = sender?.currentUser
                         break
                     }
-                default: break
                 }
+            case "photoinfo":
+                if let fullPhotoController = segue.destinationViewController as? FullPhotoViewController{
+                    if let theSender = sender as? ProfileViewController{
+                        if let photo = selectedPhoto as PFFile!{
+                            fullPhotoController.imageFile = photo
+                            println(photo)
+                        }
+                    }
+                }
+            default: break
             }
-        
         }
+        
+        
 
     }
     
