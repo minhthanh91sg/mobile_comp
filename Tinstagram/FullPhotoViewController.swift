@@ -13,10 +13,12 @@ class FullPhotoViewController: UIViewController {
     @IBOutlet weak var fullSizeImage: UIImageView!
     
     var imageFile: PFFile!
+    var imageID: String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("FullPhotoViewController")
+        println("FullPhotoViewController:::::::\(imageID)")
         println(imageFile)
         imageFile.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
                 if error == nil{

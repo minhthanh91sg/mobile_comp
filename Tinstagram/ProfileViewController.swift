@@ -46,7 +46,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     var userImageFiles = [PFFile]()
+    var imageIDs = [String]()
     var selectedPhoto: PFFile?
+    var selectedImageId: String?
 
     override func viewDidLoad(){
         switchCollectionTable.selectedSegmentIndex = 0
@@ -116,13 +118,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         var query: PFQuery = PFQuery(className: "Image")
         query.whereKey("userId", equalTo: user.objectId!)
         var length = query.countObjects()
-        println("THISSSSSS is THE Length" + "\(length)")
         if length > 0{
             query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
                 if (error == nil){
                     if let objects = objects{
                         for object in objects{
                             self.userImageFiles.append(object.objectForKey("image") as! PFFile)
+                            self.imageIDs.append(object.objectId as String!)
                             println("This is the length of the Images Files Array  " + "\(self.userImageFiles.count)")
                             self.photoCollection.reloadData()
                         }
@@ -156,6 +158,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedPhoto = userImageFiles[indexPath.row]
+        selectedImageId = imageIDs[indexPath.row]
         performSegueWithIdentifier("photoinfo", sender: self)
     }
     
@@ -173,6 +176,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let cell = tableView.dequeueReusableCellWithIdentifier("userfeed",forIndexPath: indexPath) as! UserFeedCell
         var nameOfUser = currentUser.objectForKey("username") as! String
         cell.username.setTitle(nameOfUser, forState: .Normal)
+        cell.username.sizeToFit()
         self.userImageFiles[indexPath.row].getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
@@ -204,6 +208,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     if let theSender = sender as? ProfileViewController{
                         if let photo = selectedPhoto as PFFile!{
                             fullPhotoController.imageFile = photo
+                            fullPhotoController.imageID = selectedImageId
                             println(photo)
                         }
                     }
