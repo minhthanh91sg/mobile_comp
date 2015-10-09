@@ -8,20 +8,27 @@
 
 import UIKit
 
-class ShareImageViewController: UIViewController {
+class ShareImageViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
     
     @IBOutlet weak var editedImageDisplay: UIImageView!
     
+    @IBOutlet weak var textField: UITextField!
+    
     /* Image received from ImageEffectViewController */
     var imageReceived: UIImage!
     
+    /* Limit of characters for comment */
+    let textFieldCharLimit = 144
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // loads the received image from CImageEffectViewController
         editedImageDisplay.image = imageReceived
+        //textField delegate
+        textField.delegate = self
         
     }
 
@@ -30,6 +37,39 @@ class ShareImageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: Delegates
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        println("Allow editing")
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        println("User is editing text")
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        println("User done editing text")
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        println("Enter was pressed")
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        var length = count(textField.text) + count(string)
+        
+        if (length > textFieldCharLimit) {
+            return false
+        }
+        else {return true}
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        return true
+    }
 
     /*
     // MARK: - Navigation

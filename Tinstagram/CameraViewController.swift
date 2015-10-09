@@ -146,14 +146,15 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
     
     
-    /*** Unwind segue ***
+    /*/ Unwind segue
+
     @IBAction func unwindToHomeVC(segue: UIStoryboardSegue){
-        if (segue.sourceViewController .isKindOfClass(EditImageViewController)){
-            editImageButton.enabled = false
+        if (segue.sourceViewController .isKindOfClass(ShareImageViewController)){
+            effectsNavButton.enabled = false
             println("I came from Edit Image")
         }
-    }*/
+    }
 
-    
+    */
 
 }

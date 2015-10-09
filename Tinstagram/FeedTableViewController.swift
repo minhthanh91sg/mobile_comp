@@ -150,6 +150,9 @@ class FeedTableViewController: UITableViewController{
     func callSegueFromCell(myData dataobject: AnyObject) {
         viewUser = dataobject as? PFUser
     }
+    
+    
+    
 
 }
 
