@@ -27,6 +27,7 @@ class ShareImageViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // loads the received image from CImageEffectViewController
         editedImageDisplay.image = imageReceived
+        
         //textField delegate
         textField.delegate = self
         
@@ -36,6 +37,39 @@ class ShareImageViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: Actions
+    
+    /* Sends photo to parse backend */
+    @IBAction func shareButton(sender: AnyObject) {
+        let imageData = UIImageJPEGRepresentation(self.imageReceived, 0.5) //image compression
+        let imageFile = PFFile(data: imageData)
+        var currentUser = PFUser.currentUser()?.objectId
+        var userImage = PFObject(className: "Image")
+        var like = 0
+        var description = textField.text
+        
+        userImage["image"] = imageFile
+        userImage["userId"] = currentUser
+        userImage["likes"] = like
+        userImage["description"] = description
+        userImage.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                // The object has been saved.
+                println("object was saved")
+            } else {
+                // There was a problem, check error.description
+                println("Object not saved")
+            }
+        }
+        
+        
+        //UIImageWriteToSavedPhotosAlbum(self.imageReceived, self, "image:didFinishSavingWithError:contextInfo:", nil)
+        
+        
+    }
+
     
     // MARK: Delegates
     
@@ -70,6 +104,8 @@ class ShareImageViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldClear(textField: UITextField) -> Bool {
         return true
     }
+    
+    
 
     /*
     // MARK: - Navigation
