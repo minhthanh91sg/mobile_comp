@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource, UITableViewDelegate{
     
     var currentUser: PFUser!
     
@@ -25,15 +25,38 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     @IBOutlet weak var photoCollection: PhotoCollectionView!
     
+    @IBOutlet weak var feedTable: UITableView!
+    
+    @IBOutlet weak var switchCollectionTable: UISegmentedControl!
+
+    
+    @IBAction func switchCollectionTable(sender: UISegmentedControl) {
+        switch(sender.selectedSegmentIndex){
+            case 0:
+                self.feedTable.hidden = true
+                self.photoCollection.hidden = false
+                photoCollection.reloadData()
+            case 1:
+                self.photoCollection.hidden = true
+                self.feedTable.hidden = false
+                feedTable.reloadData()
+            default:
+                break
+        }
+    }
     
     var userImageFiles = [PFFile]()
     var selectedPhoto: PFFile?
-    
 
     override func viewDidLoad(){
+        switchCollectionTable.selectedSegmentIndex = 0
+        self.feedTable.hidden = true
+        self.photoCollection.hidden = false
         println(viewUser)
-        photoCollection.delegate = self;
-        photoCollection.dataSource = self;
+        photoCollection.delegate = self
+        photoCollection.dataSource = self
+        feedTable.delegate = self
+        feedTable.dataSource = self
         
         println("ProfileViewController::viewDidLoad::\(currentUser)")
         
@@ -122,7 +145,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.userImageFiles[indexPath.row].getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
+                println("collectionView::cellForItemAtIndexPath")
                 cell.myImage.image = image
+                cell.myImage.contentMode = UIViewContentMode.ScaleAspectFit
             }
         }
         return cell
@@ -131,8 +156,32 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedPhoto = userImageFiles[indexPath.row]
-        println("collectionView::didDeselectItemAtIndexPath")
         performSegueWithIdentifier("photoinfo", sender: self)
+    }
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userImageFiles.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("userfeed",forIndexPath: indexPath) as! UserFeedCell
+        var nameOfUser = currentUser.objectForKey("username") as! String
+        cell.username.setTitle(nameOfUser, forState: .Normal)
+        self.userImageFiles[indexPath.row].getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+            if error == nil{
+                let image = UIImage(data: imageData!)
+                println("tableView::cellForRowAtIndexPath")
+                cell.imageFeed.image = image
+                cell.imageFeed.contentMode = UIViewContentMode.ScaleAspectFit
+            }
+        }
+        return cell
     }
     
     func numberOfSectionsInCollectionView(collectionView:
@@ -179,7 +228,10 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myImage: UIImageView!
 }
 
+class UserFeedCell: UITableViewCell{
+    
+    @IBOutlet weak var imageFeed: UIImageView!
 
-
-
-
+    @IBOutlet weak var username: UIButton!
+    
+}

@@ -76,7 +76,6 @@ class FeedTableViewController: UITableViewController{
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("Test2:\(feedFiles.count)")
         return feedFiles.count
     }
 
@@ -85,15 +84,12 @@ class FeedTableViewController: UITableViewController{
         let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! feedCell
         cell.username.setTitle("\(self.feedUser[indexPath.row])",forState: .Normal)
         cell.username.tag = indexPath.row
-
-        println("test:\(self.feedUser[indexPath.row])")
         self.feedFiles[indexPath.row].getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
                 cell.imageFeed.image = image
             }
         })
-//        cell.delegate = self
 
         return cell
     }
