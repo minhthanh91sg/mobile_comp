@@ -21,12 +21,13 @@ class ImageEffectViewController: UIViewController {
     
     //Create a place to render the filtered image
     let context = CIContext(options: nil)
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // loads the received image from CameraViewController
         effectImageDisplay.image = imageReceived
+        
 
         
     }
@@ -43,17 +44,13 @@ class ImageEffectViewController: UIViewController {
         effectImageDisplay.image = imageReceived
     }
     
-    /* Filter 1 */
+    /* Filter 1 - ToneCurve */
     @IBAction func filterOneButton(sender: AnyObject) {
         // create an Image to filter
-        let inputImage = CIImage(image: effectImageDisplay.image)
-        
-        // create a random color to pass the filter
-        
-        let randomColor = [kCIInputAngleKey: (Double(arc4random_uniform(314)) / 100)]
+        let inputImageOne = CIImage(image: effectImageDisplay.image)
         
         // Apply filter to the image
-        let filteredImage = inputImage.imageByApplyingFilter("CIHueAdjust", withInputParameters: randomColor)
+        let filteredImage = inputImageOne.imageByApplyingFilter("CILinearToSRGBToneCurve", withInputParameters: nil)
         
         //render the filtered image
         let renderedImage = context.createCGImage(filteredImage, fromRect: filteredImage.extent())
@@ -63,12 +60,23 @@ class ImageEffectViewController: UIViewController {
 
     }
     
-    /* Filter 2 */
+    /* Filter 2 - Fade */
     @IBAction func filterTwoButton(sender: AnyObject) {
+        let inputImageTwo = CIImage(image: imageReceived)
+        let filteredImageTwo = inputImageTwo.imageByApplyingFilter("CIPhotoEffectFade", withInputParameters: nil)
+        let renderedImageTwo = context.createCGImage(filteredImageTwo, fromRect: filteredImageTwo.extent())
+        effectImageDisplay.image = UIImage(CGImage: renderedImageTwo)
+        
     }
     
-    /* Filter 3 */
+    
+    /* Filter 3 - Black-and-White */
     @IBAction func filterThreeButton(sender: AnyObject) {
+        let inputImageThree = CIImage(image: imageReceived)
+        let filteredImageThree = inputImageThree.imageByApplyingFilter("CIPhotoEffectNoir", withInputParameters: nil)
+        let renderedImageThree = context.createCGImage(filteredImageThree, fromRect: filteredImageThree.extent())
+        effectImageDisplay.image = UIImage(CGImage: renderedImageThree)
+        
     }
 
     // MARK: - Navigation
