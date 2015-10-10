@@ -37,7 +37,7 @@ class FeedTableViewController: UITableViewController{
         if let followingArray: [String] = currentUser.objectForKey("following") as? [String]{
             var imageQuery = PFQuery(className: "Image")
             imageQuery.whereKey("userId", containedIn: followingArray)
-            imageQuery.orderByAscending("createdAt")
+            imageQuery.orderByDescending("createdAt")
             imageQuery.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil{
                     if let objects = objects{
@@ -45,7 +45,6 @@ class FeedTableViewController: UITableViewController{
                             var userQuery = PFQuery(className: "_User")
                             userQuery.whereKey("objectId", equalTo: object.objectForKey("userId") as! String)
                             var results = userQuery.findObjects()!
-                            println("heyyyy" + "\(results.count)")
                             for result in results{
                                 self.feedUser.append(result.objectForKey("username") as! String)
                             }
@@ -88,6 +87,7 @@ class FeedTableViewController: UITableViewController{
             if error == nil{
                 let image = UIImage(data: imageData!)
                 cell.imageFeed.image = image
+                cell.imageFeed.contentMode = UIViewContentMode.ScaleAspectFit
             }
         })
 
