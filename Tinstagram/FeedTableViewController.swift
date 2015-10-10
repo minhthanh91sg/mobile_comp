@@ -29,6 +29,7 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     let CharacteristicUUID = CBUUID(string: "843ddfb6-4355-4250-bae0-167df24161c6")
     
     let data = NSMutableData()
+    var receivedData : NSString?
 
     
     
@@ -247,7 +248,10 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         
         if let stringFromData = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding){
             if stringFromData.isEqualToString("EOM") {
-                print(NSString(data: (data.copy() as! NSData) as NSData, encoding: NSUTF8StringEncoding) as! String)
+                
+                receivedData = NSString(data: (data.copy() as! NSData) as NSData, encoding: NSUTF8StringEncoding) as! String
+                
+                print(receivedData)
                 
                 peripheral.setNotifyValue(false, forCharacteristic: characteristic)
                 
