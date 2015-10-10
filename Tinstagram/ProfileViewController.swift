@@ -89,6 +89,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if let firstName: String = user.objectForKey("firstName") as? String{
             if let lastName: String = user.objectForKey("lastName") as? String{
                 fullName.text = firstName + " " + lastName
+                fullName.adjustsFontSizeToFitWidth = true
             }
             
         }
@@ -173,7 +174,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("userfeed",forIndexPath: indexPath) as! UserFeedCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("userfeed",forIndexPath: indexPath) as! TimelineTableViewCell
         var nameOfUser = currentUser.objectForKey("username") as! String
         cell.username.setTitle(nameOfUser, forState: .Normal)
         cell.username.sizeToFit()
@@ -233,10 +234,3 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myImage: UIImageView!
 }
 
-class UserFeedCell: UITableViewCell{
-    
-    @IBOutlet weak var imageFeed: UIImageView!
-
-    @IBOutlet weak var username: UIButton!
-    
-}

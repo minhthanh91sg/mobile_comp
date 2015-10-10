@@ -24,6 +24,8 @@
 		D68F3CE21BA0408700B5FBEE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */; };
 		D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */; };
 		D6ADC0BF1B9FB0D900832853 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */; };
+		D6CD35211BC8E58C00F8754A /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD35201BC8E58C00F8754A /* CommentTableViewController.swift */; };
+		D6CD35231BC8ECCC00F8754A /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD35221BC8ECCC00F8754A /* TimelineTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		D6CD35201BC8E58C00F8754A /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
+		D6CD35221BC8ECCC00F8754A /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
 		F8FA7461A870B843364ED766 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,8 +140,10 @@
 				6259A2AF1BC5148700D72731 /* Camera */,
 				D68F1B2A1B9AF16E004D1C53 /* AppDelegate.swift */,
 				D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */,
+				D6CD35201BC8E58C00F8754A /* CommentTableViewController.swift */,
 				D62010731BA7911500C14936 /* FeedTableViewController.swift */,
 				D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */,
+				D6CD35221BC8ECCC00F8754A /* TimelineTableViewCell.swift */,
 				D603495F1BC6318A00B465F9 /* FullPhotoViewController.swift */,
 				D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */,
 				D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */,
@@ -316,9 +322,11 @@
 				D68F1B2D1B9AF16E004D1C53 /* LogInViewController.swift in Sources */,
 				D67BF7F91B9AFB3C003E344A /* User.swift in Sources */,
 				D60349601BC6318A00B465F9 /* FullPhotoViewController.swift in Sources */,
+				D6CD35231BC8ECCC00F8754A /* TimelineTableViewCell.swift in Sources */,
 				D68F3CE21BA0408700B5FBEE /* ProfileViewController.swift in Sources */,
 				D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */,
 				D6ADC0BF1B9FB0D900832853 /* MainTabBarController.swift in Sources */,
+				D6CD35211BC8E58C00F8754A /* CommentTableViewController.swift in Sources */,
 				6259A2AE1BC5017100D72731 /* CameraViewController.swift in Sources */,
 				D68F1B2B1B9AF16E004D1C53 /* AppDelegate.swift in Sources */,
 				D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */,

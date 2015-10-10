@@ -98,7 +98,7 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! feedCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! TimelineTableViewCell
         cell.username.setTitle("\(self.feedUser[indexPath.row])",forState: .Normal)
         cell.username.tag = indexPath.row
         self.feedFiles[indexPath.row].getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
@@ -326,16 +326,16 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
 
 }
 
-class feedCell: UITableViewCell{
-    
-    
-    @IBOutlet weak var username: UIButton!
-    
-    
-    @IBOutlet weak var imageFeed: UIImageView!
-    
-
-}
+//class feedCell: UITableViewCell{
+//    
+//    
+//    @IBOutlet weak var username: UIButton!
+//    
+//    
+//    @IBOutlet weak var imageFeed: UIImageView!
+//    
+//
+//}
 
 
 
