@@ -31,6 +31,7 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     let data = NSMutableData()
     var receivedData : NSString?
 
+
     
     
     override func viewDidLoad() {
@@ -40,18 +41,22 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         
         let tabController = self.tabBarController as! MainTabBarController
         currentUser = tabController.currentUser
-
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl?.addTarget(self, action: "refreshData:", forControlEvents: UIControlEvents.ValueChanged)
+        
     }
     
-    override func viewDidAppear(animated: Bool) {
-        feedFiles.removeAll(keepCapacity: false)
-        feedUser.removeAll(keepCapacity: false)
+    
+    func refreshData(refreshControl: UIRefreshControl) {
+        
         if let followingArray: [String] = currentUser.objectForKey("following") as? [String]{
             var imageQuery = PFQuery(className: "Image")
             imageQuery.whereKey("userId", containedIn: followingArray)
             imageQuery.orderByDescending("createdAt")
             imageQuery.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil{
+                    self.feedFiles.removeAll(keepCapacity: false)
+                    self.feedUser.removeAll(keepCapacity: false)
                     if let objects = objects{
                         for object in objects{
                             var userQuery = PFQuery(className: "_User")
@@ -68,9 +73,10 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
                 }
             
             })
+
             
         }
-        
+        self.refreshControl?.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
