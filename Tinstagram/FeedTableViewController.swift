@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 //protocol MyCustomCellDelegator {
 //    func callSegueFromCell(myData dataobject: AnyObject)
 //}
 
-class FeedTableViewController: UITableViewController{
+class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate{
 
     var currentUser: PFUser!
     
@@ -22,9 +23,19 @@ class FeedTableViewController: UITableViewController{
     
     var feedUser = [String]()
     
+    var centralManager : CBCentralManager?
+    var discoveredPeripheral : CBPeripheral?
+    let serviceUUIDs = CBUUID(string: "28ae3a66-3a12-4758-8be5-4e0e5b0136b4")
+    let CharacteristicUUID = CBUUID(string: "843ddfb6-4355-4250-bae0-167df24161c6")
+    
+    let data = NSMutableData()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+        scan()
         
         let tabController = self.tabBarController as! MainTabBarController
         currentUser = tabController.currentUser
@@ -147,6 +158,159 @@ class FeedTableViewController: UITableViewController{
         viewUser = dataobject as? PFUser
     }
     
+    func centralManagerDidUpdateState(central: CBCentralManager!) {
+        if central.state != .PoweredOn{
+            return
+        }
+        
+        scan()
+    }
+    
+    func scan() {
+        
+        centralManager?.scanForPeripheralsWithServices([serviceUUIDs], options: nil)
+        print("Scan Started")
+        print(serviceUUIDs)
+    }
+    
+    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
+        
+        print("Discovered \(peripheral.name) at \(RSSI)")
+        
+        if discoveredPeripheral != peripheral {
+            discoveredPeripheral = peripheral
+            
+            print("Connecting to peripheral \(peripheral)")
+            
+            centralManager?.connectPeripheral(peripheral, options: nil)
+        }
+    }
+    
+    func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
+        
+        print("Failed to connect to \(peripheral). (\(error.localizedDescription))")
+        
+        cleanup()
+    }
+    
+    func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
+        
+        print("Peripheral Connected")
+        
+        centralManager?.stopScan()
+        print("Scan stopped")
+        
+        data.length = 0;
+        
+        peripheral.delegate = self
+        
+        peripheral.discoverServices([serviceUUIDs])
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
+        
+        if let error = error{
+            print("Error discovering service: \(error.localizedDescription)")
+            cleanup()
+            return
+        }
+        
+        for service in peripheral.services as! [CBService]{
+            peripheral.discoverCharacteristics([CharacteristicUUID], forService: service)
+        }
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
+        
+        if let error = error{
+            print("Error discovering service: \(error.localizedDescription)")
+            cleanup()
+            return
+        }
+        
+        for Characteristic in service.characteristics as! [CBCharacteristic]{
+            if Characteristic.UUID.isEqual(CharacteristicUUID) {
+                
+                peripheral.setNotifyValue(true, forCharacteristic: Characteristic)
+            }
+        }
+        
+        
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        
+        if let error = error{
+            print("Error discovering service: \(error.localizedDescription)")
+            return
+        }
+        
+        if let stringFromData = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding){
+            if stringFromData.isEqualToString("EOM") {
+                print(NSString(data: (data.copy() as! NSData) as NSData, encoding: NSUTF8StringEncoding) as! String)
+                
+                peripheral.setNotifyValue(false, forCharacteristic: characteristic)
+                
+                centralManager?.cancelPeripheralConnection(peripheral)
+            }
+            
+            data.appendData(characteristic.value)
+            
+            print("Received: \(stringFromData)")
+        } else {
+            print("Invalid Data")
+        }
+        
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        
+        print("Error changing notification state: \(error?.localizedDescription)")
+        
+        if !characteristic.UUID.isEqual(CharacteristicUUID){
+            return
+        }
+        
+        if(characteristic.isNotifying) {
+            print("Notification began on \(characteristic)")
+            
+        } else {
+            print("Notification stopped on (\(characteristic))  Disconnecting")
+            centralManager?.cancelPeripheralConnection(peripheral)
+        }
+        
+    }
+    
+    func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
+        
+        print("Peripheral Disconnected")
+        discoveredPeripheral = nil
+        
+        scan()
+    }
+    
+    func cleanup() {
+        if discoveredPeripheral?.state != CBPeripheralState.Connected{
+            return
+        }
+        
+        if let services = discoveredPeripheral?.services as? [CBService] {
+            for service in services {
+                if let characteristics = service.characteristics as? [CBCharacteristic] {
+                    for characteristic in characteristics {
+                        if characteristic.UUID.isEqual(CharacteristicUUID) && characteristic.isNotifying {
+                            discoveredPeripheral?.setNotifyValue(false, forCharacteristic: characteristic)
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+    }
+    
+    
+
     
     
 

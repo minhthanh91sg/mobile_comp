@@ -72,6 +72,7 @@ class LogInViewController: UIViewController {
     }
     
     
+    
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "loggedin" {
             if loggedInUser == nil{
