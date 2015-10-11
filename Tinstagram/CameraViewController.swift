@@ -117,20 +117,60 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
     // MARK: - Camera Control Actions
     
-    @IBAction func takePhotoButton(sender: AnyObject) {
+   
+    @IBAction func shutterButton(sender: UIButton) {
         imagePicker!.takePicture()
     }
+    
     
     @IBAction func cancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func flashButton(sender: AnyObject) {
+    
+    @IBAction func flashButton(sender: UIButton) {
+        if (imagePicker!.cameraFlashMode == .Off){
+            imagePicker!.cameraFlashMode = .On
+            sender.setImage(UIImage(named: "flash.png"), forState: UIControlState.Normal)
+            println("Flash On")
+            
+        }
+        else {
+            imagePicker!.cameraFlashMode = .Off
+            sender.setImage(UIImage(named: "flash-disabled.png"), forState: UIControlState.Normal)
+            println("Flash Off")
+        }
+
     }
+    /*@IBAction func flash(sender: UIBarButtonItem) {
+        if (imagePicker!.cameraFlashMode == .Off){
+            sender.tintColor = UIColor.yellowColor()
+            imagePicker!.cameraFlashMode = .On
+            println("Flash On")
+            
+        }
+        else {
+            sender.tintColor = UIColor.redColor()
+            imagePicker!.cameraFlashMode = .Off
+            println("Flash Off")
+        }
+        
+    }*/
+    
     
     /* Select Camera Device .Front or .Rear */
-    @IBAction func cameraDeviceButton(sender: AnyObject) {
+        
+    @IBAction func selectCameraDevice(sender: UIButton) {
+        
+        if (imagePicker?.cameraDevice == .Front){
+            self.imagePicker?.cameraDevice = .Rear
+
+        }
+        else {
+            self.imagePicker?.cameraDevice = .Front
+        }
     }
+    
 
     /* effects Navigation Button is enabled only when the user picks an new image. Segue with EffectsViewController*/
     @IBOutlet weak var effectsNavButton: UIBarButtonItem!

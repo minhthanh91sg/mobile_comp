@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -20,8 +19,8 @@
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Clo-da-JR6"/>
-                        <constraint firstAttribute="width" constant="62" id="kLL-TS-iRU"/>
+                        <constraint firstAttribute="height" constant="30" id="Z6q-Cs-BQz"/>
+                        <constraint firstAttribute="width" constant="62" id="vMn-zB-4NX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <state key="normal" title="X">
@@ -30,77 +29,164 @@
                     </state>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="Clo-da-JR6"/>
-                            <exclude reference="kLL-TS-iRU"/>
+                            <exclude reference="Z6q-Cs-BQz"/>
+                            <exclude reference="vMn-zB-4NX"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
                         <mask key="constraints">
-                            <include reference="Clo-da-JR6"/>
-                            <include reference="kLL-TS-iRU"/>
+                            <include reference="Z6q-Cs-BQz"/>
+                            <include reference="vMn-zB-4NX"/>
                         </mask>
                     </variation>
                     <connections>
                         <action selector="cancelButton:" destination="-1" eventType="touchUpInside" id="Mma-iP-zhE"/>
                     </connections>
                 </button>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-1P-mry">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <items>
-                        <barButtonItem title="flash" id="oPW-Rt-NLA">
-                            <connections>
-                                <action selector="flashButton:" destination="-1" id="5I4-zJ-F3n"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="XNC-g6-UID"/>
-                        <barButtonItem title="take photo" id="af2-0P-kNc">
-                            <connections>
-                                <action selector="takePhotoButton:" destination="-1" id="9kQ-u7-bpS"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ABC-ge-XHr"/>
-                        <barButtonItem title="camera" id="KNI-Mf-Vyh">
-                            <connections>
-                                <action selector="cameraDeviceButton:" destination="-1" id="phb-Vd-8PW"/>
-                            </connections>
-                        </barButtonItem>
-                    </items>
-                </toolbar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgp-SS-Qef">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="39" id="4ws-DF-AYo"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="camera-device">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="4ws-DF-AYo"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="4ws-DF-AYo"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="selectCameraDevice:" destination="-1" eventType="touchUpInside" id="DzS-zR-GY8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-rH-Qlf">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="P4c-Qq-QLf"/>
+                        <constraint firstAttribute="width" constant="33" id="tzP-Sk-xpc"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="flash-automatic">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="P4c-Qq-QLf"/>
+                            <exclude reference="tzP-Sk-xpc"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="P4c-Qq-QLf"/>
+                            <include reference="tzP-Sk-xpc"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="flashButton:" destination="-1" eventType="touchUpInside" id="589-kG-o24"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78p-BG-DAl">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="Grid">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbe-Zd-vwM">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="Llk-8O-kQP"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="Shutter" backgroundImage="shutter-btn">
+                        <color key="titleColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Llk-8O-kQP"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="Llk-8O-kQP"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="shutterButton:" destination="-1" eventType="touchUpInside" id="Aa3-hr-9Js"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="zJ5-1P-mry" secondAttribute="bottom" id="Rlb-b8-Tj4"/>
-                <constraint firstItem="FLU-NQ-i1N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="ZrF-hl-DtX"/>
-                <constraint firstItem="FLU-NQ-i1N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="aB3-lc-TFu"/>
-                <constraint firstItem="zJ5-1P-mry" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dax-1z-uuL"/>
-                <constraint firstAttribute="trailing" secondItem="zJ5-1P-mry" secondAttribute="trailing" id="ewQ-hn-WTa"/>
+                <constraint firstItem="Rgp-SS-Qef" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="2pr-0d-Tpn"/>
+                <constraint firstItem="iwf-rH-Qlf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Gvk-Cl-5NA"/>
+                <constraint firstItem="Mbe-Zd-vwM" firstAttribute="centerY" secondItem="iwf-rH-Qlf" secondAttribute="centerY" id="KES-tn-mmt"/>
+                <constraint firstAttribute="bottom" secondItem="iwf-rH-Qlf" secondAttribute="bottom" constant="34" id="MUf-YX-PvR"/>
+                <constraint firstItem="Rgp-SS-Qef" firstAttribute="centerY" secondItem="FLU-NQ-i1N" secondAttribute="centerY" id="ROd-wD-jex"/>
+                <constraint firstItem="FLU-NQ-i1N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="Rw8-PH-H2r"/>
+                <constraint firstItem="Rgp-SS-Qef" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="S2o-f7-fqp"/>
+                <constraint firstAttribute="trailing" secondItem="78p-BG-DAl" secondAttribute="trailing" constant="24" id="gNB-sh-F84"/>
+                <constraint firstItem="FLU-NQ-i1N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="ibU-yh-k10"/>
+                <constraint firstAttribute="bottom" secondItem="Mbe-Zd-vwM" secondAttribute="bottom" constant="19" id="ixL-LN-gzM"/>
+                <constraint firstItem="iwf-rH-Qlf" firstAttribute="top" secondItem="78p-BG-DAl" secondAttribute="top" id="pXk-7x-PXF"/>
+                <constraint firstItem="Mbe-Zd-vwM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ro7-Yo-QuX"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="FLU-NQ-i1N"/>
-                    <exclude reference="zJ5-1P-mry"/>
+                    <exclude reference="Rgp-SS-Qef"/>
+                    <exclude reference="iwf-rH-Qlf"/>
+                    <exclude reference="78p-BG-DAl"/>
+                    <exclude reference="Mbe-Zd-vwM"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="ZrF-hl-DtX"/>
-                    <exclude reference="aB3-lc-TFu"/>
-                    <exclude reference="Rlb-b8-Tj4"/>
-                    <exclude reference="dax-1z-uuL"/>
-                    <exclude reference="ewQ-hn-WTa"/>
+                    <exclude reference="Rw8-PH-H2r"/>
+                    <exclude reference="ibU-yh-k10"/>
+                    <exclude reference="2pr-0d-Tpn"/>
+                    <exclude reference="ROd-wD-jex"/>
+                    <exclude reference="S2o-f7-fqp"/>
+                    <exclude reference="Gvk-Cl-5NA"/>
+                    <exclude reference="MUf-YX-PvR"/>
+                    <exclude reference="pXk-7x-PXF"/>
+                    <exclude reference="KES-tn-mmt"/>
+                    <exclude reference="ixL-LN-gzM"/>
+                    <exclude reference="ro7-Yo-QuX"/>
+                    <exclude reference="gNB-sh-F84"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="FLU-NQ-i1N"/>
-                    <include reference="zJ5-1P-mry"/>
+                    <include reference="Rgp-SS-Qef"/>
+                    <include reference="iwf-rH-Qlf"/>
+                    <include reference="78p-BG-DAl"/>
+                    <include reference="Mbe-Zd-vwM"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="ZrF-hl-DtX"/>
-                    <include reference="aB3-lc-TFu"/>
-                    <include reference="Rlb-b8-Tj4"/>
-                    <include reference="dax-1z-uuL"/>
-                    <include reference="ewQ-hn-WTa"/>
+                    <include reference="Rw8-PH-H2r"/>
+                    <include reference="ibU-yh-k10"/>
+                    <include reference="2pr-0d-Tpn"/>
+                    <include reference="ROd-wD-jex"/>
+                    <include reference="S2o-f7-fqp"/>
+                    <include reference="Gvk-Cl-5NA"/>
+                    <include reference="MUf-YX-PvR"/>
+                    <include reference="pXk-7x-PXF"/>
+                    <include reference="KES-tn-mmt"/>
+                    <include reference="ixL-LN-gzM"/>
+                    <include reference="ro7-Yo-QuX"/>
+                    <include reference="gNB-sh-F84"/>
                 </mask>
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="camera-device" width="256" height="256"/>
+        <image name="flash-automatic" width="32" height="32"/>
+        <image name="shutter-btn" width="64" height="64"/>
+    </resources>
 </document>
