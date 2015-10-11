@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource, UITableViewDelegate{
+class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var currentUser: PFUser!
     
@@ -49,6 +49,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var imageIDs = [String]()
     var selectedPhoto: PFFile?
     var selectedImageId: String?
+    var profilePicPicker: UIImagePickerController? = UIImagePickerController()
+    
 
     override func viewDidLoad(){
         switchCollectionTable.selectedSegmentIndex = 0
@@ -59,6 +61,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         photoCollection.dataSource = self
         feedTable.delegate = self
         feedTable.dataSource = self
+        profilePicPicker?.delegate = self
+        
+        
+        /* Tap Gesture Recognizer */
+        let tapGestureForProfilePic = UITapGestureRecognizer(target: self, action: (Selector:"selectProfilePic:"))
+        profilePic.addGestureRecognizer(tapGestureForProfilePic)
+        
+        
         
         println("ProfileViewController::viewDidLoad::\(currentUser)")
         
@@ -221,6 +231,72 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
 
     }
+    
+    // MARK: - Profile Pic Picker Delegates
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profilePic.contentMode = .ScaleAspectFit
+            profilePic.image = pickedImage
+            saveProfilePicOnServer(pickedImage)
+            dismissViewControllerAnimated(true, completion: nil)
+            saveProfilePicOnServer(pickedImage)
+            
+        }
+        
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // Mark: - Profile Pic
+    
+    func selectProfilePic (img: AnyObject){
+        println("Tap on profile view")
+        selectGallery()
+        
+        
+    }
+    
+    /* Picks an Image from Gallery */
+    func selectGallery(){
+        println("Gallery Selected")
+        self.profilePicPicker!.allowsEditing = false
+        self.profilePicPicker!.sourceType = .SavedPhotosAlbum
+        self.presentViewController(profilePicPicker!, animated: true, completion: nil)
+        
+    }
+    
+    func saveProfilePicOnServer(profilePic: UIImage) {
+        
+        let user = PFUser.currentUser()
+        let imageData = UIImageJPEGRepresentation(profilePic, 0.5) //image compression
+        let imageFile = PFFile(data: imageData)
+        
+        
+        user?.setObject(imageFile, forKey: "profilePicture")
+        
+        user?.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                // The object has been saved.
+                println("object was saved")
+            } else {
+                // There was a problem, check error.description
+                println("Object not saved")
+            }
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    
     
 }
 
