@@ -120,6 +120,7 @@ class FullPhotoViewController: UIViewController, CBPeripheralManagerDelegate {
     func peripheralManager(peripheral: CBPeripheralManager!, central: CBCentral!, didUnsubscribeFromCharacteristic characteristic: CBCharacteristic!) {
         
         print("central unsubscribed to characteristic")
+        peripheralManager!.stopAdvertising()
         
     }
     

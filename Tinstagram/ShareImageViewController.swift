@@ -64,6 +64,12 @@ class ShareImageViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
+        editedImageDisplay.image = nil
+        description = nil
+        
+        tabBarController?.selectedIndex = 0
+        navigationController?.popToRootViewControllerAnimated(true)
+
         
         //UIImageWriteToSavedPhotosAlbum(self.imageReceived, self, "image:didFinishSavingWithError:contextInfo:", nil)
         

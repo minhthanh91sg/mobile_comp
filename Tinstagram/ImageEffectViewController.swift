@@ -84,6 +84,7 @@ class ImageEffectViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var shareImageVC: ShareImageViewController = segue.destinationViewController as! ShareImageViewController
         shareImageVC.imageReceived = effectImageDisplay.image!
+        effectImageDisplay.image = nil
         
     }
     

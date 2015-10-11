@@ -181,7 +181,8 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var imageEffectVC: ImageEffectViewController = segue.destinationViewController as! ImageEffectViewController
         imageEffectVC.imageReceived = pickedImageDisplay.image!
-        
+        pickedImageDisplay.image = nil
+        effectsNavButton.enabled = false
     }
     
     
