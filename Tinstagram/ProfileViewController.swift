@@ -49,6 +49,16 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var imageIDs = [String]()
     var selectedPhoto: PFFile?
     var selectedImageId: String?
+    
+    @IBAction func makeComment(sender: UIButton) {
+        selectedPhoto = userImageFiles[sender.tag]
+        selectedImageId = imageIDs[sender.tag]
+        performSegueWithIdentifier("showcomment", sender: self)
+        println("SEGUE::::NOW")
+        
+    }
+    
+    
 
     override func viewDidLoad(){
         switchCollectionTable.selectedSegmentIndex = 0
@@ -178,6 +188,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         var nameOfUser = currentUser.objectForKey("username") as! String
         cell.username.setTitle(nameOfUser, forState: .Normal)
         cell.username.sizeToFit()
+        cell.comment.tag = indexPath.row
         self.userImageFiles[indexPath.row].getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
@@ -203,6 +214,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         editProfileController.currentUser = sender?.currentUser
                         break
                     }
+                    
                 }
             case "photoinfo":
                 if let fullPhotoController = segue.destinationViewController as? FullPhotoViewController{
@@ -214,6 +226,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         }
                     }
                 }
+            case "showcomment":
+                if let commentViewController = segue.destinationViewController as? CommentViewController{
+                    if let theSender = sender as? ProfileViewController{
+                        commentViewController.imageID = selectedImageId
+                    }
+                }
+                
             default: break
             }
         }

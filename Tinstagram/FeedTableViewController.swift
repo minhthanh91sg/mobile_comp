@@ -48,7 +48,6 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     
     
     func refreshData(refreshControl: UIRefreshControl) {
-        
         if let followingArray: [String] = currentUser.objectForKey("following") as? [String]{
             var imageQuery = PFQuery(className: "Image")
             imageQuery.whereKey("userId", containedIn: followingArray)
@@ -68,7 +67,6 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
                             self.feedFiles.append(object.objectForKey("image") as! PFFile)
                             self.tableView.reloadData()
                         }
-                        println("view: \(self.feedUser.count)")
                     }
                 }
             
