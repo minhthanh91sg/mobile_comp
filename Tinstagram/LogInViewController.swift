@@ -116,7 +116,12 @@ class LogInViewController: UIViewController {
     override func viewDidLoad(){
         passwordField.secureTextEntry = true
         super.viewDidLoad()
-        
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard(){
+        view.endEditing(true)
     }
     
 }

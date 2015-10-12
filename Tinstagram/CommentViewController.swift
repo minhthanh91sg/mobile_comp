@@ -8,12 +8,13 @@
 
 import UIKit
 
-class CommentViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
+class CommentViewController: UIViewController,UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate {
 
     var imageID: String!
     var comments =  [String]()
     var fromUser = [PFUser]()
     
+    @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentTextField: UITextField!
     
     @IBOutlet weak var commentTable: UITableView!
@@ -44,7 +45,9 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
         getCommentsForPhoto()
         commentTable.dataSource = self
         commentTable.delegate = self
-
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
     }
     
     func getCommentsForPhoto() -> Void{
@@ -98,6 +101,33 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
         cell.username.setTitle(fromUser[indexPath.row]["username"] as? String, forState: .Normal)
         cell.content.text = comments[indexPath.row]
         return cell
+    }
+    
+    
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        animateViewMoving(true, moveValue: 250)
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        animateViewMoving(false, moveValue: 250)
+    }
+    
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        var movementDuration:NSTimeInterval = 0.4
+        var movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = CGRectOffset(self.view.frame, 0,  movement)
+        UIView.commitAnimations()
     }
 }
 

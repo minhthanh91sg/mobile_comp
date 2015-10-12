@@ -2911,6 +2911,9 @@
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="lkZ-uL-83W" id="mYK-tB-Bwt"/>
+                                </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iqU-9i-5Pd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -3037,6 +3040,7 @@
                     <connections>
                         <outlet property="commentTable" destination="iqU-9i-5Pd" id="FEx-tF-avP"/>
                         <outlet property="commentTextField" destination="6mD-85-hel" id="l5K-nQ-QlI"/>
+                        <outlet property="keyboardHeightLayoutConstraint" destination="MCu-Hj-8y3" id="TcC-qT-n7Y"/>
                         <outlet property="view" destination="Tea-0J-CnF" id="uis-8t-TJB"/>
                     </connections>
                 </viewController>
