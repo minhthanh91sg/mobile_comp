@@ -40,7 +40,7 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     }
     
     
-    @IBAction func likeAPhoto(sender: AnyObject) {
+    @IBAction func likeAPhoto(sender: UIButton) {
         selectedImageId = feedImageIds[sender.tag]
         var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: selectedImageId)
         var likeAct = PFObject(className: "Activity")
@@ -60,6 +60,8 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         
         imageObject.incrementKey("likes", byAmount: 1)
         imageObject.save()
+        var indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
     
     
@@ -133,6 +135,11 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         cell.username.tag = indexPath.row
         cell.comment.tag = indexPath.row
         cell.like.tag = indexPath.row
+        var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: feedImageIds[indexPath.row])
+        imageObject.fetchIfNeeded()
+        if let numberOfLikes = imageObject["likes"] as? Int{
+            cell.like.setTitle(("\(numberOfLikes)"), forState: .Normal)
+        }
         self.feedFiles[indexPath.row].getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
