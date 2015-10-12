@@ -321,16 +321,16 @@
                                 <exclude reference="bfk-mV-bYz"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="D5t-iV-zEy"/>
-                                <exclude reference="UXs-95-Pec"/>
-                                <exclude reference="nUI-jN-p9v"/>
-                                <exclude reference="ujq-uG-pV0"/>
                                 <exclude reference="72H-rv-Z3A"/>
                                 <exclude reference="vzN-HR-Vn0"/>
                                 <exclude reference="7Bm-s1-60Z"/>
                                 <exclude reference="U7l-bg-5AM"/>
                                 <exclude reference="mwR-Fu-pFE"/>
                                 <exclude reference="nUB-av-bcH"/>
+                                <exclude reference="D5t-iV-zEy"/>
+                                <exclude reference="UXs-95-Pec"/>
+                                <exclude reference="nUI-jN-p9v"/>
+                                <exclude reference="ujq-uG-pV0"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -340,16 +340,16 @@
                                 <include reference="bfk-mV-bYz"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="D5t-iV-zEy"/>
-                                <include reference="UXs-95-Pec"/>
-                                <include reference="nUI-jN-p9v"/>
-                                <include reference="ujq-uG-pV0"/>
                                 <include reference="72H-rv-Z3A"/>
                                 <include reference="vzN-HR-Vn0"/>
                                 <include reference="7Bm-s1-60Z"/>
                                 <include reference="U7l-bg-5AM"/>
                                 <include reference="mwR-Fu-pFE"/>
                                 <include reference="nUB-av-bcH"/>
+                                <include reference="D5t-iV-zEy"/>
+                                <include reference="UXs-95-Pec"/>
+                                <include reference="nUI-jN-p9v"/>
+                                <include reference="ujq-uG-pV0"/>
                             </mask>
                         </variation>
                     </view>
