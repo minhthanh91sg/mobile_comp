@@ -257,9 +257,6 @@
                                                     <state key="normal" title="Button">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="26" y="7" width="117" height="30"/>
-                                                    </variation>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -276,12 +273,12 @@
                                                     <exclude reference="YFh-YH-3sJ"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="8ss-QM-hT5"/>
-                                                    <exclude reference="TxH-Dh-Fxx"/>
                                                     <exclude reference="75s-Hh-Rnj"/>
                                                     <exclude reference="CYM-Ey-F7X"/>
                                                     <exclude reference="dA7-24-2kd"/>
                                                     <exclude reference="dHV-qQ-ozh"/>
+                                                    <exclude reference="8ss-QM-hT5"/>
+                                                    <exclude reference="TxH-Dh-Fxx"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -290,12 +287,12 @@
                                                     <include reference="YFh-YH-3sJ"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="8ss-QM-hT5"/>
-                                                    <include reference="TxH-Dh-Fxx"/>
                                                     <include reference="75s-Hh-Rnj"/>
                                                     <include reference="CYM-Ey-F7X"/>
                                                     <include reference="dA7-24-2kd"/>
                                                     <include reference="dHV-qQ-ozh"/>
+                                                    <include reference="8ss-QM-hT5"/>
+                                                    <include reference="TxH-Dh-Fxx"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -989,7 +986,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="219.5" y="11" width="36.5" height="20"/>
+                                                        <rect key="frame" x="219" y="11" width="36.5" height="20"/>
                                                     </variation>
                                                     <connections>
                                                         <action selector="makeComment:" destination="H13-ir-7OH" eventType="touchUpInside" id="gSI-JH-AJP"/>
@@ -1002,7 +999,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="208.5" y="21" width="58.5" height="21"/>
+                                                        <rect key="frame" x="208" y="21" width="58.5" height="21"/>
                                                     </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oit-gs-x8N">
