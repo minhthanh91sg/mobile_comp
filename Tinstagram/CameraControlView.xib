@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -65,31 +66,6 @@
                         <action selector="selectCameraDevice:" destination="-1" eventType="touchUpInside" id="DzS-zR-GY8"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-rH-Qlf">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="P4c-Qq-QLf"/>
-                        <constraint firstAttribute="width" constant="33" id="tzP-Sk-xpc"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="flash-automatic">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="P4c-Qq-QLf"/>
-                            <exclude reference="tzP-Sk-xpc"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="P4c-Qq-QLf"/>
-                            <include reference="tzP-Sk-xpc"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="flashButton:" destination="-1" eventType="touchUpInside" id="589-kG-o24"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78p-BG-DAl">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <state key="normal" title="Grid">
@@ -99,7 +75,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbe-Zd-vwM">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="Llk-8O-kQP"/>
+                        <constraint firstAttribute="width" constant="60" id="uPY-7z-Dkt"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="Shutter" backgroundImage="shutter-btn">
@@ -108,41 +84,65 @@
                     </state>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="Llk-8O-kQP"/>
+                            <exclude reference="uPY-7z-Dkt"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
                         <mask key="constraints">
-                            <include reference="Llk-8O-kQP"/>
+                            <include reference="uPY-7z-Dkt"/>
                         </mask>
                     </variation>
                     <connections>
                         <action selector="shutterButton:" destination="-1" eventType="touchUpInside" id="Aa3-hr-9Js"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-rH-Qlf">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="uz1-Jl-fvJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Auto" image="flash">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="uz1-Jl-fvJ"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="uz1-Jl-fvJ"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="flashButton:" destination="-1" eventType="touchUpInside" id="589-kG-o24"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Rgp-SS-Qef" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="2pr-0d-Tpn"/>
-                <constraint firstItem="iwf-rH-Qlf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Gvk-Cl-5NA"/>
-                <constraint firstItem="Mbe-Zd-vwM" firstAttribute="centerY" secondItem="iwf-rH-Qlf" secondAttribute="centerY" id="KES-tn-mmt"/>
-                <constraint firstAttribute="bottom" secondItem="iwf-rH-Qlf" secondAttribute="bottom" constant="34" id="MUf-YX-PvR"/>
+                <constraint firstAttribute="bottom" secondItem="Mbe-Zd-vwM" secondAttribute="bottom" constant="19" id="3Lb-C8-Zrl"/>
+                <constraint firstItem="iwf-rH-Qlf" firstAttribute="centerY" secondItem="Mbe-Zd-vwM" secondAttribute="centerY" id="9gf-Xt-lYT"/>
+                <constraint firstAttribute="bottom" secondItem="iwf-rH-Qlf" secondAttribute="bottom" constant="34" id="MeU-K8-Z0u"/>
+                <constraint firstItem="Mbe-Zd-vwM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qnc-vY-yC2"/>
                 <constraint firstItem="Rgp-SS-Qef" firstAttribute="centerY" secondItem="FLU-NQ-i1N" secondAttribute="centerY" id="ROd-wD-jex"/>
                 <constraint firstItem="FLU-NQ-i1N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="Rw8-PH-H2r"/>
                 <constraint firstItem="Rgp-SS-Qef" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="S2o-f7-fqp"/>
-                <constraint firstAttribute="trailing" secondItem="78p-BG-DAl" secondAttribute="trailing" constant="24" id="gNB-sh-F84"/>
+                <constraint firstItem="78p-BG-DAl" firstAttribute="baseline" secondItem="Mbe-Zd-vwM" secondAttribute="baseline" id="T5d-gJ-QV6"/>
+                <constraint firstItem="iwf-rH-Qlf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XJw-V4-vGK"/>
                 <constraint firstItem="FLU-NQ-i1N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="ibU-yh-k10"/>
-                <constraint firstAttribute="bottom" secondItem="Mbe-Zd-vwM" secondAttribute="bottom" constant="19" id="ixL-LN-gzM"/>
-                <constraint firstItem="iwf-rH-Qlf" firstAttribute="top" secondItem="78p-BG-DAl" secondAttribute="top" id="pXk-7x-PXF"/>
-                <constraint firstItem="Mbe-Zd-vwM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ro7-Yo-QuX"/>
+                <constraint firstItem="78p-BG-DAl" firstAttribute="centerX" secondItem="Rgp-SS-Qef" secondAttribute="centerX" id="mJ7-X4-ShC"/>
+                <constraint firstItem="iwf-rH-Qlf" firstAttribute="trailing" secondItem="FLU-NQ-i1N" secondAttribute="trailing" id="ubQ-t9-24l"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="FLU-NQ-i1N"/>
                     <exclude reference="Rgp-SS-Qef"/>
-                    <exclude reference="iwf-rH-Qlf"/>
                     <exclude reference="78p-BG-DAl"/>
                     <exclude reference="Mbe-Zd-vwM"/>
+                    <exclude reference="iwf-rH-Qlf"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="Rw8-PH-H2r"/>
@@ -150,22 +150,23 @@
                     <exclude reference="2pr-0d-Tpn"/>
                     <exclude reference="ROd-wD-jex"/>
                     <exclude reference="S2o-f7-fqp"/>
-                    <exclude reference="Gvk-Cl-5NA"/>
-                    <exclude reference="MUf-YX-PvR"/>
-                    <exclude reference="pXk-7x-PXF"/>
-                    <exclude reference="KES-tn-mmt"/>
-                    <exclude reference="ixL-LN-gzM"/>
-                    <exclude reference="ro7-Yo-QuX"/>
-                    <exclude reference="gNB-sh-F84"/>
+                    <exclude reference="9gf-Xt-lYT"/>
+                    <exclude reference="MeU-K8-Z0u"/>
+                    <exclude reference="XJw-V4-vGK"/>
+                    <exclude reference="ubQ-t9-24l"/>
+                    <exclude reference="3Lb-C8-Zrl"/>
+                    <exclude reference="Qnc-vY-yC2"/>
+                    <exclude reference="T5d-gJ-QV6"/>
+                    <exclude reference="mJ7-X4-ShC"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="FLU-NQ-i1N"/>
                     <include reference="Rgp-SS-Qef"/>
-                    <include reference="iwf-rH-Qlf"/>
                     <include reference="78p-BG-DAl"/>
                     <include reference="Mbe-Zd-vwM"/>
+                    <include reference="iwf-rH-Qlf"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="Rw8-PH-H2r"/>
@@ -173,20 +174,21 @@
                     <include reference="2pr-0d-Tpn"/>
                     <include reference="ROd-wD-jex"/>
                     <include reference="S2o-f7-fqp"/>
-                    <include reference="Gvk-Cl-5NA"/>
-                    <include reference="MUf-YX-PvR"/>
-                    <include reference="pXk-7x-PXF"/>
-                    <include reference="KES-tn-mmt"/>
-                    <include reference="ixL-LN-gzM"/>
-                    <include reference="ro7-Yo-QuX"/>
-                    <include reference="gNB-sh-F84"/>
+                    <include reference="9gf-Xt-lYT"/>
+                    <include reference="MeU-K8-Z0u"/>
+                    <include reference="XJw-V4-vGK"/>
+                    <include reference="ubQ-t9-24l"/>
+                    <include reference="3Lb-C8-Zrl"/>
+                    <include reference="Qnc-vY-yC2"/>
+                    <include reference="T5d-gJ-QV6"/>
+                    <include reference="mJ7-X4-ShC"/>
                 </mask>
             </variation>
         </view>
     </objects>
     <resources>
         <image name="camera-device" width="256" height="256"/>
-        <image name="flash-automatic" width="32" height="32"/>
+        <image name="flash" width="32" height="32"/>
         <image name="shutter-btn" width="64" height="64"/>
     </resources>
 </document>

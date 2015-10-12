@@ -50,6 +50,7 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
             pickedImageDisplay.image = pickedImage
             dismissViewControllerAnimated(true, completion: nil)
             effectsNavButton.enabled = true
+            imagePicker!.cameraFlashMode = .Auto
         }
         
     }
@@ -129,36 +130,25 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
     
     @IBAction func flashButton(sender: UIButton) {
-        if (imagePicker!.cameraFlashMode == .Off){
-            imagePicker!.cameraFlashMode = .On
-            sender.setImage(UIImage(named: "flash.png"), forState: UIControlState.Normal)
-            println("Flash On")
+        if (imagePicker!.cameraFlashMode == .Auto){
+            imagePicker!.cameraFlashMode = .Off
+            sender.setTitle("Off", forState: UIControlState.Normal)
+            println("Flash Off")
             
         }
+        else if (imagePicker!.cameraFlashMode == .Off){
+            imagePicker!.cameraFlashMode = .On
+            sender.setTitle("On", forState: UIControlState.Normal)
+            println("Flash On")
+        }
         else {
-            imagePicker!.cameraFlashMode = .Off
-            sender.setImage(UIImage(named: "flash-disabled.png"), forState: UIControlState.Normal)
-            println("Flash Off")
+            imagePicker!.cameraFlashMode = .Auto
+            sender.setTitle("Auto", forState: UIControlState.Normal)
+            println("Flash Auto")
         }
 
     }
-    /*@IBAction func flash(sender: UIBarButtonItem) {
-        if (imagePicker!.cameraFlashMode == .Off){
-            sender.tintColor = UIColor.yellowColor()
-            imagePicker!.cameraFlashMode = .On
-            println("Flash On")
-            
-        }
-        else {
-            sender.tintColor = UIColor.redColor()
-            imagePicker!.cameraFlashMode = .Off
-            println("Flash Off")
-        }
-        
-    }*/
-    
-    
-    /* Select Camera Device .Front or .Rear */
+        /* Select Camera Device .Front or .Rear */
         
     @IBAction func selectCameraDevice(sender: UIButton) {
         

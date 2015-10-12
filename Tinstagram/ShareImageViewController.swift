@@ -58,10 +58,16 @@ class ShareImageViewController: UIViewController, UITextFieldDelegate {
             if (success) {
                 // The object has been saved.
                 println("object was saved")
+               
+                
+                
+                
             } else {
                 // There was a problem, check error.description
                 println("Object not saved")
             }
+            self.tabBarController?.selectedIndex = 0
+            self.navigationController?.popToRootViewControllerAnimated(true)
         }
         
         editedImageDisplay.image = nil
@@ -111,6 +117,8 @@ class ShareImageViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+   
+
     
 
     /*
