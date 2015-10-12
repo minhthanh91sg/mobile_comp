@@ -16,4 +16,5 @@ class TimelineTableViewCell: UITableViewCell {
     
     @IBOutlet weak var comment: UIButton!
 
+    @IBOutlet weak var like: UIButton!
 }

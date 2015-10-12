@@ -398,7 +398,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pPO-GG-Pji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3372" y="334"/>
+            <point key="canvasLocation" x="3372" y="333.75"/>
         </scene>
         <!--Share-->
         <scene sceneID="5oY-3e-9Yb">
@@ -542,7 +542,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zoa-Pv-Np4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="haT-rX-R8z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4348.5" y="1356.75"/>
+            <point key="canvasLocation" x="5212.5" y="2406.75"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Dfk-qQ-TOu">
@@ -748,9 +748,9 @@
                                                     <state key="normal" title="10">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="275" y="7" width="44" height="27"/>
-                                                    </variation>
+                                                    <connections>
+                                                        <action selector="likeAPhoto:" destination="H13-ir-7OH" eventType="touchUpInside" id="BvV-sc-q4U"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9D0-Mu-iNa">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -766,8 +766,7 @@
                                                             <exclude reference="OzD-8k-mrf"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="276" y="21" width="42" height="21"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="OzD-8k-mrf"/>
                                                         </mask>
@@ -869,6 +868,7 @@
                                         <connections>
                                             <outlet property="comment" destination="GP2-8A-3uT" id="RhS-4c-wL7"/>
                                             <outlet property="imageFeed" destination="FbC-Ws-YfC" id="ecr-7A-WIt"/>
+                                            <outlet property="like" destination="oit-gs-x8N" id="adK-IT-Vms"/>
                                             <outlet property="username" destination="Toe-Sb-h4B" id="58b-mZ-2a8"/>
                                         </connections>
                                     </tableViewCell>
@@ -1318,7 +1318,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FGD-le-xdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4156.5" y="-33.75"/>
+            <point key="canvasLocation" x="6484.5" y="-177.75"/>
         </scene>
         <!--Full Photo View Controller-->
         <scene sceneID="miB-9p-SNJ">
@@ -1403,7 +1403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kyg-Z2-ncs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5005.5" y="-273"/>
+            <point key="canvasLocation" x="6493.5" y="-903"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="Ixp-sK-S6F">
@@ -1436,7 +1436,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3I-t0-8hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4873.5" y="-1002"/>
+            <point key="canvasLocation" x="4753.5" y="-1428"/>
         </scene>
         <!--Profile-->
         <scene sceneID="BNW-uk-nW9">
@@ -1549,7 +1549,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iua-xp-ZKI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2595" y="1356.75"/>
+            <point key="canvasLocation" x="2583" y="2406.75"/>
         </scene>
         <!--Effects-->
         <scene sceneID="168-R9-xms">
@@ -1711,7 +1711,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmD-ta-o0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3432" y="1356.75"/>
+            <point key="canvasLocation" x="3936" y="2406.75"/>
         </scene>
         <!--Home-->
         <scene sceneID="UOC-7R-dO6">
@@ -1903,9 +1903,6 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lgO-Ef-jc7">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="50" width="320" height="314"/>
-                                                    </variation>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejo-ch-cjT">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1922,9 +1919,6 @@
                                                     <state key="normal" title="20">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="219" y="11" width="37" height="20"/>
-                                                    </variation>
                                                     <connections>
                                                         <action selector="makeComment:" destination="kxF-v1-Knj" eventType="touchUpInside" id="0nQ-HK-VCj"/>
                                                     </connections>
@@ -1934,9 +1928,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="208" y="21" width="59" height="21"/>
-                                                    </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMI-ds-fMU">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1944,9 +1935,9 @@
                                                     <state key="normal" title="10">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="275" y="7" width="44" height="27"/>
-                                                    </variation>
+                                                    <connections>
+                                                        <action selector="likeAPhoto:" destination="kxF-v1-Knj" eventType="touchUpInside" id="UPq-0S-C7o"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSS-4T-hst">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -1961,8 +1952,7 @@
                                                             <exclude reference="nWx-qr-6X1"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="276" y="21" width="42" height="21"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="nWx-qr-6X1"/>
                                                         </mask>
@@ -2062,6 +2052,7 @@
                                         <connections>
                                             <outlet property="comment" destination="Kfb-Lb-Ly5" id="OzD-cq-rav"/>
                                             <outlet property="imageFeed" destination="lgO-Ef-jc7" id="Ayq-uQ-iXV"/>
+                                            <outlet property="like" destination="xMI-ds-fMU" id="Zau-Lr-cJz"/>
                                             <outlet property="username" destination="Ejo-ch-cjT" id="joO-9H-h1p"/>
                                         </connections>
                                     </tableViewCell>
@@ -2353,7 +2344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBc-cu-DSG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4249.5" y="602.25"/>
+            <point key="canvasLocation" x="4266" y="521.25"/>
         </scene>
         <!--Full Photo View Controller-->
         <scene sceneID="kGM-uH-mwc">
@@ -2435,7 +2426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3L-rv-dgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5643" y="858.75"/>
+            <point key="canvasLocation" x="5233.5" y="827.25"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="IQV-Md-Vd3">
@@ -2590,7 +2581,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CPb-nt-aJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5085" y="1287"/>
+            <point key="canvasLocation" x="4959" y="1347"/>
         </scene>
     </scenes>
     <resources>

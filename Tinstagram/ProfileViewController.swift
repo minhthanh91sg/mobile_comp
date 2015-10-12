@@ -58,6 +58,32 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
     }
     
+    @IBAction func likeAPhoto(sender: UIButton) {
+        selectedImageId = imageIDs[sender.tag]
+        var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: selectedImageId)
+        var likeAct = PFObject(className: "Activity")
+        likeAct["fromUser"] = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.currentUser()?.objectId)
+        if viewUser != nil{
+            likeAct["toUser"] = PFObject(withoutDataWithClassName: "_User", objectId: viewUser!.objectId)
+        }else{
+            likeAct["toUser"] = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.currentUser()?.objectId)
+        }
+        likeAct["type"] = "like"
+        likeAct["photo"] = imageObject
+        likeAct.saveInBackgroundWithBlock{(success: Bool, error: NSError?) -> Void in
+            if success {
+                println("like saved")
+            } else {
+                println(error)
+            }
+            
+        }
+        
+        imageObject.incrementKey("likes", byAmount: 1)
+        imageObject.save()
+    }
+    
+    
     var profilePicPicker: UIImagePickerController? = UIImagePickerController()
     
 
@@ -204,6 +230,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         cell.username.setTitle(nameOfUser, forState: .Normal)
         cell.username.sizeToFit()
         cell.comment.tag = indexPath.row
+        cell.like.tag = indexPath.row
+        
         self.userImageFiles[indexPath.row].getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
