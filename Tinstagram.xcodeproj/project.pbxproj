@@ -12,6 +12,8 @@
 		6259A2B31BC5402B00D72731 /* ImageEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259A2B21BC5402B00D72731 /* ImageEffectViewController.swift */; };
 		6259A2B51BC551CB00D72731 /* ShareImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259A2B41BC551CB00D72731 /* ShareImageViewController.swift */; };
 		8081B3FB45066A5A4113CF9F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0FF8C839040DB989553B0D /* libPods.a */; };
+		898E52191BCB7E6600C4D788 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898E52181BCB7E6600C4D788 /* ActivityViewController.swift */; };
+		898E521B1BCB80C900C4D788 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898E521A1BCB80C900C4D788 /* ActivityTableViewCell.swift */; };
 		D60349601BC6318A00B465F9 /* FullPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D603495F1BC6318A00B465F9 /* FullPhotoViewController.swift */; };
 		D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62010731BA7911500C14936 /* FeedTableViewController.swift */; };
 		D677A6BF1BB6A10200DFE3B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */; };
@@ -44,6 +46,8 @@
 		6259A2B01BC5150C00D72731 /* CameraControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraControlView.xib; sourceTree = "<group>"; };
 		6259A2B21BC5402B00D72731 /* ImageEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEffectViewController.swift; sourceTree = "<group>"; };
 		6259A2B41BC551CB00D72731 /* ShareImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareImageViewController.swift; sourceTree = "<group>"; };
+		898E52181BCB7E6600C4D788 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		898E521A1BCB80C900C4D788 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		BC0FF8C839040DB989553B0D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D603495F1BC6318A00B465F9 /* FullPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPhotoViewController.swift; sourceTree = "<group>"; };
 		D62010731BA7911500C14936 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +101,15 @@
 			name = Camera;
 			sourceTree = "<group>";
 		};
+		898E52171BCB7E0D00C4D788 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				898E52181BCB7E6600C4D788 /* ActivityViewController.swift */,
+				898E521A1BCB80C900C4D788 /* ActivityTableViewCell.swift */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
 		B999168B7FC815CC7134B1C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +150,7 @@
 		D68F1B271B9AF16E004D1C53 /* Tinstagram */ = {
 			isa = PBXGroup;
 			children = (
+				898E52171BCB7E0D00C4D788 /* Activity */,
 				6259A2AF1BC5148700D72731 /* Camera */,
 				D68F1B2A1B9AF16E004D1C53 /* AppDelegate.swift */,
 				D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */,
@@ -321,6 +335,7 @@
 			files = (
 				D68F1B2D1B9AF16E004D1C53 /* LogInViewController.swift in Sources */,
 				D67BF7F91B9AFB3C003E344A /* User.swift in Sources */,
+				898E521B1BCB80C900C4D788 /* ActivityTableViewCell.swift in Sources */,
 				D60349601BC6318A00B465F9 /* FullPhotoViewController.swift in Sources */,
 				D6CD35231BC8ECCC00F8754A /* TimelineTableViewCell.swift in Sources */,
 				D68F3CE21BA0408700B5FBEE /* ProfileViewController.swift in Sources */,
@@ -330,6 +345,7 @@
 				6259A2AE1BC5017100D72731 /* CameraViewController.swift in Sources */,
 				D68F1B2B1B9AF16E004D1C53 /* AppDelegate.swift in Sources */,
 				D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */,
+				898E52191BCB7E6600C4D788 /* ActivityViewController.swift in Sources */,
 				6259A2B51BC551CB00D72731 /* ShareImageViewController.swift in Sources */,
 				6259A2B31BC5402B00D72731 /* ImageEffectViewController.swift in Sources */,
 			);

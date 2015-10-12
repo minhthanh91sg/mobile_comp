@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Thanh Pham. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class ActivityTableViewCell: UITableViewCell {
-
+    @IBOutlet var titleLabel: UILabel! = UILabel()
 }
