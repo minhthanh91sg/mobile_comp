@@ -9,9 +9,6 @@
 import UIKit
 import CoreBluetooth
 
-//protocol MyCustomCellDelegator {
-//    func callSegueFromCell(myData dataobject: AnyObject)
-//}
 
 class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate{
 
@@ -21,7 +18,11 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     
     var feedFiles = [PFFile]()
     
+    var feedImageIds = [String]()
+    
     var feedUser = [String]()
+    
+    var selectedImageId:String?
     
     var centralManager : CBCentralManager?
     var discoveredPeripheral : CBPeripheral?
@@ -32,6 +33,34 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     var receivedData : NSString?
 
 
+    @IBAction func makeAComment(sender: UIButton) {
+        selectedImageId = feedImageIds[sender.tag]
+        performSegueWithIdentifier("showcomment", sender: self)
+        
+    }
+    
+    
+    @IBAction func likeAPhoto(sender: AnyObject) {
+        selectedImageId = feedImageIds[sender.tag]
+        var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: selectedImageId)
+        var likeAct = PFObject(className: "Activity")
+        likeAct["fromUser"] = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.currentUser()?.objectId)
+        imageObject.fetchIfNeeded()
+        likeAct["toUser"] = PFObject(withoutDataWithClassName: "_User", objectId: imageObject["userId"] as? String)
+        likeAct["type"] = "like"
+        likeAct["photo"] = imageObject
+        likeAct.saveInBackgroundWithBlock{(success: Bool, error: NSError?) -> Void in
+            if success {
+                println("like saved")
+            } else {
+                println(error)
+            }
+            
+        }
+        
+        imageObject.incrementKey("likes", byAmount: 1)
+        imageObject.save()
+    }
     
     
     override func viewDidLoad() {
@@ -63,6 +92,9 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
                             var results = userQuery.findObjects()!
                             for result in results{
                                 self.feedUser.append(result.objectForKey("username") as! String)
+                            }
+                            if let idStr: String = object.objectId as String!{
+                                self.feedImageIds.append(idStr)
                             }
                             self.feedFiles.append(object.objectForKey("image") as! PFFile)
                             self.tableView.reloadData()
@@ -99,14 +131,16 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! TimelineTableViewCell
         cell.username.setTitle("\(self.feedUser[indexPath.row])",forState: .Normal)
         cell.username.tag = indexPath.row
+        cell.comment.tag = indexPath.row
+        cell.like.tag = indexPath.row
         self.feedFiles[indexPath.row].getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
                 cell.imageFeed.image = image
+                
                 cell.imageFeed.contentMode = UIViewContentMode.ScaleAspectFit
             }
         })
-
         return cell
     }
     
@@ -126,21 +160,27 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         println("prepareForSegue")
-        if let userProfileController = segue.destinationViewController as? ProfileViewController{
+        
             if let identifier = segue.identifier {
                 switch identifier {
                 case "viewuser":
-                    if let theSender = sender as? FeedTableViewController{
-                        println("aksdjflasjdf")
-                        userProfileController.viewUser  = self.viewUser
-                        userProfileController.currentUser = self.currentUser
-                        
-                        
+                    if let userProfileController = segue.destinationViewController as? ProfileViewController{
+                        if let theSender = sender as? FeedTableViewController{
+                            println("aksdjflasjdf")
+                            userProfileController.viewUser  = self.viewUser
+                            userProfileController.currentUser = self.currentUser
+                        }
+                    }
+                case "showcomment":
+                    if let commentController = segue.destinationViewController as? CommentViewController{
+                        if let theSender = sender as? FeedTableViewController{
+                            commentController.imageID = self.selectedImageId
+                        }
                     }
                 default: break
+                
                 }
-            }
-            
+        
         }
         
     }
@@ -316,24 +356,7 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         }
         
     }
-    
-    
-
-    
-    
 
 }
-
-//class feedCell: UITableViewCell{
-//    
-//    
-//    @IBOutlet weak var username: UIButton!
-//    
-//    
-//    @IBOutlet weak var imageFeed: UIImageView!
-//    
-//
-//}
-
 
 
