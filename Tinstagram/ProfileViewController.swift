@@ -81,6 +81,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         imageObject.incrementKey("likes", byAmount: 1)
         imageObject.save()
+        var indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        self.feedTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
     
     
@@ -231,7 +233,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         cell.username.sizeToFit()
         cell.comment.tag = indexPath.row
         cell.like.tag = indexPath.row
-        
+        var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: imageIDs[indexPath.row])
+        imageObject.fetchIfNeeded()
+        if let numberOfLikes = imageObject["likes"] as? Int{
+            cell.like.setTitle(("\(numberOfLikes)"), forState: .Normal)
+        }        
         self.userImageFiles[indexPath.row].getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)

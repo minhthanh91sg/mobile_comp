@@ -20,6 +20,9 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
     var imagePicker: UIImagePickerController? = UIImagePickerController()
     
+    @IBOutlet weak var gridview: UIView!
+    
+    
     // MARK: - Actions
     
     /* Shows an Alert option to pick the image from Gallery or Camera */
@@ -50,7 +53,7 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
             pickedImageDisplay.image = pickedImage
             dismissViewControllerAnimated(true, completion: nil)
             effectsNavButton.enabled = true
-            imagePicker!.cameraFlashMode = .Auto
+            
         }
         
     }
@@ -107,6 +110,7 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
         super.viewDidLoad()
         imagePicker!.delegate = self
         effectsNavButton.enabled = false
+        
 
     }
     
@@ -158,6 +162,22 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
         }
         else {
             self.imagePicker?.cameraDevice = .Front
+        }
+    }
+    
+    
+    @IBAction func gridButton(sender: UIButton) {
+        if (self.gridview.hidden == false){
+            self.gridview.hidden = true
+            println("hide grid")
+            println(self.gridview.hidden)
+            
+        }
+        else {
+            self.gridview.hidden = false
+            println("present grid")
+            println(self.gridview.hidden)
+            
         }
     }
     
