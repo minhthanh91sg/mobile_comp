@@ -177,7 +177,8 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
             forIndexPath: indexPath) as! ActivityTableViewCell
         // Sets the text of the Label in the Table View Cell
         //aCell.titleLabel.text = self.youObjects[indexPath.row]
-        aCell.titleLabel.text = self.fromUser[indexPath.row].username
+        //aCell.titleLabel.text = self.fromUser[indexPath.row].username
+        aCell.followerButton.setTitle(self.fromUser[indexPath.row].username, forState: UIControlState.Normal)
         return aCell
         }
     }
