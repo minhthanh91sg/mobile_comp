@@ -11,8 +11,12 @@ import UIKit
 class CommentViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
 
     var imageID: String!
+    var comments =  [String]()
+    var fromUser = [PFUser]()
     
     @IBOutlet weak var commentTextField: UITextField!
+    
+    @IBOutlet weak var commentTable: UITableView!
     
     @IBAction func sendComment(sender: AnyObject) {
         if commentTextField.text != ""{
@@ -37,8 +41,34 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        getCommentsForPhoto()
+        commentTable.dataSource = self
+        commentTable.delegate = self
+
+    }
+    
+    func getCommentsForPhoto() -> Void{
+        var commentQuery = PFQuery(className: "Activity")
+        var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: imageID)
+        commentQuery.includeKey("photo")
+        commentQuery.includeKey("fromUser")
+        commentQuery.whereKey("photo", equalTo: imageObject)
+        commentQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
+            if error == nil{
+                if let commentObjectArray = objects as! [PFObject]?{
+                    self.comments.removeAll(keepCapacity: false)
+                    for commentObject in commentObjectArray{
+                        println((commentObject["photo"]))
+                        self.comments.append(commentObject["content"] as! String)
+                        self.fromUser.append(commentObject["fromUser"] as! PFUser)
+                        println(self.comments)
+                    }
+                    
+                }
+                self.commentTable.reloadData()
+            }
+        }
         
-        println("CommentViewController \(imageID)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,20 +81,21 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return comments.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("comment", forIndexPath: indexPath) as! CommentCell
+        cell.username.setTitle(fromUser[indexPath.row]["username"] as? String, forState: .Normal)
+        cell.content.text = comments[indexPath.row]
         return cell
     }
-
 }
 
 class CommentCell: UITableViewCell{

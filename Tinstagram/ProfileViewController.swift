@@ -194,7 +194,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("userfeed",forIndexPath: indexPath) as! TimelineTableViewCell
-        var nameOfUser = currentUser.objectForKey("username") as! String
+        var nameOfUser: String
+        if viewUser != nil{
+            nameOfUser = viewUser!.objectForKey("username") as! String
+        }else{
+            nameOfUser = currentUser["username"] as! String
+        }
+        
         cell.username.setTitle(nameOfUser, forState: .Normal)
         cell.username.sizeToFit()
         cell.comment.tag = indexPath.row
