@@ -52,13 +52,16 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
         var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: imageID)
         commentQuery.includeKey("photo")
         commentQuery.includeKey("fromUser")
+        commentQuery.whereKey("type",equalTo: "comment")
         commentQuery.whereKey("photo", equalTo: imageObject)
+        
         commentQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
             if error == nil{
                 if let commentObjectArray = objects as! [PFObject]?{
                     self.comments.removeAll(keepCapacity: false)
                     for commentObject in commentObjectArray{
                         println((commentObject["photo"]))
+                        println(commentObject["content"] as! String)
                         self.comments.append(commentObject["content"] as! String)
                         self.fromUser.append(commentObject["fromUser"] as! PFUser)
                         println(self.comments)
