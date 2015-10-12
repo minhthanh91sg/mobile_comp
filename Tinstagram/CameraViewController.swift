@@ -50,7 +50,7 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
             pickedImageDisplay.image = pickedImage
             dismissViewControllerAnimated(true, completion: nil)
             effectsNavButton.enabled = true
-            imagePicker!.cameraFlashMode = .Auto
+            
         }
         
     }
