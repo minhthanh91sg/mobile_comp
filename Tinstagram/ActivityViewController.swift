@@ -30,20 +30,86 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         
         
     }
+    
+    
     var objects = [String]()
     var youObjects = [String]()
+    var currentUser: PFUser!
+    var fromUser = [PFUser]()
+    var toUserID: String!
+    
+    
+    func findYourActivity() -> Void {
+        
+        var yourActivityQuery = PFQuery(className: "Activity")
+        var toUserObject = PFObject(withoutDataWithClassName: "_User", objectId:toUserID )
+        //var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: imageID)
+        //commentQuery.includeKey("photo")
+        yourActivityQuery.includeKey("fromUser")
+        yourActivityQuery.whereKey("type",equalTo: "follow")
+        yourActivityQuery.whereKey("toUser", equalTo: toUserObject)
+        
+        yourActivityQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
+            if error == nil{
+                //println(objects!.count)
+                if let aaa = objects as! [PFObject]?{
+                    for item in aaa{
+                        let item = item["fromUser"] as! PFUser
+                        println(item.username)
+                    }
+                }
+                
+                if let activityObjectArray = objects as! [PFObject]?{
+                    //self.fromUser.removeAll(keepCapacity: false)
+                    for activityObject in activityObjectArray{
+                        //println((commentObject["photo"]))
+                        //println(activityObject["fromUser"])
+                        self.fromUser.append(activityObject["fromUser"] as! PFUser)
+                        //println(self.fromUser)
+                    }
+                    
+                }
+                //println(self.fromUser)
+                self.youTableView.reloadData()
+                
+            }
+            
+        }
+    }
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        if let tabController = self.tabBarController as? MainTabBarController {
+            currentUser = tabController.currentUser
+        }
+        
+        toUserID = currentUser.objectId
+        
+        findYourActivity()
+        
         self.objects.append("iPhone")
         self.objects.append("Apple Watch")
         self.objects.append("Mac")
         
-        self.youObjects.append("iPhone2")
-        self.youObjects.append("Apple Watch2")
-        self.youObjects.append("Mac2")
+        //self.youObjects.append("iPhone2")
+        //self.youObjects.append("Apple Watch2")
+        //self.youObjects.append("Mac2")
+        //self.youObjects.append(toUserID)
+        
+        //println(self.fromUser.count)
+        
+        //if self.fromUser.isEmpty == false {
+        //    for item in self.fromUser{
+        //        self.youObjects.append(item.username!)
+        //    }
+        //}
         
         
         followingTableView.dataSource = self
@@ -87,7 +153,8 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
             
         else { // tableView == _secondTable
             // Do something else
-            return self.youObjects.count
+            //return self.youObjects.count
+            return self.fromUser.count
         }
     }
     
@@ -104,14 +171,17 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         
     else {
         // Allocates a Table View Cell
+        //println(self.fromUser)
+        //println(self.fromUser.isEmpty)
         let aCell = tableView.dequeueReusableCellWithIdentifier("youActivityCell",
             forIndexPath: indexPath) as! ActivityTableViewCell
         // Sets the text of the Label in the Table View Cell
-        aCell.titleLabel.text = self.youObjects[indexPath.row]
+        //aCell.titleLabel.text = self.youObjects[indexPath.row]
+        aCell.titleLabel.text = self.fromUser[indexPath.row].username
         return aCell
         }
     }
-
     
-
+    
+    
 }
