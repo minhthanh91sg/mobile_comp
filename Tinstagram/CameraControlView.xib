@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -19,12 +19,10 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zk-We-G43" customClass="GridView" customModule="Tinstagram" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" alpha="0.64999999999999969" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLU-NQ-i1N">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Z6q-Cs-BQz"/>
@@ -53,7 +51,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgp-SS-Qef">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="39" id="4ws-DF-AYo"/>
                     </constraints>
@@ -76,7 +73,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbe-Zd-vwM">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="uPY-7z-Dkt"/>
                     </constraints>
@@ -101,7 +97,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-rH-Qlf">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="uz1-Jl-fvJ"/>
                     </constraints>
@@ -125,7 +120,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78p-BG-DAl">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <animations/>
                     <state key="normal" title="Grid">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -134,7 +128,6 @@
                     </connections>
                 </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Rgp-SS-Qef" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="2pr-0d-Tpn"/>
@@ -165,12 +158,12 @@
                     <exclude reference="78p-BG-DAl"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="Yu1-jk-l5v"/>
-                    <exclude reference="rPm-6I-dc0"/>
+                    <exclude reference="IjO-cq-1cb"/>
+                    <exclude reference="Qn9-F3-9NT"/>
+                    <exclude reference="Z6d-hJ-C2a"/>
+                    <exclude reference="yO8-fU-o29"/>
                     <exclude reference="Rw8-PH-H2r"/>
                     <exclude reference="ibU-yh-k10"/>
-                    <exclude reference="3Lb-C8-Zrl"/>
-                    <exclude reference="Qnc-vY-yC2"/>
                     <exclude reference="2pr-0d-Tpn"/>
                     <exclude reference="ROd-wD-jex"/>
                     <exclude reference="S2o-f7-fqp"/>
@@ -178,10 +171,10 @@
                     <exclude reference="MeU-K8-Z0u"/>
                     <exclude reference="XJw-V4-vGK"/>
                     <exclude reference="ubQ-t9-24l"/>
-                    <exclude reference="IjO-cq-1cb"/>
-                    <exclude reference="Qn9-F3-9NT"/>
-                    <exclude reference="Z6d-hJ-C2a"/>
-                    <exclude reference="yO8-fU-o29"/>
+                    <exclude reference="3Lb-C8-Zrl"/>
+                    <exclude reference="Qnc-vY-yC2"/>
+                    <exclude reference="Yu1-jk-l5v"/>
+                    <exclude reference="rPm-6I-dc0"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -194,12 +187,12 @@
                     <include reference="78p-BG-DAl"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="Yu1-jk-l5v"/>
-                    <include reference="rPm-6I-dc0"/>
+                    <include reference="IjO-cq-1cb"/>
+                    <include reference="Qn9-F3-9NT"/>
+                    <include reference="Z6d-hJ-C2a"/>
+                    <include reference="yO8-fU-o29"/>
                     <include reference="Rw8-PH-H2r"/>
                     <include reference="ibU-yh-k10"/>
-                    <include reference="3Lb-C8-Zrl"/>
-                    <include reference="Qnc-vY-yC2"/>
                     <include reference="2pr-0d-Tpn"/>
                     <include reference="ROd-wD-jex"/>
                     <include reference="S2o-f7-fqp"/>
@@ -207,10 +200,10 @@
                     <include reference="MeU-K8-Z0u"/>
                     <include reference="XJw-V4-vGK"/>
                     <include reference="ubQ-t9-24l"/>
-                    <include reference="IjO-cq-1cb"/>
-                    <include reference="Qn9-F3-9NT"/>
-                    <include reference="Z6d-hJ-C2a"/>
-                    <include reference="yO8-fU-o29"/>
+                    <include reference="3Lb-C8-Zrl"/>
+                    <include reference="Qnc-vY-yC2"/>
+                    <include reference="Yu1-jk-l5v"/>
+                    <include reference="rPm-6I-dc0"/>
                 </mask>
             </variation>
         </view>
