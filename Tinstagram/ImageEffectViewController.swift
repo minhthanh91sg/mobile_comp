@@ -28,7 +28,12 @@ class ImageEffectViewController: UIViewController {
     var filter: CIFilter!
     
     var beginImage: CIImage!
-
+    
+    
+    @IBOutlet weak var brightnessAmount: UISlider!
+    
+    @IBOutlet weak var contrastAmount: UISlider!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +41,8 @@ class ImageEffectViewController: UIViewController {
         effectImageDisplay.image = imageReceived
         beginImage = CIImage(image: imageReceived)
         
-
+        
+        
         
     }
 
@@ -55,38 +61,31 @@ class ImageEffectViewController: UIViewController {
     /* Filter 1 - Sepia */
     @IBAction func filterOneButton(sender: AnyObject) {
         
-        filter = CIFilter(name: "CISepiaTone")
-        filter.setValue(beginImage, forKey: kCIInputImageKey)
-        filter.setValue(0.6, forKey: kCIInputIntensityKey)
+        effectImageDisplay.image = applyFilter("CISepiaTone", img: beginImage)
         
-        let filteredImage = filter.outputImage
-        
-        effectImageDisplay.image = applyFilter(filteredImage)
         
     }
     
     /* Filter 2 - Fade */
     @IBAction func filterTwoButton(sender: AnyObject) {
-        filter = CIFilter(name: "CIPhotoEffectFade")
-        filter.setValue(beginImage, forKey: kCIInputImageKey)
-        filter.setDefaults()
-
-        let filteredImage = filter.outputImage
-        
-        effectImageDisplay.image = applyFilter(filteredImage)
+        effectImageDisplay.image = applyFilter("CIPhotoEffectFade", img: beginImage)
     }
     
     
     /* Filter 3 - Black-and-White  */
     @IBAction func filterThreeButton(sender: AnyObject) {
-        filter = CIFilter(name: "CIPhotoEffectNoir")
-        println(filter)
-        filter.setValue(beginImage, forKey: kCIInputImageKey)
-        filter.setDefaults()
+        effectImageDisplay.image = applyFilter("CIPhotoEffectNoir", img: beginImage)
+    }
+    
+    /*Sliders */
+    @IBAction func changeBrightnessValue(sender: UISlider) {
         
-        let filteredImage = filter.outputImage
         
-        effectImageDisplay.image = applyFilter(filteredImage)
+    }
+    
+    
+    @IBAction func changeContrastValue(sender: UISlider) {
+        
         
     }
 
@@ -105,14 +104,16 @@ class ImageEffectViewController: UIViewController {
     
     // MARK: - Image functions
     
-    func applyFilter (filteredImg: CIImage) -> UIImage {
+    func applyFilter(nameFilter: String, img: CIImage) -> UIImage {
+        filter = CIFilter(name: nameFilter)
+        filter.setValue(img, forKey: kCIInputImageKey)
+        filter.setDefaults() // default values
         context = CIContext(options: nil)
-        let renderedImage = context.createCGImage(filteredImg, fromRect: filteredImg.extent())
-        
+        let renderedImage = context.createCGImage(filter.outputImage, fromRect: filter.outputImage.extent())
         let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
-        
         return newImage!
         
     }
+    
     
 }
