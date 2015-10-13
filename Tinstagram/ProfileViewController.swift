@@ -48,7 +48,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 println(error)
             }
         
-        
     }
     }
     
