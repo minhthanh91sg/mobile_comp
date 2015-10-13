@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		620E25171BCBF05B00E91346 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620E25161BCBF05B00E91346 /* GridView.swift */; };
+		620E251D1BCCEB4800E91346 /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620E251C1BCCEB4800E91346 /* CropImageViewController.swift */; };
 		6259A2AE1BC5017100D72731 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259A2AD1BC5017100D72731 /* CameraViewController.swift */; };
 		6259A2B11BC5150C00D72731 /* CameraControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6259A2B01BC5150C00D72731 /* CameraControlView.xib */; };
 		6259A2B31BC5402B00D72731 /* ImageEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259A2B21BC5402B00D72731 /* ImageEffectViewController.swift */; };
@@ -29,6 +30,7 @@
 		D6ADC0BF1B9FB0D900832853 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */; };
 		D6CD35211BC8E58C00F8754A /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD35201BC8E58C00F8754A /* CommentViewController.swift */; };
 		D6CD35231BC8ECCC00F8754A /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD35221BC8ECCC00F8754A /* TimelineTableViewCell.swift */; };
+		EF05797F1BCD27DB006FF9CB /* BluetoothShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF05797E1BCD27DB006FF9CB /* BluetoothShareViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 /* Begin PBXFileReference section */
 		1DBCDF4762F61BBCF94A6708 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		620E25161BCBF05B00E91346 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		620E251C1BCCEB4800E91346 /* CropImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
 		6259A2AD1BC5017100D72731 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6259A2B01BC5150C00D72731 /* CameraControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraControlView.xib; sourceTree = "<group>"; };
 		6259A2B21BC5402B00D72731 /* ImageEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEffectViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		D6ADC0BE1B9FB0D900832853 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D6CD35201BC8E58C00F8754A /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		D6CD35221BC8ECCC00F8754A /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
+		EF05797E1BCD27DB006FF9CB /* BluetoothShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothShareViewController.swift; sourceTree = "<group>"; };
 		F8FA7461A870B843364ED766 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +104,7 @@
 				6259A2B21BC5402B00D72731 /* ImageEffectViewController.swift */,
 				6259A2B41BC551CB00D72731 /* ShareImageViewController.swift */,
 				620E25161BCBF05B00E91346 /* GridView.swift */,
+				620E251C1BCCEB4800E91346 /* CropImageViewController.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				6259A2AF1BC5148700D72731 /* Camera */,
 				D68F1B2A1B9AF16E004D1C53 /* AppDelegate.swift */,
 				D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */,
+				EF05797E1BCD27DB006FF9CB /* BluetoothShareViewController.swift */,
 				D6CD35201BC8E58C00F8754A /* CommentViewController.swift */,
 				D62010731BA7911500C14936 /* FeedTableViewController.swift */,
 				D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */,
@@ -344,11 +350,14 @@
 				D6CD35231BC8ECCC00F8754A /* TimelineTableViewCell.swift in Sources */,
 				D68F3CE21BA0408700B5FBEE /* ProfileViewController.swift in Sources */,
 				D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */,
+				898E521F1BCCD43F00C4D788 /* likeActivityCell.swift in Sources */,
+				EF05797F1BCD27DB006FF9CB /* BluetoothShareViewController.swift in Sources */,
 				D6ADC0BF1B9FB0D900832853 /* MainTabBarController.swift in Sources */,
 				D6CD35211BC8E58C00F8754A /* CommentViewController.swift in Sources */,
 				6259A2AE1BC5017100D72731 /* CameraViewController.swift in Sources */,
 				620E25171BCBF05B00E91346 /* GridView.swift in Sources */,
 				D68F1B2B1B9AF16E004D1C53 /* AppDelegate.swift in Sources */,
+				620E251D1BCCEB4800E91346 /* CropImageViewController.swift in Sources */,
 				D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */,
 				898E52191BCB7E6600C4D788 /* ActivityViewController.swift in Sources */,
 				6259A2B51BC551CB00D72731 /* ShareImageViewController.swift in Sources */,

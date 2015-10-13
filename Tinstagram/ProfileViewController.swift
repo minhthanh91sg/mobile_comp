@@ -28,7 +28,29 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var feedTable: UITableView!
     
     @IBOutlet weak var switchCollectionTable: UISegmentedControl!
-
+    
+    
+    @IBAction func Following(sender: UIButton) {
+        
+        viewUser?.addObject(currentUser.objectId!, forKey: "follower")
+        currentUser?.addObject(viewUser!.objectId!, forKey: "following")
+        editProfile.setTitle("Followed", forState: .Normal)
+        editProfile.enabled = false
+        
+        var followAct = PFObject(className: "Activity")
+        followAct["fromUser"] = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId!)
+        followAct["toUser"] = PFObject(withoutDataWithClassName: "_User", objectId: viewUser?.objectId)
+        followAct["type"] = "follow"
+        followAct.saveInBackgroundWithBlock{(success: Bool, error: NSError?) -> Void in
+            if success {
+                println("comment saved")
+            } else {
+                println(error)
+            }
+        
+        
+    }
+    }
     
     @IBAction func switchCollectionTable(sender: UISegmentedControl) {
         switch(sender.selectedSegmentIndex){
@@ -93,12 +115,16 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         switchCollectionTable.selectedSegmentIndex = 0
         self.feedTable.hidden = true
         self.photoCollection.hidden = false
+        editProfile.setTitle("Your Profile", forState: .Normal)
+        
         println(viewUser)
         photoCollection.delegate = self
         photoCollection.dataSource = self
         feedTable.delegate = self
         feedTable.dataSource = self
         profilePicPicker?.delegate = self
+        editProfile.enabled = false
+        
         
         
         /* Tap Gesture Recognizer */
@@ -118,6 +144,30 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 self.showUserInfo(viewUser!)
                 self.showCollection(viewUser!)
             }
+        }
+    
+        
+        if(viewUser != nil) {
+            if let follower: [String] = viewUser!.objectForKey("follower") as? [String]{
+                
+                println(follower)
+                println(currentUser.objectId!)
+                if contains(follower, currentUser.objectId!) {
+                    
+                    editProfile.setTitle("Following", forState: UIControlState.Normal)
+                    editProfile.enabled = false
+                } else{
+                    
+                    editProfile.setTitle("Follow", forState: UIControlState.Normal)
+                    editProfile.enabled = true
+                }
+
+            
+            
+            }
+            
+            
+            
         }
     }
     
@@ -151,10 +201,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             following.text = "\(count)"
         }
         
-        if let postArray: [String] = user.objectForKey("post") as? [String]{
-            var count = postArray.count
-            posts.text = "\(count)"
-        }
+        
+        var query = PFQuery(className: "Image")
+        println("Query count post")
+        query.whereKey("userId", equalTo: user.objectId!)
+        var count = query.countObjects()
+        println(count)
+        posts.text = "\(count)"
+        
     }
     
     

@@ -68,7 +68,6 @@ class ImageEffectViewController: UIViewController {
     /* Filter 2 - Fade */
     @IBAction func filterTwoButton(sender: AnyObject) {
         filter = CIFilter(name: "CIPhotoEffectFade")
-        println(filter)
         filter.setValue(beginImage, forKey: kCIInputImageKey)
         filter.setDefaults()
 
@@ -93,12 +92,16 @@ class ImageEffectViewController: UIViewController {
 
     // MARK: - Navigation
     
+    
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var shareImageVC: ShareImageViewController = segue.destinationViewController as! ShareImageViewController
         shareImageVC.imageReceived = effectImageDisplay.image!
         effectImageDisplay.image = nil
         
     }
+
     
     // MARK: - Image functions
     
