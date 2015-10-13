@@ -29,9 +29,7 @@ class ImageEffectViewController: UIViewController {
     
     var beginImage: CIImage!
     
-    var brightness: Float = 0.0
-    var contrast: Float = 0.0
-
+    
     @IBOutlet weak var brightnessAmount: UISlider!
     
     @IBOutlet weak var contrastAmount: UISlider!
@@ -42,8 +40,8 @@ class ImageEffectViewController: UIViewController {
         // loads the received image from CameraViewController
         effectImageDisplay.image = imageReceived
         beginImage = CIImage(image: imageReceived)
-        brightness = 0.9
-        contrast = 0.9
+        
+        
         
         
     }
@@ -82,10 +80,12 @@ class ImageEffectViewController: UIViewController {
     /*Sliders */
     @IBAction func changeBrightnessValue(sender: UISlider) {
         
+        
     }
     
     
     @IBAction func changeContrastValue(sender: UISlider) {
+        
         
     }
 
@@ -108,33 +108,12 @@ class ImageEffectViewController: UIViewController {
         filter = CIFilter(name: nameFilter)
         filter.setValue(img, forKey: kCIInputImageKey)
         filter.setDefaults() // default values
-        
-        let brightnessFil = CIFilter(name: "CIColorControls")
-        brightnessFil.setValue(filter.outputImage, forKey: kCIInputImageKey)
-        brightnessFil.setValue(1 - self.brightness, forKey: "inputBrightness")
-        brightnessFil.setValue(1 - self.contrast, forKey: "inputBrightness")
-        
         context = CIContext(options: nil)
-        let renderedImage = context.createCGImage(brightnessFil.outputImage, fromRect: brightnessFil.outputImage.extent())
+        let renderedImage = context.createCGImage(filter.outputImage, fromRect: filter.outputImage.extent())
         let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
-        
-        
-        //        let filteredImage = filter.outputImage
-        //        context = CIContext(options: nil)
-        //        let renderedImage = context.createCGImage(filteredImage, fromRect: filteredImage.extent())
-        //        let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
         return newImage!
         
     }
     
-//    func applyFilter (filteredImg: CIImage) -> UIImage {
-//        context = CIContext(options: nil)
-//        let renderedImage = context.createCGImage(filteredImg, fromRect: filteredImg.extent())
-//        
-//        let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
-//        
-//        return newImage!
-//        
-//    }
     
 }
