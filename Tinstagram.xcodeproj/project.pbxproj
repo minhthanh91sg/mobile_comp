@@ -18,6 +18,8 @@
 		898E521B1BCB80C900C4D788 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898E521A1BCB80C900C4D788 /* ActivityTableViewCell.swift */; };
 		D60349601BC6318A00B465F9 /* FullPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D603495F1BC6318A00B465F9 /* FullPhotoViewController.swift */; };
 		D62010741BA7911500C14936 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62010731BA7911500C14936 /* FeedTableViewController.swift */; };
+		D645795F1BCD53FF00048C48 /* DetailPhotoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D645795E1BCD53FF00048C48 /* DetailPhotoTableViewController.swift */; };
+		D64579611BCD543B00048C48 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64579601BCD543B00048C48 /* SearchViewController.swift */; };
 		D677A6BF1BB6A10200DFE3B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B2E1B9AF16E004D1C53 /* Main.storyboard */; };
 		D677A6C01BB6A10700DFE3B1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F1B331B9AF16E004D1C53 /* LaunchScreen.xib */; };
 		D67BF7F91B9AFB3C003E344A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67BF7F81B9AFB3C003E344A /* User.swift */; };
@@ -56,6 +58,8 @@
 		BC0FF8C839040DB989553B0D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D603495F1BC6318A00B465F9 /* FullPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPhotoViewController.swift; sourceTree = "<group>"; };
 		D62010731BA7911500C14936 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		D645795E1BCD53FF00048C48 /* DetailPhotoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPhotoTableViewController.swift; sourceTree = "<group>"; };
+		D64579601BCD543B00048C48 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D67BF7F51B9AF45F003E344A /* Tinstagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinstagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		D67BF7F81B9AFB3C003E344A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D68F1B251B9AF16E004D1C53 /* Tinstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +171,8 @@
 				D62010731BA7911500C14936 /* FeedTableViewController.swift */,
 				D68F3CE11BA0408700B5FBEE /* ProfileViewController.swift */,
 				D68F1B2C1B9AF16E004D1C53 /* LogInViewController.swift */,
+				D64579601BCD543B00048C48 /* SearchViewController.swift */,
+				D645795E1BCD53FF00048C48 /* DetailPhotoTableViewController.swift */,
 				D6CD35221BC8ECCC00F8754A /* TimelineTableViewCell.swift */,
 				D603495F1BC6318A00B465F9 /* FullPhotoViewController.swift */,
 				D69102EC1BA68852006BA9DF /* EditProfileTableViewController.swift */,
@@ -355,8 +361,10 @@
 				D6ADC0BF1B9FB0D900832853 /* MainTabBarController.swift in Sources */,
 				D6CD35211BC8E58C00F8754A /* CommentViewController.swift in Sources */,
 				6259A2AE1BC5017100D72731 /* CameraViewController.swift in Sources */,
+				D64579611BCD543B00048C48 /* SearchViewController.swift in Sources */,
 				620E25171BCBF05B00E91346 /* GridView.swift in Sources */,
 				D68F1B2B1B9AF16E004D1C53 /* AppDelegate.swift in Sources */,
+				D645795F1BCD53FF00048C48 /* DetailPhotoTableViewController.swift in Sources */,
 				620E251D1BCCEB4800E91346 /* CropImageViewController.swift in Sources */,
 				D69102ED1BA68852006BA9DF /* EditProfileTableViewController.swift in Sources */,
 				898E52191BCB7E6600C4D788 /* ActivityViewController.swift in Sources */,
