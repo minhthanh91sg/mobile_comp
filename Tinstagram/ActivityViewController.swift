@@ -100,7 +100,14 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                 
                     
                     if let activityObjectArray = objects as! [PFObject]?{
-                        self.yourActivitiesArray = activityObjectArray
+                        //self.yourActivitiesArray = activityObjectArray
+                        for item in activityObjectArray{
+                            self.yourActivitiesArray.append(item)
+                            let indexItem = find(activityObjectArray,item)
+                            if indexItem > 4{
+                                break;
+                            }
+                        }
                     }
                     
                 }
@@ -167,10 +174,17 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                     }
                     
                     if let activityObjectArray = objects as! [PFObject]?{
-                        self.followingActivitiesArray = activityObjectArray
+                        //self.followingActivitiesArray = activityObjectArray
+                        for item in activityObjectArray{
+                            self.followingActivitiesArray.append(item)
+                            let indexItem = find(activityObjectArray,item)
+                            if indexItem > 4{
+                                break;
+                            }
+                        }
                         
                         
-                        println(self.followingActivitiesArray)
+                        //println(self.followingActivitiesArray)
                     }
             
             
@@ -190,17 +204,25 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
     
     
     
+    override func viewDidAppear(animated: Bool) {
+        self.fromUser.removeAll(keepCapacity:false)
+        self.fromUser002.removeAll(keepCapacity: false)
+        self.toUser002.removeAll(keepCapacity: false)
+        self.yourActivitiesArray.removeAll(keepCapacity: false)
+        self.followingActivitiesArray.removeAll(keepCapacity: false)
+        findYourActivity()
+        findFollowingActivity()
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        if let followingUserArray = PFUser.currentUser()!["following"] as? [String] {
-            println(followingUserArray)
-        }
         
         
-        findYourActivity()
-        findFollowingActivity()
+        //findYourActivity()
+        //findFollowingActivity()
         
         
         //self.objects.append("iPhone")

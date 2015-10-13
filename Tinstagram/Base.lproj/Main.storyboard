@@ -406,8 +406,7 @@
                                                             <exclude reference="Vas-Th-h8N"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="125" y="11" width="180" height="22"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="Vas-Th-h8N"/>
                                                         </mask>
@@ -416,7 +415,6 @@
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="218" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFh-YH-3sJ">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <state key="normal" title="someone">
-
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
@@ -428,20 +426,16 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLv-cP-VV6">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="81" id="Cf8-1B-ops"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="Cf8-1B-ops"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="304" y="7" width="81" height="30"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="Cf8-1B-ops"/>
                                                         </mask>
@@ -453,6 +447,7 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
+                                                <constraint firstItem="YFh-YH-3sJ" firstAttribute="centerY" secondItem="8Gs-yV-pUl" secondAttribute="centerY" id="4hb-SR-gMF"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="8Gs-yV-pUl" secondAttribute="bottom" constant="2.5" id="8VZ-Je-klF"/>
                                                 <constraint firstItem="8Gs-yV-pUl" firstAttribute="top" secondItem="3xB-1C-zuH" secondAttribute="topMargin" constant="3" id="9xm-cU-w3b"/>
                                                 <constraint firstItem="LLv-cP-VV6" firstAttribute="trailing" secondItem="3xB-1C-zuH" secondAttribute="trailingMargin" id="Hyu-VX-m4Q"/>
@@ -469,6 +464,7 @@
                                                     <exclude reference="LLv-cP-VV6"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="4hb-SR-gMF"/>
                                                     <exclude reference="VXX-u1-0XZ"/>
                                                     <exclude reference="cMv-Qq-vXb"/>
                                                     <exclude reference="8VZ-Je-klF"/>
@@ -486,6 +482,7 @@
                                                     <include reference="LLv-cP-VV6"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="4hb-SR-gMF"/>
                                                     <include reference="VXX-u1-0XZ"/>
                                                     <include reference="cMv-Qq-vXb"/>
                                                     <include reference="8VZ-Je-klF"/>
@@ -529,8 +526,7 @@
                                                             <exclude reference="95M-GB-iqR"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="125" y="11" width="180" height="22"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="95M-GB-iqR"/>
                                                         </mask>
@@ -538,9 +534,8 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="218" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndz-WF-bjg">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-
                                                     <state key="normal" title="someone">
-                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="8" y="7" width="109" height="30"/>
@@ -548,20 +543,16 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQR-h8-rfl">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="81" id="hI4-oR-RCX"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="hI4-oR-RCX"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="304" y="7" width="81" height="30"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="hI4-oR-RCX"/>
                                                         </mask>
@@ -577,6 +568,7 @@
                                                 <constraint firstItem="9aq-ui-oBn" firstAttribute="leading" secondItem="ndz-WF-bjg" secondAttribute="trailing" constant="8" symbolic="YES" id="CZt-Zb-39F"/>
                                                 <constraint firstItem="ndz-WF-bjg" firstAttribute="baseline" secondItem="QQR-h8-rfl" secondAttribute="baseline" id="LP4-bd-SMw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="9aq-ui-oBn" secondAttribute="trailing" constant="80" id="gu9-J0-pjt"/>
+                                                <constraint firstItem="ndz-WF-bjg" firstAttribute="centerY" secondItem="9aq-ui-oBn" secondAttribute="centerY" id="hEc-rn-1a0"/>
                                                 <constraint firstItem="9aq-ui-oBn" firstAttribute="top" secondItem="qhR-ey-IrK" secondAttribute="topMargin" constant="3" id="sBp-uX-wqp"/>
                                             </constraints>
                                             <variation key="default">
@@ -588,11 +580,12 @@
                                                 <mask key="constraints">
                                                     <exclude reference="CDR-Zn-q8W"/>
                                                     <exclude reference="LP4-bd-SMw"/>
+                                                    <exclude reference="hEc-rn-1a0"/>
                                                     <exclude reference="3IX-J6-qfc"/>
-                                                    <exclude reference="sBp-uX-wqp"/>
                                                     <exclude reference="5QY-Zn-ivx"/>
                                                     <exclude reference="CZt-Zb-39F"/>
                                                     <exclude reference="gu9-J0-pjt"/>
+                                                    <exclude reference="sBp-uX-wqp"/>
                                                     <exclude reference="9Ts-Wn-6gW"/>
                                                 </mask>
                                             </variation>
@@ -605,11 +598,12 @@
                                                 <mask key="constraints">
                                                     <include reference="CDR-Zn-q8W"/>
                                                     <include reference="LP4-bd-SMw"/>
+                                                    <include reference="hEc-rn-1a0"/>
                                                     <include reference="3IX-J6-qfc"/>
-                                                    <include reference="sBp-uX-wqp"/>
                                                     <include reference="5QY-Zn-ivx"/>
                                                     <include reference="CZt-Zb-39F"/>
                                                     <include reference="gu9-J0-pjt"/>
+                                                    <include reference="sBp-uX-wqp"/>
                                                     <include reference="9Ts-Wn-6gW"/>
                                                 </mask>
                                             </variation>
