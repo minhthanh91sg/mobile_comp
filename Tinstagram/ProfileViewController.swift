@@ -283,15 +283,28 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             nameOfUser = currentUser["username"] as! String
         }
         
-        cell.username.setTitle(nameOfUser, forState: .Normal)
-        cell.username.sizeToFit()
-        cell.comment.tag = indexPath.row
-        cell.like.tag = indexPath.row
+        
         var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: imageIDs[indexPath.row])
         imageObject.fetchIfNeeded()
         if let numberOfLikes = imageObject["likes"] as? Int{
             cell.like.setTitle(("\(numberOfLikes)"), forState: .Normal)
-        }        
+        }
+        var activityQuery  = PFQuery(className: "Activity")
+        activityQuery.whereKey("type", equalTo: "like")
+        activityQuery.includeKey("fromUser")
+        activityQuery.includeKey("photo")
+        activityQuery.whereKey("photo", equalTo: imageObject)
+        activityQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
+        var result = activityQuery.findObjects()
+        if result!.count  == 0{
+            cell.like.enabled = true
+        }else{
+            cell.like.enabled = false
+        }
+        cell.username.setTitle(nameOfUser, forState: .Normal)
+        cell.username.sizeToFit()
+        cell.comment.tag = indexPath.row
+        cell.like.tag = indexPath.row
         self.userImageFiles[indexPath.row].getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
