@@ -68,7 +68,6 @@ class ImageEffectViewController: UIViewController {
     /* Filter 2 - Fade */
     @IBAction func filterTwoButton(sender: AnyObject) {
         filter = CIFilter(name: "CIPhotoEffectFade")
-        println(filter)
         filter.setValue(beginImage, forKey: kCIInputImageKey)
         filter.setDefaults()
 

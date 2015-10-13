@@ -15,11 +15,21 @@ class CropImageViewController: UIViewController {
     @IBOutlet weak var cropImageDisplay: UIImageView!
     
     var imageReceived: UIImage!
+    var context: CIContext!
     
     
     // MARK: - Actions
     
     @IBAction func cropButton(sender: UIButton) {
+        let imageSize = CGSize(width: 400, height: 400)
+        var croppedImage: UIImage = cropImageDisplay.image!
+        var beginImage: CIImage = CIImage(image: croppedImage)
+        let cropIm = beginImage.imageByCroppingToRect(CGRect(origin: CGPoint(x: 100, y: 100), size: imageSize))
+        context = CIContext(options: nil)
+        let renderedImage = context.createCGImage(cropIm, fromRect: cropIm.extent())
+        let newImage = UIImage(CGImage: renderedImage)
+        cropImageDisplay.image = newImage
+        
         
     }
     
