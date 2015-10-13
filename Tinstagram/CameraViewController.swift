@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - Properties
@@ -75,6 +76,7 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
             
             NSBundle.mainBundle().loadNibNamed("CameraControlView", owner: self, options: nil)
             cameraControlView.frame = imagePicker!.cameraOverlayView!.frame
+            gridview.frame = imagePicker!.cameraOverlayView!.frame
             imagePicker?.cameraOverlayView = cameraControlView
             cameraControlView = nil
             self.presentViewController(imagePicker!, animated: true, completion: nil)
@@ -194,6 +196,7 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
         pickedImageDisplay.image = nil
         effectsNavButton.enabled = false
     }
+    
     
     
     
