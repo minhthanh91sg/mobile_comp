@@ -261,7 +261,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedPhoto = userImageFiles[indexPath.row]
         selectedImageId = imageIDs[indexPath.row]
-        performSegueWithIdentifier("photoinfo", sender: self)
+        performSegueWithIdentifier("fullphoto", sender: self)
     }
     
     
@@ -318,6 +318,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         break
                     }
                     
+                }
+            case "fullphoto":
+                if let fullPhotoController = segue.destinationViewController as? DetailPhotoTableViewController{
+                    if let theSender = sender as? ProfileViewController{
+                        if let photo = selectedPhoto as PFFile!{
+                            fullPhotoController.imageFile = photo
+                            fullPhotoController.imageID = selectedImageId
+                        }
+                    }
                 }
             case "photoinfo":
                 if let fullPhotoController = segue.destinationViewController as? FullPhotoViewController{
