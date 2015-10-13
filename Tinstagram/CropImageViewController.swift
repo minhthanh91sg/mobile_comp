@@ -21,13 +21,13 @@ class CropImageViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func cropButton(sender: UIButton) {
-        let imageSize = CGSize(width: 400, height: 400)
+        let imageSize = CGSize(width: 600, height: 600)
         var croppedImage: UIImage = cropImageDisplay.image!
         var beginImage: CIImage = CIImage(image: croppedImage)
         let cropIm = beginImage.imageByCroppingToRect(CGRect(origin: CGPoint(x: 100, y: 100), size: imageSize))
         context = CIContext(options: nil)
         let renderedImage = context.createCGImage(cropIm, fromRect: cropIm.extent())
-        let newImage = UIImage(CGImage: renderedImage)
+        let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
         cropImageDisplay.image = newImage
         
         
@@ -35,6 +35,7 @@ class CropImageViewController: UIViewController {
     
     
     @IBAction func UndoCropButton(sender: UIButton) {
+        cropImageDisplay.image = imageReceived
         
     }
     
