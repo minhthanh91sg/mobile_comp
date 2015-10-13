@@ -201,10 +201,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             following.text = "\(count)"
         }
         
-        if let postArray: [String] = user.objectForKey("post") as? [String]{
-            var count = postArray.count
-            posts.text = "\(count)"
-        }
+        
+        var query = PFQuery(className: "Image")
+        println("Query count post")
+        query.whereKey("userId", equalTo: user.objectId!)
+        var count = query.countObjects()
+        println(count)
+        posts.text = "\(count)"
+        
     }
     
     
