@@ -25,6 +25,8 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
     var followingActivitiesArray = [PFObject]()
     var toUserID: String!
     var viewUser: PFUser!
+    var selectedPhoto: PFFile?
+    var selectedPhotoId: String?
     
     
     
@@ -53,11 +55,48 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         performSegueWithIdentifier("viewuser", sender: self)
     }
     
-    @IBAction func optionalButtonAct(sender: UIButton) {
+    @IBAction func linkToUser002(sender: UIButton) {
+        println("Click::Event")
+        viewUser = self.fromUser002[sender.tag]
+        performSegueWithIdentifier("viewuser", sender: self)
+    }
+    @IBAction func optionButtonAct(sender: UIButton) {
+        
+        if sender.currentTitle  == "photo"{
+            println("@IBAction func optionalButtonAct002 \(followingActivitiesArray[sender.tag])")
+            var activity = self.yourActivitiesArray[sender.tag] as PFObject
+            activity.fetchIfNeeded()
+            var photo = activity["photo"] as! PFObject
+            photo.fetchIfNeeded()
+            selectedPhotoId = photo.objectId
+            selectedPhoto = photo["image"] as? PFFile
+            performSegueWithIdentifier("fullphoto", sender: self)
+        }
         
         
     }
     
+    @IBAction func optionalButtonAct002(sender: UIButton) {
+        
+        if sender.currentTitle  == "photo"{
+            println("@IBAction func optionalButtonAct002 \(followingActivitiesArray[sender.tag])")
+            var activity = self.followingActivitiesArray[sender.tag] as PFObject
+            activity.fetchIfNeeded()
+            var photo = activity["photo"] as! PFObject
+            photo.fetchIfNeeded()
+            selectedPhotoId = photo.objectId
+            selectedPhoto = photo["image"] as? PFFile
+            performSegueWithIdentifier("fullphoto", sender: self)
+        }
+        else{
+            println("Click::Event")
+            viewUser = self.toUser002[sender.tag]
+            performSegueWithIdentifier("viewuser", sender: self)
+        }
+        
+    }
+    
+
     func findYourActivity() -> Void {
         
         //if let tabController = self.tabBarController as? MainTabBarController {
@@ -77,11 +116,11 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         //yourActivityQuery.whereKey("type",equalTo: "follow")
         yourActivityQuery.whereKey("toUser", equalTo: toUserObject)
         yourActivityQuery.whereKey("fromUser", notEqualTo: toUserObject)
-        
-        yourActivityQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
-            if error == nil{
+        var objects = yourActivityQuery.findObjects() as? [PFObject]
+        //yourActivityQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
+            //if error == nil{
                 //println(objects!.count)
-                if let aaa = objects as! [PFObject]?{
+                if let aaa = objects as [PFObject]?{
                     for item in aaa{
                         let item = item["fromUser"] as! PFUser
                         //println(item.username)
@@ -89,7 +128,7 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                 }
                 
                 
-                if let activityObjectArray = objects as! [PFObject]?{
+                if let activityObjectArray = objects as [PFObject]?{
                     //self.fromUser.removeAll(keepCapacity: false)
                     for activityObject in activityObjectArray{
                         //println((commentObject["photo"]))
@@ -99,7 +138,7 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                     }
                 
                     
-                    if let activityObjectArray = objects as! [PFObject]?{
+                    if let activityObjectArray = objects as [PFObject]?{
                         //self.yourActivitiesArray = activityObjectArray
                         for item in activityObjectArray{
                             self.yourActivitiesArray.append(item)
@@ -114,9 +153,9 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                 //println(self.fromUser)
                 self.youTableView.reloadData()
                 
-            }
+            //}
             
-        }
+        //}
     }
     
     func findFollowingActivity() -> Void {
@@ -130,7 +169,7 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         //yourActivityQuery.whereKey("type",equalTo: "follow")
         
         var currentUserID : String!
-        currentUserID = PFUser.currentUser()?.objectId
+        currentUserID = PFUser.currentUser()!.objectId
         var followingUsers = [PFObject]()
         
         //var yourActivityQuery = PFQuery(className: "Activity")
@@ -144,14 +183,20 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                 followingUsers.append(followingUserObject)
                 
             }
-            
+
+            println("func findFollowingActivity() -> Void ::::::\(followingUsers)")
+            followingActivityQuery.includeKey("fromUser")
+            followingActivityQuery.includeKey("toUser")
+
             followingActivityQuery.whereKey("fromUser", containedIn:followingUsers)
+            followingActivityQuery.whereKey("toUser", notEqualTo: currentUserObject)
             followingActivityQuery.whereKey("fromUser", notEqualTo: currentUserObject)
+            var objects = followingActivityQuery.findObjects() as? [PFObject]
             
-            followingActivityQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
-                if error == nil{
+            //followingActivityQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
+                //if error == nil{
                     //println(objects!.count)
-                    if let aaa = objects as! [PFObject]?{
+                    if let aaa = objects as [PFObject]?{
                         for item in aaa{
                             let item = item["fromUser"] as! PFUser
                             //println(item.username)
@@ -159,7 +204,7 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                     }
                     
                     
-                    if let activityObjectArray = objects as! [PFObject]?{
+                    if let activityObjectArray = objects as [PFObject]?{
                         //self.fromUser.removeAll(keepCapacity: false)
                         for activityObject in activityObjectArray{
                             //println((commentObject["photo"]))
@@ -172,7 +217,7 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                         
                     }
                     
-                    if let activityObjectArray = objects as! [PFObject]?{
+                    if let activityObjectArray = objects as [PFObject]?{
                         //self.followingActivitiesArray = activityObjectArray
                         for item in activityObjectArray{
                             self.followingActivitiesArray.append(item)
@@ -184,11 +229,11 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                         
                         
                         //println(self.followingActivitiesArray)
-                    }
+                    //}
             
             
             
-        }
+        //}
         
         
                         //println(self.fromUser)
@@ -204,6 +249,8 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
     
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         self.fromUser.removeAll(keepCapacity:false)
         self.fromUser002.removeAll(keepCapacity: false)
         self.toUser002.removeAll(keepCapacity: false)
@@ -297,8 +344,9 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         let aCell = tableView.dequeueReusableCellWithIdentifier("followingActivityCell",
             forIndexPath: indexPath) as! ActivityTableViewCell
         // Sets the text of the Label in the Table View Cell
+        aCell.optionalButton.tag = indexPath.row
         if let actType = followingActivitiesArray[indexPath.row]["type"] as? String {
-            
+        
             if actType == "follow" {
                 
                 if let user = followingActivitiesArray[indexPath.row]["fromUser"] as? PFUser, user2 = yourActivitiesArray[indexPath.row]["toUser"] as? PFUser {
@@ -420,6 +468,15 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                         println("aksdjflasjdf")
                         userProfileController.viewUser  = self.viewUser
                         userProfileController.currentUser = self.currentUser
+                    }
+                }
+            case "fullphoto":
+                if let fullPhotoController = segue.destinationViewController as? DetailPhotoTableViewController{
+                    if let theSender = sender as? ActivityViewController{
+                        if let photo = selectedPhoto as PFFile!{
+                            fullPhotoController.imageFile = photo
+                            fullPhotoController.imageID = selectedPhotoId
+                        }
                     }
                 }
                 default: break
