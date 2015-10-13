@@ -21,6 +21,9 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     var feedImageIds = [String]()
     
     var feedUser = [String]()
+
+    
+    
     
     var selectedImageId:String?
     
@@ -79,6 +82,20 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     
     
     func refreshData(refreshControl: UIRefreshControl) {
+        var bluetoothUser = String()
+        var bluetoothFile = PFFile()
+        var bluetoothImageId = String()
+        if let receivedData = receivedData {
+            var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: receivedData as String)
+            imageObject.fetchIfNeeded()
+            var bluetoothSender = PFObject(withoutDataWithClassName: "_User", objectId: imageObject["userId"] as? String)
+            bluetoothSender.fetchIfNeeded()
+            bluetoothUser = (bluetoothSender["username"] as! String)
+            bluetoothFile = imageObject["image"] as! PFFile
+            bluetoothImageId = (receivedData as String)
+        }
+        
+        
         if let followingArray: [String] = currentUser.objectForKey("following") as? [String]{
             var imageQuery = PFQuery(className: "Image")
             imageQuery.whereKey("userId", containedIn: followingArray)
@@ -87,6 +104,7 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
                 if error == nil{
                     self.feedFiles.removeAll(keepCapacity: false)
                     self.feedUser.removeAll(keepCapacity: false)
+                    self.feedImageIds.removeAll(keepCapacity: false)
                     if let objects = objects{
                         for object in objects{
                             var userQuery = PFQuery(className: "_User")
@@ -99,6 +117,12 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
                                 self.feedImageIds.append(idStr)
                             }
                             self.feedFiles.append(object.objectForKey("image") as! PFFile)
+                            
+                            if self.receivedData != nil{
+                                self.feedUser.insert(bluetoothUser, atIndex:0)
+                                self.feedImageIds.insert(bluetoothImageId, atIndex: 0)
+                                self.feedFiles.insert(bluetoothFile, atIndex: 0)
+                            }
                             self.tableView.reloadData()
                         }
                     }
