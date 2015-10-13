@@ -22,6 +22,9 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var gridview: UIView!
     
+    @IBOutlet weak var effectsNavButton: UIBarButtonItem!
+    
+    
     
     // MARK: - Actions
     
@@ -183,29 +186,17 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate, UI
     
 
     /* effects Navigation Button is enabled only when the user picks an new image. Segue with EffectsViewController*/
-    @IBOutlet weak var effectsNavButton: UIBarButtonItem!
+    
     
     
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var imageEffectVC: ImageEffectViewController = segue.destinationViewController as! ImageEffectViewController
-        imageEffectVC.imageReceived = pickedImageDisplay.image!
-        pickedImageDisplay.image = nil
-        effectsNavButton.enabled = false
-    }
-    
-    
-    
-    /*/ Unwind segue
-
-    @IBAction func unwindToHomeVC(segue: UIStoryboardSegue){
-        if (segue.sourceViewController .isKindOfClass(ShareImageViewController)){
+        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            var cropImageVC: CropImageViewController = segue.destinationViewController as! CropImageViewController
+            cropImageVC.imageReceived = pickedImageDisplay.image
+            pickedImageDisplay.image = nil
             effectsNavButton.enabled = false
-            println("I came from Edit Image")
         }
-    }
-
-    */
+    
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -970,7 +970,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zoa-Pv-Np4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="haT-rX-R8z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5212.5" y="2406.75"/>
+            <point key="canvasLocation" x="6130.5" y="2406.75"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Dfk-qQ-TOu">
@@ -1917,7 +1917,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jFg-qt-JDr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jFg-qt-JDr">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1983,20 +1983,119 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="dci-aL-FUt">
-                        <barButtonItem key="rightBarButtonItem" title="Effects" id="lZE-eo-7iX">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="xNO-vY-Fo7">
                             <connections>
-                                <segue destination="kie-3r-Zv3" kind="show" id="E7h-IV-TZ0"/>
+                                <segue destination="iqs-mc-hC0" kind="show" id="Pjw-uk-OCg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="effectsNavButton" destination="lZE-eo-7iX" id="svF-VM-kjU"/>
+                        <outlet property="effectsNavButton" destination="xNO-vY-Fo7" id="Dhv-Bf-DPa"/>
                         <outlet property="pickedImageDisplay" destination="jFg-qt-JDr" id="syh-0d-ESU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iua-xp-ZKI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2583" y="2406.75"/>
+        </scene>
+        <!--Crop-->
+        <scene sceneID="UUt-Je-ogq">
+            <objects>
+                <viewController id="iqs-mc-hC0" customClass="CropImageViewController" customModule="Tinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IZH-ww-P0W"/>
+                        <viewControllerLayoutGuide type="bottom" id="VCJ-NH-Og8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f16-Lq-yk3">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vjx-dK-abk">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZW-Wc-AUL">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Crop">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cropButton:" destination="iqs-mc-hC0" eventType="touchUpInside" id="xsN-U1-HL4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymV-kk-9Ta">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Undo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="UndoCropButton:" destination="iqs-mc-hC0" eventType="touchUpInside" id="jui-eg-rug"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YZW-Wc-AUL" firstAttribute="leading" secondItem="f16-Lq-yk3" secondAttribute="leadingMargin" constant="40" id="HzS-Ii-35p"/>
+                            <constraint firstAttribute="trailing" secondItem="Vjx-dK-abk" secondAttribute="trailing" id="L8O-i2-nDO"/>
+                            <constraint firstItem="VCJ-NH-Og8" firstAttribute="top" secondItem="Vjx-dK-abk" secondAttribute="bottom" constant="103" id="MUe-Gs-5Da"/>
+                            <constraint firstItem="YZW-Wc-AUL" firstAttribute="top" secondItem="Vjx-dK-abk" secondAttribute="bottom" constant="34" id="Ndy-Gb-EmF"/>
+                            <constraint firstItem="Vjx-dK-abk" firstAttribute="top" secondItem="IZH-ww-P0W" secondAttribute="bottom" id="RuL-Tv-XME"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ymV-kk-9Ta" secondAttribute="trailing" constant="40" id="TxU-FG-TqR">
+                                <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                            </constraint>
+                            <constraint firstItem="ymV-kk-9Ta" firstAttribute="top" secondItem="Vjx-dK-abk" secondAttribute="bottom" constant="34" id="ekQ-50-tl2"/>
+                            <constraint firstItem="Vjx-dK-abk" firstAttribute="leading" secondItem="f16-Lq-yk3" secondAttribute="leading" id="fzs-9b-5lA"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Vjx-dK-abk"/>
+                                <exclude reference="YZW-Wc-AUL"/>
+                                <exclude reference="ymV-kk-9Ta"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="L8O-i2-nDO"/>
+                                <exclude reference="RuL-Tv-XME"/>
+                                <exclude reference="fzs-9b-5lA"/>
+                                <exclude reference="HzS-Ii-35p"/>
+                                <exclude reference="Ndy-Gb-EmF"/>
+                                <exclude reference="MUe-Gs-5Da"/>
+                                <exclude reference="TxU-FG-TqR"/>
+                                <exclude reference="ekQ-50-tl2"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Vjx-dK-abk"/>
+                                <include reference="YZW-Wc-AUL"/>
+                                <include reference="ymV-kk-9Ta"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="L8O-i2-nDO"/>
+                                <include reference="RuL-Tv-XME"/>
+                                <include reference="fzs-9b-5lA"/>
+                                <include reference="HzS-Ii-35p"/>
+                                <include reference="Ndy-Gb-EmF"/>
+                                <include reference="MUe-Gs-5Da"/>
+                                <include reference="TxU-FG-TqR"/>
+                                <include reference="ekQ-50-tl2"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Crop" id="EmR-6Z-FSF">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Zmq-7K-pfx">
+                            <connections>
+                                <segue destination="kie-3r-Zv3" kind="show" id="cf0-hC-8MM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="cropImageDisplay" destination="Vjx-dK-abk" id="6sp-dt-HsW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="90Y-TX-ZkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3825" y="2410.5"/>
         </scene>
         <!--Effects-->
         <scene sceneID="168-R9-xms">
@@ -2010,11 +2109,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="st2-os-s4G">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7H-99-E1c">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
@@ -2022,6 +2116,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="164" y="602" width="30" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="filterThreeButton:" destination="kie-3r-Zv3" eventType="touchUpInside" id="IxE-rg-VJq"/>
                                 </connections>
@@ -2033,6 +2130,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="121" y="602" width="35" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="filterTwoButton:" destination="kie-3r-Zv3" eventType="touchUpInside" id="8jq-SR-A3f"/>
                                 </connections>
@@ -2044,6 +2144,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="74" y="602" width="39" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="filterOneButton:" destination="kie-3r-Zv3" eventType="touchUpInside" id="WyK-r6-ciE"/>
                                 </connections>
@@ -2051,6 +2154,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="JHV-NT-L9S">
                                 <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
                                 <animations/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="14" y="649" width="182" height="31"/>
+                                </variation>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTo-T5-DiX">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -2059,13 +2165,27 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="16" y="602" width="50" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="normalFilterButton:" destination="kie-3r-Zv3" eventType="touchUpInside" id="W8b-X0-Meb"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="sST-QT-7pG">
                                 <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="200" y="649" width="182" height="31"/>
+                                </variation>
                             </slider>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="st2-os-s4G">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="589"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2093,13 +2213,13 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="st2-os-s4G"/>
                                 <exclude reference="W7H-99-E1c"/>
                                 <exclude reference="4YG-Jq-y7v"/>
                                 <exclude reference="Lvj-XP-zcZ"/>
                                 <exclude reference="JHV-NT-L9S"/>
                                 <exclude reference="YTo-T5-DiX"/>
                                 <exclude reference="sST-QT-7pG"/>
+                                <exclude reference="st2-os-s4G"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="jPT-Vf-u3c"/>
@@ -2126,13 +2246,13 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="st2-os-s4G"/>
                                 <include reference="W7H-99-E1c"/>
                                 <include reference="4YG-Jq-y7v"/>
                                 <include reference="Lvj-XP-zcZ"/>
                                 <include reference="JHV-NT-L9S"/>
                                 <include reference="YTo-T5-DiX"/>
                                 <include reference="sST-QT-7pG"/>
+                                <include reference="st2-os-s4G"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="jPT-Vf-u3c"/>
@@ -2172,7 +2292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmD-ta-o0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3936" y="2406.75"/>
+            <point key="canvasLocation" x="4854" y="2406.75"/>
         </scene>
         <!--Home-->
         <scene sceneID="UOC-7R-dO6">
