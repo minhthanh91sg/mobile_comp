@@ -349,7 +349,7 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         
             if actType == "follow" {
                 
-                if let user = followingActivitiesArray[indexPath.row]["fromUser"] as? PFUser, user2 = yourActivitiesArray[indexPath.row]["toUser"] as? PFUser {
+                if let user = followingActivitiesArray[indexPath.row]["fromUser"] as? PFUser, user2 = followingActivitiesArray[indexPath.row]["toUser"] as? PFUser {
                     user.fetchIfNeeded()
                     user2.fetchIfNeeded()
                     aCell.followerButton.setTitle(user.username, forState: UIControlState.Normal)
