@@ -49,6 +49,11 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
     }
     
+    @IBAction func chooseSuggestion(sender: UIButton) {
+        selectedUser = suggestions[sender.tag] as? PFUser
+        println("@IBAction func chooseUser \(selectedUser)")
+        performSegueWithIdentifier("showuser", sender: self)
+    }
     @IBAction func chooseUser(sender: UIButton) {
         selectedUser = results[sender.tag] as? PFUser
         println("@IBAction func chooseUser \(selectedUser)")
@@ -60,8 +65,19 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
         searchResult.delegate = self
         suggestResult.dataSource = self
         suggestResult.delegate = self
-
-        // Do any additional setup after loading the view.
+        
+        var query1 = PFQuery(className: "Activity")
+        var dummyUser = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.currentUser()!.objectId)
+        query1.whereKey("toUser", notEqualTo: dummyUser)
+        query1.whereKey("fromUser", notEqualTo: dummyUser)
+        query1.whereKey("type",equalTo:"follow")
+        query1.includeKey("fromUser")
+        var query1Results = query1.findObjects() as! [PFObject]
+        if query1Results != [] {
+            for query1Result in query1Results{
+                suggestions.append(query1Result["fromUser"] as! PFObject)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,10 +100,17 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("searchresult") as! SearchResultCell
-        cell.username.setTitle(results[indexPath.row]["username"] as? String, forState: UIControlState.Normal)
-        cell.username.tag = indexPath.row
-        return cell
+        if tableView == self.searchResult{
+            let cell = tableView.dequeueReusableCellWithIdentifier("searchresult") as! SearchResultCell
+            cell.username.setTitle(results[indexPath.row]["username"] as? String, forState: UIControlState.Normal)
+            cell.username.tag = indexPath.row
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCellWithIdentifier("suggestresult") as! SearchResultCell
+            cell.username.setTitle(suggestions[indexPath.row]["username"] as? String, forState: UIControlState.Normal)
+            cell.username.tag = indexPath.row
+            return cell
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

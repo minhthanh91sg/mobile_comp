@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jgM-bZ-Tdq">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestresult" id="jgM-bZ-Tdq" customClass="SearchResultCell" customModule="Tinstagram" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jgM-bZ-Tdq" id="ZMY-aq-0hS">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -33,6 +33,9 @@
                                                     <state key="normal" title="Button">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="chooseSuggestion:" destination="Vln-ZE-DF6" eventType="touchUpInside" id="QFR-C2-96U"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -60,6 +63,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="username" destination="csG-5h-3Nd" id="zLo-hQ-6GM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -126,9 +132,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="110" width="400" height="641"/>
-                                </variation>
                             </tableView>
                         </subviews>
                         <animations/>
@@ -158,6 +161,14 @@
                                 <exclude reference="Hs2-fk-6PV"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="1Rg-q9-1x7"/>
+                                <exclude reference="N8i-df-uqx"/>
+                                <exclude reference="Tp9-WQ-5eJ"/>
+                                <exclude reference="Avu-U8-iGm"/>
+                                <exclude reference="hAa-76-L3t"/>
+                                <exclude reference="9aG-LM-Gmk"/>
+                                <exclude reference="I7A-Wd-ZuU"/>
+                                <exclude reference="d30-7l-fxn"/>
                                 <exclude reference="2Zn-fc-pw3"/>
                                 <exclude reference="BxY-Q7-hu0"/>
                                 <exclude reference="WXp-En-p5a"/>
@@ -165,14 +176,6 @@
                                 <exclude reference="Dhr-yO-G72"/>
                                 <exclude reference="EeC-e8-ETD"/>
                                 <exclude reference="sa7-Hl-6NZ"/>
-                                <exclude reference="1Rg-q9-1x7"/>
-                                <exclude reference="N8i-df-uqx"/>
-                                <exclude reference="Tp9-WQ-5eJ"/>
-                                <exclude reference="9aG-LM-Gmk"/>
-                                <exclude reference="I7A-Wd-ZuU"/>
-                                <exclude reference="d30-7l-fxn"/>
-                                <exclude reference="Avu-U8-iGm"/>
-                                <exclude reference="hAa-76-L3t"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -183,6 +186,14 @@
                                 <include reference="Hs2-fk-6PV"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="1Rg-q9-1x7"/>
+                                <include reference="N8i-df-uqx"/>
+                                <include reference="Tp9-WQ-5eJ"/>
+                                <include reference="Avu-U8-iGm"/>
+                                <include reference="hAa-76-L3t"/>
+                                <include reference="9aG-LM-Gmk"/>
+                                <include reference="I7A-Wd-ZuU"/>
+                                <include reference="d30-7l-fxn"/>
                                 <include reference="2Zn-fc-pw3"/>
                                 <include reference="BxY-Q7-hu0"/>
                                 <include reference="WXp-En-p5a"/>
@@ -190,14 +201,6 @@
                                 <include reference="Dhr-yO-G72"/>
                                 <include reference="EeC-e8-ETD"/>
                                 <include reference="sa7-Hl-6NZ"/>
-                                <include reference="1Rg-q9-1x7"/>
-                                <include reference="N8i-df-uqx"/>
-                                <include reference="Tp9-WQ-5eJ"/>
-                                <include reference="9aG-LM-Gmk"/>
-                                <include reference="I7A-Wd-ZuU"/>
-                                <include reference="d30-7l-fxn"/>
-                                <include reference="Avu-U8-iGm"/>
-                                <include reference="hAa-76-L3t"/>
                             </mask>
                         </variation>
                     </view>
@@ -3726,7 +3729,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="152" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="83B-QE-auv">
@@ -4255,7 +4258,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1lh-WF-c5I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7938" y="521.25"/>
->>>>>>> 6a3d32ea11c3448ce003db294f019fa0f050519e
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="RYr-bn-EC1">
@@ -5556,8 +5558,8 @@
         <image name="speech_bubble_transparent" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6At-lw-g5O"/>
-        <segue reference="kKg-oN-3en"/>
+        <segue reference="zdh-VV-TT7"/>
         <segue reference="kde-Nl-B2r"/>
+        <segue reference="kKg-oN-3en"/>
     </inferredMetricsTieBreakers>
 </document>

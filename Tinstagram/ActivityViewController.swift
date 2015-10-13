@@ -144,7 +144,6 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                 followingUsers.append(followingUserObject)
                 
             }
-            println("func findFollowingActivity() -> Void ::::::\(followingUsers)")
             
             followingActivityQuery.whereKey("fromUser", containedIn:followingUsers)
             followingActivityQuery.whereKey("fromUser", notEqualTo: currentUserObject)

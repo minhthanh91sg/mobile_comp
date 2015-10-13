@@ -111,6 +111,44 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var profilePicPicker: UIImagePickerController? = UIImagePickerController()
     
 
+    
+    override func viewDidAppear(animated: Bool) {
+        if let tabController = self.tabBarController as? MainTabBarController {
+            currentUser = tabController.currentUser
+            if viewUser == nil{
+                self.showUserInfo(currentUser)
+                self.showCollection(currentUser)
+            }else{
+                self.showUserInfo(viewUser!)
+                self.showCollection(viewUser!)
+            }
+        }
+        
+        
+        if(viewUser != nil) {
+            if let follower: [String] = viewUser!.objectForKey("follower") as? [String]{
+                
+                println(follower)
+                println(currentUser.objectId!)
+                if contains(follower, currentUser.objectId!) {
+                    
+                    editProfile.setTitle("Following", forState: UIControlState.Normal)
+                    editProfile.enabled = false
+                } else{
+                    
+                    editProfile.setTitle("Follow", forState: UIControlState.Normal)
+                    editProfile.enabled = true
+                }
+                
+                
+                
+            }
+            
+            
+            
+        }
+    }
+    
     override func viewDidLoad(){
         switchCollectionTable.selectedSegmentIndex = 0
         self.feedTable.hidden = true
@@ -135,40 +173,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         println("ProfileViewController::viewDidLoad::\(currentUser)")
         
-        if let tabController = self.tabBarController as? MainTabBarController {
-            currentUser = tabController.currentUser
-            if viewUser == nil{
-                self.showUserInfo(currentUser)
-                self.showCollection(currentUser)
-            }else{
-                self.showUserInfo(viewUser!)
-                self.showCollection(viewUser!)
-            }
-        }
-    
         
-        if(viewUser != nil) {
-            if let follower: [String] = viewUser!.objectForKey("follower") as? [String]{
-                
-                println(follower)
-                println(currentUser.objectId!)
-                if contains(follower, currentUser.objectId!) {
-                    
-                    editProfile.setTitle("Following", forState: UIControlState.Normal)
-                    editProfile.enabled = false
-                } else{
-                    
-                    editProfile.setTitle("Follow", forState: UIControlState.Normal)
-                    editProfile.enabled = true
-                }
-
-            
-            
-            }
-            
-            
-            
-        }
     }
     
     //show user info
@@ -223,11 +228,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if length > 0{
             query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?, error: NSError?) -> Void in
                 if (error == nil){
+                    self.userImageFiles.removeAll(keepCapacity: false)
+                    self.imageIDs.removeAll(keepCapacity: false)
                     if let objects = objects{
                         for object in objects{
                             self.userImageFiles.append(object.objectForKey("image") as! PFFile)
                             self.imageIDs.append(object.objectId as String!)
-                            println("This is the length of the Images Files Array  " + "\(self.userImageFiles.count)")
                             self.photoCollection.reloadData()
                         }
                     }
