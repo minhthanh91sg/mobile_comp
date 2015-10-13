@@ -78,6 +78,7 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl?.addTarget(self, action: "refreshData:", forControlEvents: UIControlEvents.ValueChanged)
         
+        
     }
     
     
@@ -118,13 +119,15 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
                             }
                             self.feedFiles.append(object.objectForKey("image") as! PFFile)
                             
-                            if self.receivedData != nil{
-                                self.feedUser.insert(bluetoothUser, atIndex:0)
-                                self.feedImageIds.insert(bluetoothImageId, atIndex: 0)
-                                self.feedFiles.insert(bluetoothFile, atIndex: 0)
-                            }
-                            self.tableView.reloadData()
+                            
+                            
                         }
+                        if self.receivedData != nil{
+                            self.feedUser.insert(bluetoothUser, atIndex:0)
+                            self.feedImageIds.insert(bluetoothImageId, atIndex: 0)
+                            self.feedFiles.insert(bluetoothFile, atIndex: 0)
+                        }
+                        self.tableView.reloadData()
                     }
                 }
             
@@ -164,6 +167,17 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         if let numberOfLikes = imageObject["likes"] as? Int{
             cell.like.setTitle(("\(numberOfLikes)"), forState: .Normal)
         }
+        var activityQuery  = PFQuery(className: "Activity")
+        activityQuery.whereKey("type", equalTo: "like")
+        activityQuery.includeKey("fromUser")
+        activityQuery.includeKey("photo")
+        activityQuery.whereKey("photo", equalTo: imageObject)
+        activityQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
+        var result = activityQuery.findObjects()
+        if result!.count > 0{
+            cell.like.enabled = false
+        }
+        
         self.feedFiles[indexPath.row].getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)
