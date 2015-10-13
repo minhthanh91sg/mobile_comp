@@ -12,6 +12,7 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel! = UILabel()
     @IBOutlet weak var followerButton: UIButton! = UIButton()
     
+    @IBOutlet weak var optionalButton: UIButton! = UIButton()
     //var follower:PFUser!
     
 }

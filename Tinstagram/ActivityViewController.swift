@@ -15,10 +15,14 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    var objects = [String]()
-    var youObjects = [String]()
+    //var objects = [String]()
+    //var youObjects = [String]()
     var currentUser: PFUser!
     var fromUser = [PFUser]()
+    var fromUser002 = [PFUser]()
+    var toUser002 = [PFUser]()
+    var yourActivitiesArray = [PFObject]()
+    var followingActivitiesArray = [PFObject]()
     var toUserID: String!
     var viewUser: PFUser!
     
@@ -37,8 +41,9 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
             break;
         }
         
-        
     }
+    
+    
     
     
     @IBAction func linkToUser(sender: UIButton) {
@@ -48,16 +53,30 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         performSegueWithIdentifier("viewuser", sender: self)
     }
     
+    @IBAction func optionalButtonAct(sender: UIButton) {
+        
+        
+    }
     
     func findYourActivity() -> Void {
+        
+        //if let tabController = self.tabBarController as? MainTabBarController {
+        //    currentUser = tabController.currentUser
+        //}
+        //toUserID = currentUser.objectId
+        
+        toUserID = PFUser.currentUser()?.objectId
+      
+        
         
         var yourActivityQuery = PFQuery(className: "Activity")
         var toUserObject = PFObject(withoutDataWithClassName: "_User", objectId:toUserID )
         //var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: imageID)
         //commentQuery.includeKey("photo")
         yourActivityQuery.includeKey("fromUser")
-        yourActivityQuery.whereKey("type",equalTo: "follow")
+        //yourActivityQuery.whereKey("type",equalTo: "follow")
         yourActivityQuery.whereKey("toUser", equalTo: toUserObject)
+        yourActivityQuery.whereKey("fromUser", notEqualTo: toUserObject)
         
         yourActivityQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
             if error == nil{
@@ -65,9 +84,10 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                 if let aaa = objects as! [PFObject]?{
                     for item in aaa{
                         let item = item["fromUser"] as! PFUser
-                        println(item.username)
+                        //println(item.username)
                     }
                 }
+                
                 
                 if let activityObjectArray = objects as! [PFObject]?{
                     //self.fromUser.removeAll(keepCapacity: false)
@@ -76,6 +96,11 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
                         //println(activityObject["fromUser"])
                         self.fromUser.append(activityObject["fromUser"] as! PFUser)
                         //println(self.fromUser)
+                    }
+                
+                    
+                    if let activityObjectArray = objects as! [PFObject]?{
+                        self.yourActivitiesArray = activityObjectArray
                     }
                     
                 }
@@ -87,6 +112,80 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         }
     }
     
+    func findFollowingActivity() -> Void {
+        
+        var followingActivityQuery = PFQuery(className: "Activity")
+        
+        //var toUserObject = PFObject(withoutDataWithClassName: "_User", objectId:toUserID )
+        //var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: imageID)
+        //commentQuery.includeKey("photo")
+        //followingActivityQuery.includeKey("fromUser")
+        //yourActivityQuery.whereKey("type",equalTo: "follow")
+        
+        var currentUserID : String!
+        currentUserID = PFUser.currentUser()?.objectId
+        var followingUsers = [PFObject]()
+        
+        //var yourActivityQuery = PFQuery(className: "Activity")
+        var currentUserObject = PFObject(withoutDataWithClassName: "_User", objectId: currentUserID )
+        
+        
+        if let followingUserArrayString = PFUser.currentUser()!["following"] as? [String] {
+            
+            for item in followingUserArrayString{
+                var followingUserObject = PFObject(withoutDataWithClassName: "_User", objectId: item )
+                followingUsers.append(followingUserObject)
+                
+            }
+            println("func findFollowingActivity() -> Void ::::::\(followingUsers)")
+            
+            followingActivityQuery.whereKey("fromUser", containedIn:followingUsers)
+            followingActivityQuery.whereKey("fromUser", notEqualTo: currentUserObject)
+            
+            followingActivityQuery.findObjectsInBackgroundWithBlock { (objects:[AnyObject]?, error:NSError?) -> Void in
+                if error == nil{
+                    //println(objects!.count)
+                    if let aaa = objects as! [PFObject]?{
+                        for item in aaa{
+                            let item = item["fromUser"] as! PFUser
+                            //println(item.username)
+                        }
+                    }
+                    
+                    
+                    if let activityObjectArray = objects as! [PFObject]?{
+                        //self.fromUser.removeAll(keepCapacity: false)
+                        for activityObject in activityObjectArray{
+                            //println((commentObject["photo"]))
+                            //println(activityObject["fromUser"])
+                            self.fromUser002.append(activityObject["fromUser"] as! PFUser)
+                            self.toUser002.append(activityObject["toUser"] as! PFUser)
+                            //println(self.fromUser)
+                        }
+                    
+                        
+                    }
+                    
+                    if let activityObjectArray = objects as! [PFObject]?{
+                        self.followingActivitiesArray = activityObjectArray
+                        
+                        
+                        println(self.followingActivitiesArray)
+                    }
+            
+            
+            
+        }
+        
+        
+                        //println(self.fromUser)
+                self.followingTableView.reloadData()
+                
+            }
+            
+        }
+    }
+
     
     
     
@@ -95,18 +194,18 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-        if let tabController = self.tabBarController as? MainTabBarController {
-            currentUser = tabController.currentUser
+        if let followingUserArray = PFUser.currentUser()!["following"] as? [String] {
+            println(followingUserArray)
         }
         
-        toUserID = currentUser.objectId
         
         findYourActivity()
+        findFollowingActivity()
         
-        self.objects.append("iPhone")
-        self.objects.append("Apple Watch")
-        self.objects.append("Mac")
+        
+        //self.objects.append("iPhone")
+        //self.objects.append("Apple Watch")
+        //self.objects.append("Mac")
         
         //self.youObjects.append("iPhone2")
         //self.youObjects.append("Apple Watch2")
@@ -158,24 +257,76 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         
         if tableView == self.followingTableView {
             // Do something
-            return self.objects.count
+            return self.followingActivitiesArray.count
         }
             
         else { // tableView == _secondTable
             // Do something else
             //return self.youObjects.count
-            return self.fromUser.count
+            //return self.fromUser.count
+            return self.yourActivitiesArray.count
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {if tableView == self.followingTableView {
+    {
+        if tableView == self.followingTableView {
         
         // Allocates a Table View Cell
         let aCell = tableView.dequeueReusableCellWithIdentifier("followingActivityCell",
             forIndexPath: indexPath) as! ActivityTableViewCell
         // Sets the text of the Label in the Table View Cell
-        aCell.titleLabel.text = self.objects[indexPath.row]
+        if let actType = followingActivitiesArray[indexPath.row]["type"] as? String {
+            
+            if actType == "follow" {
+                
+                if let user = followingActivitiesArray[indexPath.row]["fromUser"] as? PFUser, user2 = yourActivitiesArray[indexPath.row]["toUser"] as? PFUser {
+                    user.fetchIfNeeded()
+                    user2.fetchIfNeeded()
+                    aCell.followerButton.setTitle(user.username, forState: UIControlState.Normal)
+                    aCell.optionalButton.setTitle(user2.username, forState: UIControlState.Normal)
+                    aCell.titleLabel.text = "started following"
+                    //aCell.follower = fromUser[indexPath.row]
+                    //aCell.optionalButton.hidden = true
+                }
+                
+                
+            }
+            else if actType == "comment" {
+                
+                
+                if let user = followingActivitiesArray[indexPath.row]["fromUser"] as? PFUser {
+                    user.fetchIfNeeded()
+                    //user2.fetchIfNeeded()
+                    aCell.followerButton.setTitle(user.username, forState: UIControlState.Normal)
+                    aCell.titleLabel.text = "commented on a"
+                    //aCell.follower = fromUser[indexPath.row]
+                    aCell.optionalButton.setTitle("photo", forState: UIControlState.Normal)
+                    //aCell.optionalButton.hidden = true
+                }
+            }
+            else if actType == "like" {
+                
+                if let user = followingActivitiesArray[indexPath.row]["fromUser"] as? PFUser {
+                    
+                    user.fetchIfNeeded()
+                    //user2.fetchIfNeeded()
+                    
+                    aCell.followerButton.setTitle(user.username, forState: UIControlState.Normal)
+                    aCell.titleLabel.text = "liked a"
+                    //aCell.follower = fromUser[indexPath.row]
+                    aCell.optionalButton.setTitle("photo", forState: UIControlState.Normal)
+                }
+                
+                
+                
+            }
+            
+            
+        }
+        
+        
+        //aCell.titleLabel.text = self.objects[indexPath.row]
         return aCell
     }
         
@@ -188,8 +339,50 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         // Sets the text of the Label in the Table View Cell
         //aCell.titleLabel.text = self.youObjects[indexPath.row]
         //aCell.titleLabel.text = self.fromUser[indexPath.row].username
-        aCell.followerButton.setTitle(self.fromUser[indexPath.row].username, forState: UIControlState.Normal)
-        //aCell.follower = fromUser[indexPath.row]
+        //if yourActivitiesArray.isEmpty == false
+        
+        if let actType = yourActivitiesArray[indexPath.row]["type"] as? String {
+            
+            if actType == "follow" {
+                
+                if let user = yourActivitiesArray[indexPath.row]["fromUser"] as? PFUser {
+                    aCell.followerButton.setTitle(fromUser[indexPath.row].username, forState: UIControlState.Normal)
+                    aCell.titleLabel.text = "started following you"
+                    //aCell.follower = fromUser[indexPath.row]
+                    aCell.optionalButton.hidden = true
+                }
+                
+                
+            }
+            else if actType == "comment" {
+                
+                
+                if let user = yourActivitiesArray[indexPath.row]["fromUser"] as? PFUser {
+                    aCell.followerButton.setTitle(fromUser[indexPath.row].username, forState: UIControlState.Normal)
+                    aCell.titleLabel.text = "commented on your"
+                    //aCell.follower = fromUser[indexPath.row]
+                    aCell.optionalButton.setTitle("photo", forState: UIControlState.Normal)
+                   //aCell.optionalButton.hidden = true
+                }
+            }
+            else if actType == "like" {
+                    
+                    
+                    if let user = yourActivitiesArray[indexPath.row]["fromUser"] as? PFUser {
+                        aCell.followerButton.setTitle(fromUser[indexPath.row].username, forState: UIControlState.Normal)
+                        aCell.titleLabel.text = "liked your"
+                        //aCell.follower = fromUser[indexPath.row]
+                        aCell.optionalButton.setTitle("photo", forState: UIControlState.Normal)
+                }
+                
+
+                
+            }
+            
+            
+        }
+        
+        
         return aCell
         }
     }
