@@ -12,8 +12,10 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
 
     
     var results = [PFObject]()
+    var suggestions = [PFObject]()
     var selectedUser:PFUser?
     
+    @IBOutlet weak var suggestResult: UITableView!
     
     @IBOutlet weak var searchTerm: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -36,11 +38,12 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
             self.searchTerm.hidden = false
             self.searchResult.hidden = false
             self.searchButton.hidden = false
-            //searchResult.reloadData()
+            self.suggestResult.hidden = true
         case 1:
             self.searchTerm.hidden = true
             self.searchResult.hidden = true
             self.searchButton.hidden = true
+            self.suggestResult.hidden = false
         default:
             break
         }
@@ -55,6 +58,8 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewDidLoad()
         searchResult.dataSource = self
         searchResult.delegate = self
+        suggestResult.dataSource = self
+        suggestResult.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -68,7 +73,14 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
         return 1
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count
+        if tableView == self.searchResult{
+            return results.count
+        }else if tableView == self.suggestResult{
+            return suggestions.count
+        }else{
+            return 0
+        }
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -32,8 +32,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     @IBAction func Following(sender: UIButton) {
         
-        viewUser?.addObject(currentUser.objectId!, forKey: "follower")
-        currentUser?.addObject(viewUser!.objectId!, forKey: "following")
+        viewUser?.addObject(currentUser.objectId! as String, forKey: "follower")
+        currentUser?.addObject(viewUser!.objectId! as String, forKey: "following")
+        viewUser?.save()
         editProfile.setTitle("Followed", forState: .Normal)
         editProfile.enabled = false
         
@@ -43,7 +44,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         followAct["type"] = "follow"
         followAct.saveInBackgroundWithBlock{(success: Bool, error: NSError?) -> Void in
             if success {
-                println("comment saved")
+                println("follow saved")
             } else {
                 println(error)
             }

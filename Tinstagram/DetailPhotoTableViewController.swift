@@ -112,13 +112,6 @@ class DetailPhotoTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier{
             switch identifier{
-//            case "viewuser":
-//                if let userProfileController = segue.destinationViewController as? ProfileViewController{
-//                    if let theSender = sender as? DetailPhotoTableViewController{
-//                        userProfileController.viewUser  = self.viewUser
-//                        userProfileController.currentUser = PFUser.currentUser()
-//                    }
-//                }
             case "showcomment":
                 if let commentController = segue.destinationViewController as? CommentViewController{
                     if let theSender = sender as? DetailPhotoTableViewController{
