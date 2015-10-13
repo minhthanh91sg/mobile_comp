@@ -158,10 +158,7 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! TimelineTableViewCell
-        cell.username.setTitle("\(self.feedUser[indexPath.row])",forState: .Normal)
-        cell.username.tag = indexPath.row
-        cell.comment.tag = indexPath.row
-        cell.like.tag = indexPath.row
+        
         var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: feedImageIds[indexPath.row])
         imageObject.fetchIfNeeded()
         if let numberOfLikes = imageObject["likes"] as? Int{
@@ -174,10 +171,15 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         activityQuery.whereKey("photo", equalTo: imageObject)
         activityQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
         var result = activityQuery.findObjects()
-        if result!.count > 0{
+        if result!.count  == 0{
+            cell.like.enabled = true
+        }else{
             cell.like.enabled = false
         }
-        
+        cell.username.setTitle("\(self.feedUser[indexPath.row])",forState: .Normal)
+        cell.username.tag = indexPath.row
+        cell.comment.tag = indexPath.row
+        cell.like.tag = indexPath.row
         self.feedFiles[indexPath.row].getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 let image = UIImage(data: imageData!)

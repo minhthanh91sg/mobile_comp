@@ -19,7 +19,7 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
     
     @IBOutlet weak var commentTable: UITableView!
     
-    @IBAction func sendComment(sender: AnyObject) {
+    @IBAction func sendComment(sender: UIButton) {
         if commentTextField.text != ""{
             var query = PFQuery(className:"Image")
             var imageObject = query.getObjectWithId(imageID)
@@ -38,6 +38,9 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
                 }
                 
             }
+            commentTextField.text = ""
+            getCommentsForPhoto()
+            commentTable.reloadData()
         }
     }
     override func viewDidLoad() {
@@ -47,6 +50,8 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
         commentTable.delegate = self
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        commentTable.estimatedRowHeight = 68.0
+        commentTable.rowHeight = UITableViewAutomaticDimension
         
     }
     
@@ -63,11 +68,8 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
                 if let commentObjectArray = objects as! [PFObject]?{
                     self.comments.removeAll(keepCapacity: false)
                     for commentObject in commentObjectArray{
-                        println((commentObject["photo"]))
-                        println(commentObject["content"] as! String)
                         self.comments.append(commentObject["content"] as! String)
                         self.fromUser.append(commentObject["fromUser"] as! PFUser)
-                        println(self.comments)
                     }
                     
                 }
