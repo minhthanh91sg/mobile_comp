@@ -29,6 +29,10 @@ class ImageEffectViewController: UIViewController {
     
     var beginImage: CIImage!
 
+    @IBOutlet weak var brightnessAmount: UISlider!
+    
+    @IBOutlet weak var contrastAmount: UISlider!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +91,15 @@ class ImageEffectViewController: UIViewController {
         let filteredImage = filter.outputImage
         
         effectImageDisplay.image = applyFilter(filteredImage)
+        
+    }
+    
+    @IBAction func changeBrightnessValue(sender: UISlider) {
+        
+    }
+    
+    
+    @IBAction func changeContrastValue(sender: UISlider) {
         
     }
 
