@@ -118,13 +118,15 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
                             }
                             self.feedFiles.append(object.objectForKey("image") as! PFFile)
                             
-                            if self.receivedData != nil{
-                                self.feedUser.insert(bluetoothUser, atIndex:0)
-                                self.feedImageIds.insert(bluetoothImageId, atIndex: 0)
-                                self.feedFiles.insert(bluetoothFile, atIndex: 0)
-                            }
-                            self.tableView.reloadData()
+                            
+                            
                         }
+                        if self.receivedData != nil{
+                            self.feedUser.insert(bluetoothUser, atIndex:0)
+                            self.feedImageIds.insert(bluetoothImageId, atIndex: 0)
+                            self.feedFiles.insert(bluetoothFile, atIndex: 0)
+                        }
+                        self.tableView.reloadData()
                     }
                 }
             
