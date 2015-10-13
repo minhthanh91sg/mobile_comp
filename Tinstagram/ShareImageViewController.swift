@@ -46,21 +46,20 @@ class ShareImageViewController: UIViewController, UITextFieldDelegate {
         let imageFile = PFFile(data: imageData)
         var currentUser = PFUser.currentUser()?.objectId
         var userImage = PFObject(className: "Image")
-        var like = 0
+        var likes = 0
+        var comments = 0
         var description = textField.text
         
         userImage["image"] = imageFile
         userImage["userId"] = currentUser
-        userImage["likes"] = like
+        userImage["likes"] = likes
+        userImage["comments"] = comments
         userImage["description"] = description
         userImage.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 // The object has been saved.
                 println("object was saved")
-               
-                
-                
                 
             } else {
                 // There was a problem, check error.description
