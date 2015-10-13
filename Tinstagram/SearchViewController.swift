@@ -48,6 +48,7 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func chooseUser(sender: UIButton) {
         selectedUser = results[sender.tag] as? PFUser
+        println("@IBAction func chooseUser \(selectedUser)")
         performSegueWithIdentifier("showuser", sender: self)
     }
     override func viewDidLoad() {
@@ -82,10 +83,10 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
             switch identifier{
                 case "showuser":
                     if let userProfileController = segue.destinationViewController as? ProfileViewController{
-                        if let theSender = sender as? FeedTableViewController{
-                            println("aksdjflasjdf")
-                            userProfileController.viewUser  = self.selectedUser
+                        if let theSender = sender as? SearchViewController{
                             userProfileController.currentUser = PFUser.currentUser()
+                            userProfileController.viewUser  = self.selectedUser
+                            println("override func prepareForSegue \(self.selectedUser)")
                         }
                 }
                 default:break
