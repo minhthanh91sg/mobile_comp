@@ -15,6 +15,15 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    var objects = [String]()
+    var youObjects = [String]()
+    var currentUser: PFUser!
+    var fromUser = [PFUser]()
+    var toUserID: String!
+    var viewUser: PFUser!
+    
+    
+    
     @IBAction func followingOrTou(sender: UISegmentedControl) {
         
         switch segmentedControl.selectedSegmentIndex {
@@ -32,11 +41,12 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     
-    var objects = [String]()
-    var youObjects = [String]()
-    var currentUser: PFUser!
-    var fromUser = [PFUser]()
-    var toUserID: String!
+    @IBAction func linkToUser(sender: UIButton) {
+        println("Click::Event")
+        viewUser = self.fromUser[sender.tag]
+        
+        performSegueWithIdentifier("viewuser", sender: self)
+    }
     
     
     func findYourActivity() -> Void {
@@ -179,8 +189,31 @@ class ActivityViewController: UIViewController,UITableViewDataSource,UITableView
         //aCell.titleLabel.text = self.youObjects[indexPath.row]
         //aCell.titleLabel.text = self.fromUser[indexPath.row].username
         aCell.followerButton.setTitle(self.fromUser[indexPath.row].username, forState: UIControlState.Normal)
+        //aCell.follower = fromUser[indexPath.row]
         return aCell
         }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println("prepareForSegue")
+        
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "viewuser":
+                if let userProfileController = segue.destinationViewController as? ProfileViewController{
+                    if let theSender = sender as? ActivityViewController{
+                        println("aksdjflasjdf")
+                        userProfileController.viewUser  = self.viewUser
+                        userProfileController.currentUser = self.currentUser
+                    }
+                }
+                default: break
+                
+            }
+            
+        }
+        
     }
     
     

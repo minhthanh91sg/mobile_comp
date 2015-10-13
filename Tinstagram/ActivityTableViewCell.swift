@@ -11,4 +11,7 @@ import UIKit
 class ActivityTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel! = UILabel()
     @IBOutlet weak var followerButton: UIButton! = UIButton()
+    
+    //var follower:PFUser!
+    
 }
