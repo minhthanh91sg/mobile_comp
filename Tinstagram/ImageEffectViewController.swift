@@ -20,13 +20,21 @@ class ImageEffectViewController: UIViewController {
     var imageReceived: UIImage!
     
     //Create a place to render the filtered image
-    let context = CIContext(options: nil)
     
+    //let context = CIContext(options: nil)
+    
+    var context: CIContext!
+    
+    var filter: CIFilter!
+    
+    var beginImage: CIImage!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // loads the received image from CameraViewController
         effectImageDisplay.image = imageReceived
+        beginImage = CIImage(image: imageReceived)
         
 
         
@@ -44,38 +52,42 @@ class ImageEffectViewController: UIViewController {
         effectImageDisplay.image = imageReceived
     }
     
-    /* Filter 1 - ToneCurve */
+    /* Filter 1 - Sepia */
     @IBAction func filterOneButton(sender: AnyObject) {
-        // create an Image to filter
-        let inputImageOne = CIImage(image: effectImageDisplay.image)
         
-        // Apply filter to the image
-        let filteredImage = inputImageOne.imageByApplyingFilter("CILinearToSRGBToneCurve", withInputParameters: nil)
+        filter = CIFilter(name: "CISepiaTone")
+        filter.setValue(beginImage, forKey: kCIInputImageKey)
+        filter.setValue(0.6, forKey: kCIInputIntensityKey)
         
-        //render the filtered image
-        let renderedImage = context.createCGImage(filteredImage, fromRect: filteredImage.extent())
+        let filteredImage = filter.outputImage
         
-        // Reflect the change back in the interface
-        effectImageDisplay.image = UIImage(CGImage: renderedImage)
-
+        effectImageDisplay.image = applyFilter(filteredImage)
+        
     }
     
     /* Filter 2 - Fade */
     @IBAction func filterTwoButton(sender: AnyObject) {
-        let inputImageTwo = CIImage(image: imageReceived)
-        let filteredImageTwo = inputImageTwo.imageByApplyingFilter("CIPhotoEffectFade", withInputParameters: nil)
-        let renderedImageTwo = context.createCGImage(filteredImageTwo, fromRect: filteredImageTwo.extent())
-        effectImageDisplay.image = UIImage(CGImage: renderedImageTwo)
+        filter = CIFilter(name: "CIPhotoEffectFade")
+        println(filter)
+        filter.setValue(beginImage, forKey: kCIInputImageKey)
+        filter.setDefaults()
+
+        let filteredImage = filter.outputImage
         
+        effectImageDisplay.image = applyFilter(filteredImage)
     }
     
     
-    /* Filter 3 - Black-and-White */
+    /* Filter 3 - Black-and-White  */
     @IBAction func filterThreeButton(sender: AnyObject) {
-        let inputImageThree = CIImage(image: imageReceived)
-        let filteredImageThree = inputImageThree.imageByApplyingFilter("CIPhotoEffectNoir", withInputParameters: nil)
-        let renderedImageThree = context.createCGImage(filteredImageThree, fromRect: filteredImageThree.extent())
-        effectImageDisplay.image = UIImage(CGImage: renderedImageThree)
+        filter = CIFilter(name: "CIPhotoEffectNoir")
+        println(filter)
+        filter.setValue(beginImage, forKey: kCIInputImageKey)
+        filter.setDefaults()
+        
+        let filteredImage = filter.outputImage
+        
+        effectImageDisplay.image = applyFilter(filteredImage)
         
     }
 
@@ -85,6 +97,18 @@ class ImageEffectViewController: UIViewController {
         var shareImageVC: ShareImageViewController = segue.destinationViewController as! ShareImageViewController
         shareImageVC.imageReceived = effectImageDisplay.image!
         effectImageDisplay.image = nil
+        
+    }
+    
+    // MARK: - Image functions
+    
+    func applyFilter (filteredImg: CIImage) -> UIImage {
+        context = CIContext(options: nil)
+        let renderedImage = context.createCGImage(filteredImg, fromRect: filteredImg.extent())
+        
+        let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
+        
+        return newImage!
         
     }
     
