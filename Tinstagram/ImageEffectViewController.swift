@@ -28,6 +28,9 @@ class ImageEffectViewController: UIViewController {
     var filter: CIFilter!
     
     var beginImage: CIImage!
+    
+    var brightness: Float = 0.0
+    var contrast: Float = 0.0
 
     @IBOutlet weak var brightnessAmount: UISlider!
     
@@ -39,8 +42,9 @@ class ImageEffectViewController: UIViewController {
         // loads the received image from CameraViewController
         effectImageDisplay.image = imageReceived
         beginImage = CIImage(image: imageReceived)
+        brightness = 0.9
+        contrast = 0.9
         
-
         
     }
 
@@ -59,41 +63,23 @@ class ImageEffectViewController: UIViewController {
     /* Filter 1 - Sepia */
     @IBAction func filterOneButton(sender: AnyObject) {
         
-        filter = CIFilter(name: "CISepiaTone")
-        filter.setValue(beginImage, forKey: kCIInputImageKey)
-        filter.setValue(0.6, forKey: kCIInputIntensityKey)
+        effectImageDisplay.image = applyFilter("CISepiaTone", img: beginImage)
         
-        let filteredImage = filter.outputImage
-        
-        effectImageDisplay.image = applyFilter(filteredImage)
         
     }
     
     /* Filter 2 - Fade */
     @IBAction func filterTwoButton(sender: AnyObject) {
-        filter = CIFilter(name: "CIPhotoEffectFade")
-        filter.setValue(beginImage, forKey: kCIInputImageKey)
-        filter.setDefaults()
-
-        let filteredImage = filter.outputImage
-        
-        effectImageDisplay.image = applyFilter(filteredImage)
+        effectImageDisplay.image = applyFilter("CIPhotoEffectFade", img: beginImage)
     }
     
     
     /* Filter 3 - Black-and-White  */
     @IBAction func filterThreeButton(sender: AnyObject) {
-        filter = CIFilter(name: "CIPhotoEffectNoir")
-        println(filter)
-        filter.setValue(beginImage, forKey: kCIInputImageKey)
-        filter.setDefaults()
-        
-        let filteredImage = filter.outputImage
-        
-        effectImageDisplay.image = applyFilter(filteredImage)
-        
+        effectImageDisplay.image = applyFilter("CIPhotoEffectNoir", img: beginImage)
     }
     
+    /*Sliders */
     @IBAction func changeBrightnessValue(sender: UISlider) {
         
     }
@@ -118,14 +104,37 @@ class ImageEffectViewController: UIViewController {
     
     // MARK: - Image functions
     
-    func applyFilter (filteredImg: CIImage) -> UIImage {
-        context = CIContext(options: nil)
-        let renderedImage = context.createCGImage(filteredImg, fromRect: filteredImg.extent())
+    func applyFilter(nameFilter: String, img: CIImage) -> UIImage {
+        filter = CIFilter(name: nameFilter)
+        filter.setValue(img, forKey: kCIInputImageKey)
+        filter.setDefaults() // default values
         
+        let brightnessFil = CIFilter(name: "CIColorControls")
+        brightnessFil.setValue(filter.outputImage, forKey: kCIInputImageKey)
+        brightnessFil.setValue(1 - self.brightness, forKey: "inputBrightness")
+        brightnessFil.setValue(1 - self.contrast, forKey: "inputBrightness")
+        
+        context = CIContext(options: nil)
+        let renderedImage = context.createCGImage(brightnessFil.outputImage, fromRect: brightnessFil.outputImage.extent())
         let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
         
+        
+        //        let filteredImage = filter.outputImage
+        //        context = CIContext(options: nil)
+        //        let renderedImage = context.createCGImage(filteredImage, fromRect: filteredImage.extent())
+        //        let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
         return newImage!
         
     }
+    
+//    func applyFilter (filteredImg: CIImage) -> UIImage {
+//        context = CIContext(options: nil)
+//        let renderedImage = context.createCGImage(filteredImg, fromRect: filteredImg.extent())
+//        
+//        let newImage = UIImage(CGImage: renderedImage, scale: self.imageReceived.scale, orientation: self.imageReceived.imageOrientation)
+//        
+//        return newImage!
+//        
+//    }
     
 }
