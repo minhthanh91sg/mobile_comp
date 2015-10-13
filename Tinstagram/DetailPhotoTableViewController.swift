@@ -30,9 +30,9 @@ class DetailPhotoTableViewController: UITableViewController {
         
     }
     
-    @IBAction func viewUserDetail(sender:UIButton){
-        performSegueWithIdentifier("viewuser", sender: self)
-    }
+//    @IBAction func viewUserDetail(sender:UIButton){
+//        performSegueWithIdentifier("viewuser", sender: self)
+//    }
     
     @IBAction func likeAPhoto(sender:UIButton){
         var imageObject = PFObject(withoutDataWithClassName: "Image", objectId: imageID)
@@ -112,13 +112,13 @@ class DetailPhotoTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier{
             switch identifier{
-            case "viewuser":
-                if let userProfileController = segue.destinationViewController as? ProfileViewController{
-                    if let theSender = sender as? DetailPhotoTableViewController{
-                        userProfileController.viewUser  = self.viewUser
-                        userProfileController.currentUser = PFUser.currentUser()
-                    }
-                }
+//            case "viewuser":
+//                if let userProfileController = segue.destinationViewController as? ProfileViewController{
+//                    if let theSender = sender as? DetailPhotoTableViewController{
+//                        userProfileController.viewUser  = self.viewUser
+//                        userProfileController.currentUser = PFUser.currentUser()
+//                    }
+//                }
             case "showcomment":
                 if let commentController = segue.destinationViewController as? CommentViewController{
                     if let theSender = sender as? DetailPhotoTableViewController{
