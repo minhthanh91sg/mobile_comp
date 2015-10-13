@@ -323,6 +323,158 @@
                                             <outlet property="titleLabel" destination="8Gs-yV-pUl" id="ClR-TM-40v"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentActCell" id="MND-T0-Joz" customClass="commentActivityCell" customModule="Tinstagram" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MND-T0-Joz" id="82X-dI-y5g">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="started following you." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sat-No-KOt">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="340" id="Uir-K5-rHQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="Uir-K5-rHQ"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="Uir-K5-rHQ"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07E-jt-Wk8">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="linkToUser:" destination="0sZ-AX-DAi" eventType="touchUpInside" id="e2p-Bm-uZA"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sat-No-KOt" firstAttribute="top" secondItem="82X-dI-y5g" secondAttribute="topMargin" constant="3" id="DIL-pH-wZF"/>
+                                                <constraint firstItem="sat-No-KOt" firstAttribute="centerY" secondItem="82X-dI-y5g" secondAttribute="centerY" id="VYI-g1-zzc"/>
+                                                <constraint firstItem="07E-jt-Wk8" firstAttribute="leading" secondItem="82X-dI-y5g" secondAttribute="leadingMargin" constant="11" id="WmU-bE-Iee"/>
+                                                <constraint firstItem="sat-No-KOt" firstAttribute="leading" secondItem="82X-dI-y5g" secondAttribute="leading" constant="160" id="hyZ-te-D7U"/>
+                                                <constraint firstItem="sat-No-KOt" firstAttribute="leading" secondItem="07E-jt-Wk8" secondAttribute="trailing" constant="17" id="kYJ-8I-9Hj"/>
+                                                <constraint firstItem="07E-jt-Wk8" firstAttribute="baseline" secondItem="sat-No-KOt" secondAttribute="baseline" id="mVz-4y-tt3"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="sat-No-KOt"/>
+                                                    <exclude reference="07E-jt-Wk8"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="DIL-pH-wZF"/>
+                                                    <exclude reference="VYI-g1-zzc"/>
+                                                    <exclude reference="hyZ-te-D7U"/>
+                                                    <exclude reference="kYJ-8I-9Hj"/>
+                                                    <exclude reference="WmU-bE-Iee"/>
+                                                    <exclude reference="mVz-4y-tt3"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="sat-No-KOt"/>
+                                                    <include reference="07E-jt-Wk8"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="DIL-pH-wZF"/>
+                                                    <include reference="VYI-g1-zzc"/>
+                                                    <include reference="hyZ-te-D7U"/>
+                                                    <include reference="kYJ-8I-9Hj"/>
+                                                    <include reference="WmU-bE-Iee"/>
+                                                    <include reference="mVz-4y-tt3"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="followerButton" destination="07E-jt-Wk8" id="XRa-Tb-Flc"/>
+                                            <outlet property="titleLabel" destination="sat-No-KOt" id="Qth-zb-LZO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likeActCell" id="npf-67-TAA" customClass="likeActivityCell" customModule="Tinstagram" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="npf-67-TAA" id="itn-tU-u6j">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="started following you." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-Cx-PqH">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="340" id="B9Y-JB-s9S"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="B9Y-JB-s9S"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="B9Y-JB-s9S"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeG-Mt-a1N">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="linkToUser:" destination="0sZ-AX-DAi" eventType="touchUpInside" id="DZd-Mx-jqa"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hdr-Cx-PqH" firstAttribute="centerY" secondItem="itn-tU-u6j" secondAttribute="centerY" id="7bQ-9W-Evs"/>
+                                                <constraint firstItem="hdr-Cx-PqH" firstAttribute="leading" secondItem="itn-tU-u6j" secondAttribute="leading" constant="160" id="EGZ-Ju-MUG"/>
+                                                <constraint firstItem="UeG-Mt-a1N" firstAttribute="baseline" secondItem="hdr-Cx-PqH" secondAttribute="baseline" id="HSa-RK-SDA"/>
+                                                <constraint firstItem="UeG-Mt-a1N" firstAttribute="leading" secondItem="itn-tU-u6j" secondAttribute="leadingMargin" constant="11" id="PEo-eq-yyf"/>
+                                                <constraint firstItem="hdr-Cx-PqH" firstAttribute="top" secondItem="itn-tU-u6j" secondAttribute="topMargin" constant="3" id="PzE-v3-XUK"/>
+                                                <constraint firstItem="hdr-Cx-PqH" firstAttribute="leading" secondItem="UeG-Mt-a1N" secondAttribute="trailing" constant="17" id="d7l-LZ-QhE"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="hdr-Cx-PqH"/>
+                                                    <exclude reference="UeG-Mt-a1N"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="7bQ-9W-Evs"/>
+                                                    <exclude reference="EGZ-Ju-MUG"/>
+                                                    <exclude reference="PzE-v3-XUK"/>
+                                                    <exclude reference="d7l-LZ-QhE"/>
+                                                    <exclude reference="HSa-RK-SDA"/>
+                                                    <exclude reference="PEo-eq-yyf"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="hdr-Cx-PqH"/>
+                                                    <include reference="UeG-Mt-a1N"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="7bQ-9W-Evs"/>
+                                                    <include reference="EGZ-Ju-MUG"/>
+                                                    <include reference="PzE-v3-XUK"/>
+                                                    <include reference="d7l-LZ-QhE"/>
+                                                    <include reference="HSa-RK-SDA"/>
+                                                    <include reference="PEo-eq-yyf"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="followerButton" destination="UeG-Mt-a1N" id="mVx-ic-Vpd"/>
+                                            <outlet property="titleLabel" destination="hdr-Cx-PqH" id="K5M-aw-t9s"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bfk-mV-bYz">
