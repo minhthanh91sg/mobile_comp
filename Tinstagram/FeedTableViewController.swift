@@ -55,16 +55,15 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
         likeAct.saveInBackgroundWithBlock{(success: Bool, error: NSError?) -> Void in
             if success {
                 println("like saved")
+                imageObject.incrementKey("likes", byAmount: 1)
+                imageObject.save()
+                var indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
             } else {
                 println(error)
             }
             
         }
-        
-        imageObject.incrementKey("likes", byAmount: 1)
-        imageObject.save()
-        var indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
     
     
@@ -175,6 +174,10 @@ class FeedTableViewController: UITableViewController, CBCentralManagerDelegate, 
             cell.like.enabled = true
         }else{
             cell.like.enabled = false
+        }
+        
+        if let numberOfComments = imageObject["comments"] as? Int{
+            cell.comment.setTitle(("\(numberOfComments)"), forState: .Normal)
         }
         cell.username.setTitle("\(self.feedUser[indexPath.row])",forState: .Normal)
         cell.username.tag = indexPath.row

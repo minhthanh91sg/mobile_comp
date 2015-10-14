@@ -306,6 +306,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             cell.like.enabled = true
         }else{
             cell.like.enabled = false
+        }        
+        if let numberOfComments = imageObject["comments"] as? Int{
+            cell.comment.setTitle(("\(numberOfComments)"), forState: .Normal)
         }
         cell.username.setTitle(nameOfUser, forState: .Normal)
         cell.username.sizeToFit()

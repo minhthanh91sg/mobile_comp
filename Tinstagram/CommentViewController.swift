@@ -33,11 +33,14 @@ class CommentViewController: UIViewController,UITableViewDataSource, UITableView
             commentAct.saveInBackgroundWithBlock{(success: Bool, error: NSError?) -> Void in
                 if success {
                     println("comment saved")
+                    imageObject?.incrementKey("comments",byAmount:1)
+                    imageObject?.save()
                 } else {
                     println(error)
                 }
                 
             }
+            
             commentTextField.text = ""
             getCommentsForPhoto()
             commentTable.reloadData()

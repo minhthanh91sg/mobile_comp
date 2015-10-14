@@ -65,19 +65,30 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
         searchResult.delegate = self
         suggestResult.dataSource = self
         suggestResult.delegate = self
+        findSuggestions()
+    }
+    
+    func findSuggestions() -> Void{
+        var query1 = PFQuery(className: "_User")
+        //var currentUser = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.currentUser()!.objectId)
         
-        var query1 = PFQuery(className: "Activity")
-        var dummyUser = PFObject(withoutDataWithClassName: "_User", objectId: PFUser.currentUser()!.objectId)
-        query1.whereKey("toUser", notEqualTo: dummyUser)
-        query1.whereKey("fromUser", notEqualTo: dummyUser)
-        query1.whereKey("type",equalTo:"follow")
-        query1.includeKey("fromUser")
-        var query1Results = query1.findObjects() as! [PFObject]
-        if query1Results != [] {
-            for query1Result in query1Results{
-                suggestions.append(query1Result["fromUser"] as! PFObject)
+        //var followingUsers = [String]()
+        
+        if let followingUserArrayString = PFUser.currentUser()!["following"] as? [String] {
+            //println(followingUsers)
+            query1.whereKey("objectId", notContainedIn: followingUserArrayString)
+            query1.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
+            query1.limit = 10
+            var query1Results = query1.findObjects() as! [PFObject]
+            if query1Results != [] {
+                for query1Result in query1Results{
+                    suggestions.append(query1Result)
+                }
             }
+
         }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

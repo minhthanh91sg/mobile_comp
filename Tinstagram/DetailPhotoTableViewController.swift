@@ -95,6 +95,10 @@ class DetailPhotoTableViewController: UITableViewController {
         }else{
             cell.like.enabled = false
         }
+        
+        if let numberOfComments = imageObject["comments"] as? Int{
+            cell.comment.setTitle(("\(numberOfComments)"), forState: .Normal)
+        }
         cell.username.setTitle(viewUser!.username,forState: .Normal)
         self.imageFile.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
